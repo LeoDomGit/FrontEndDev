@@ -35,7 +35,7 @@ function UserRole(){
                             icon: 'error',
                             title: response.message
                           }).then(()=>{
-                            window.location.reload();
+                            // window.location.reload();
                           })
                     }else if(response.check==400){
                         const Toast = Swal.mixin({
@@ -73,7 +73,7 @@ function UserRole(){
                             icon: 'success',
                             title: 'Thêm mới thành công'
                           }).then(()=>{
-                            window.location.reload();
+                            // window.location.reload();
                           })
                     }
                 }
@@ -105,13 +105,15 @@ function addUser(){
         e.preventDefault();
         var email=$("#email").val().trim();
         var username=$("#username").val().trim();
+        var userRole = $("#userRole option:selected").val();
         if(email.length>5&&username.length>3&&username.length<80&&email.match(/(.+)@(.+)\.(com)/i)){
             $.ajax({
                 url: 'http://127.0.0.1:3000/api/register',
                 type: "POST",
                 data: {
                     username: username,
-                    email:email
+                    email:email,
+                    userRole:userRole
                 },
                 success: function (response) {
                     if(response.check==401){

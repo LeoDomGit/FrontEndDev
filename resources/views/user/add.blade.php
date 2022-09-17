@@ -12,6 +12,16 @@
         </div>
     </div>
     <div class="row mt-3">
+    <div class="col-md-12">
+            <label for=""><b>Loại tài khoản </b></label>
+            <select name="" class="form-control" id="userRole">
+                @foreach ($userRoles as $item )
+                <option value="{{$item->id}}">{{$item->name}}</option>
+                @endforeach
+           </select>
+        </div>
+    </div>
+    <div class="row mt-3">
         <div class="col-md-3">
             <button id="addUserBtn" class="btn btn-success disabled">Thêm tài khoản</button>
         </div>

@@ -13,7 +13,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user.add');
+        $userRoles = Http::get('http://127.0.0.1:3000/api/allUserRole');
+        $userRoles= json_decode($userRoles);
+        return view('user.add',compact('userRoles'));
     }
 
     /**

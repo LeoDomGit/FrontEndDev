@@ -93,7 +93,7 @@
                 @foreach ($users as $item)
                 <tr>
                     <td class="table-plus"><p>{{$item->username}}</p></td>
-                    <td></td>
+                    <td>{{$item->name}}</td>
                     <td><?php if($item->status==0){?>
                         <p>Đang khóa</p>
                     <?php }else{ ?>
