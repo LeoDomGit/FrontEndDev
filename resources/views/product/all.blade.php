@@ -10,7 +10,7 @@
                 </div>
                 <nav aria-label="breadcrumb" role="navigation">
                     <ol class="breadcrumb">
-                        <li><button style="width:200px;" class="btn btn-primary">+ Thêm sản phẩm</button></li>
+                        <li><a href="/addProduct"><button style="width:200px;" class="btn btn-primary">+ Thêm sản phẩm</button></a></li>
                         
                         <li><button style="width:200px;" class="btn btn-danger ml-2"><i class="fas fa-trash-alt"></i> Thùng rác</button></li>
                     </ol>

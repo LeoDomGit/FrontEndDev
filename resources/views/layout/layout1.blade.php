@@ -53,7 +53,8 @@
 			href="admin/src/plugins/datatables/css/responsive.bootstrap4.min.css"
 		/>
 		<link rel="stylesheet" type="text/css" href="admin/vendors/styles/style.css" />
-
+        <!-- Link js -->
+		<script src="{{ asset('admin/ckeditor/ckeditor.js') }}"></script>
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 		<script
 			async
