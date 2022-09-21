@@ -45,6 +45,11 @@
 		<link
 			rel="stylesheet"
 			type="text/css"
+			href="admin/src/plugins/jquery-steps/jquery.steps.css"
+		/>
+		<link
+			rel="stylesheet"
+			type="text/css"
 			href="admin/src/plugins/datatables/css/dataTables.bootstrap4.min.css"
 		/>
 		<link
@@ -713,5 +718,7 @@
 		<script src="admin/script/admin.js"></script>
 		<script src="admin/script/sweetalert2.js"></script>
         <script src="admin/vendors/scripts/datatable-setting.js"></script>
+		<script src="admin/src/plugins/jquery-steps/jquery.steps.js"></script>
+		<script src="admin/vendors/scripts/steps-setting.js"></script>
 	</body>
 </html>
