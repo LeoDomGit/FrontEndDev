@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 /*
@@ -18,4 +19,5 @@ Route::get('/', function () {
 });
 Route::get('/addUser',[UserController::class,'index']);
 Route::get('/allUser',[UserController::class,'allUser']);
+Route::get('/allProduct',[ProductsController::class,"index"]);
 
