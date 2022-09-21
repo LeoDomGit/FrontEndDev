@@ -15,13 +15,13 @@ class ProductsController extends Controller
 
     public function create()
     {
-        //
+        return view('product.add');
     }
 
 
     public function store(Request $request)
     {
-        //
+        
     }
 
  
