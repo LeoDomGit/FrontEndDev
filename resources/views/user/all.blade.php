@@ -1,3 +1,8 @@
+<style>
+    .hidden{
+        display:none;
+    }
+</style>
 @extends('layout.layout1')
 @section('title','Quản lý tài khoản')
 @section('main-container')
@@ -39,14 +44,16 @@
                     <div class="pd-20 card-box height-100-p w-100">
                         <div class="list-group">
                             @foreach ($userRoles as $item)
-                            <a
-                            href="#"
-                            class="list-group-item list-group-item-action"
+                            <a href=""  data-id='{{$item->id}}'class="list-group-item rolename list-group-item-action"
                             >{{$item->name}}</a>
                             <br>
                             @endforeach
-
                         </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 mb-30 hidden" id="updatebtnarea">
+                    <div class="pd-20 card-box height-100-p w-100">
+                        <button class="btn btn-danger" id="updateRoleBtn">Cập nhật</button>
                     </div>
                 </div>
             </div>
