@@ -78,7 +78,6 @@
         </div>
         <br>
         <button type="submit" id="" class="btn btn-primary me-2">Thêm</button>
-            <button class="btn btn-light">Thoát</button>
 	</form>
 </div>
     <script src="admin/ckeditor/ckeditor.js"></script>
