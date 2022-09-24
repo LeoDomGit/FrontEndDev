@@ -2,131 +2,124 @@
 @section('title','Quản lý sản phẩm')
 @section('main-container')
 <div class="min-height-200px">
-    <div class="page-header">
-        <div class="row">
-            <div class="col-md-6 col-sm-12">
-                <div class="title">
-                    <h4>Danh sách sản phẩm</h4>
-                </div>
-                <nav aria-label="breadcrumb" role="navigation">
-                    <ol class="breadcrumb">
-                        <li><a href="/addProduct"><button style="width:200px;" class="btn btn-primary">+ Thêm sản phẩm</button></a></li>
-                        
-                        <li><button style="width:200px;" class="btn btn-danger ml-2"><i class="fas fa-trash-alt"></i> Thùng rác</button></li>
-                    </ol>
-                </nav>
-            </div>
-            {{-- <div class="col-md-6 col-sm-12 text-right">
-
-            </div> --}}
-        </div>
+  <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addProductMD">
+  Thêm sản phẩm
+</button>
+<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#addProdType">
+  Thêm loại sản phẩm
+</button>
+{{-- ============================ --}}
+<div class="modal fade" id="addProdType" tabindex="-1" aria-labelledby="addProdType" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addProdType">Thêm tag sản phẩm</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        @csrf
+        <input type="text" class="form-control" id="tagName" placeholder="Tên tag sản phẩm">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+        <button type="button" class="btn btn-primary">Lưu</button>
+      </div>
     </div>
-    <!-- Button trigger modal -->
+  </div>
+</div>
+{{-- ============================ --}}
+<div class="modal fade" id="addProdType" tabindex="-1" aria-labelledby="addProdType" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addProdType">Thêm loại sản phẩm</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        @csrf
+        <input type="text" class="form-control" placeholder="Tên loại sản phẩm">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Lưu</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="addProductMD" tabindex="-1" aria-labelledby="addProductMDLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addProductMDLabel">Thêm sản phẩm</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="pd-20 card-box mb-30">
+          <div class="clearfix">
+            <div class="pull-left">
 
-  <!-- Modal -->
-  <div class="modal fade" id="userManager" tabindex="-1" aria-labelledby="userManagerLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="userManagerLabel">Quản lý loại tài khoản</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <button class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Thêm loại tài khoản</button>
-          <div class="mt-3">
-            <div class="row">
-                <div class="col-lg-4 col-md-6 col-sm-12 mb-30">
-                    <div class="pd-20 card-box height-100-p w-100">
-                        <div class="list-group">
-                           
-                            <a
-                            href="#"
-                            class="list-group-item list-group-item-action"
-                            >grhyjt6j</a>
-                            <br>
-                           
-
-                        </div>
-                    </div>
-                </div>
             </div>
           </div>
-        </div>
-        <div class="modal-footer">
-        </div>
-      </div>
-    </div>
-  </div>
-  {{-- Modal2  --}}
-  <div class="modal fade" id="exampleModal" tabindex="1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Thêm loại tài khoản</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <input type="text" class="form-control" id="newUserRole" placeholder="Loại tài khoản mới">
-        </div>
-        <div class="modal-footer">
-          <button type="button" id="addUserRolebtn" class="btn btn-primary">Lưu</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  {{-- End MD2 --}}
-    <div class="">
-        <table class="data-table table stripe hover nowrap">
-            <thead>
-                <tr>
-                    <th class="table-plus datatable-nosort">Username</th>
-                    <th>Role</th>
-                    <th>Tình trạng tài khoản</th>
-                    <th>Hình ảnh</th>
-                    <th>Ngày tạo</th>
-                    <th class="datatable-nosort">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-               
-                <tr>
-                    <td class="table-plus"><p>rdhdrhrdh</p></td>
-                    <td>drhdrhdrh</td>
-                    <td>gfhdhdrh</td>
-                    <td><p>drhdrhdrhdrh</p></td>
-                    <td>gsegsg</td>
-                    <td>
-                        <div class="dropdown">
-                            <a
-                                class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
-                                href="#"
-                                role="button"
-                                data-toggle="dropdown"
-                            >
-                                <i class="dw dw-more"></i>
-                            </a>
-                            <div
-                                class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
-                            >
-                                <a class="dropdown-item" href="#"
-                                    ><i class="dw dw-eye"></i> View</a
-                                >
-                                <a class="dropdown-item" href="#"
-                                    ><i class="dw dw-edit2"></i> Edit</a
-                                >
-                                <a class="dropdown-item" href="#"
-                                    ><i class="dw dw-delete-3"></i> Delete</a
-                                >
-                            </div>
+          <form>
+                <div class="row">					
+              <div class="col-md-6 ">
+                <div class="form-group">
+                  <label>Tên sản phẩm</label>
+                  <input type="text" class="form-control" id="prodName" placeholder="Tên sản phẩm" />
+                </div>
+              </div>
+                    <div class="col-md-6 ">
+                <div class="form-group">
+                  <label>Giá</label>
+                  <input type="number" class="form-control" id="price" placeholder="Giá"/>
+                </div>
+              </div>
+            
+                        
+              <div class="col-md-6 ">
+                <div class="form-group">
+                  <label>Giảm giá</label>
+                  <input type="number" class="form-control" id="discount" placeholder="Giảm giá"/>
+                </div>
+              </div>
+                    <div class="col-md-6 ">
+                <div class="form-group">
+                  <label>Loại sản phẩm</label>
+                  <select name="" id="" class="form-control"></select>
+                </div>
                         </div>
-                    </td>
-                </tr>
-              
-            </tbody>
-        </table>
+                    <div class="col-md-12">
+                        <label >Nội dung</label>
+                        <textarea class="form-control" id="desc" rows="4"></textarea>
+                    </div>
+                </div>
+                <br>
+
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" id="" class="btn btn-primary me-2">Thêm</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
     </div>
+  </div>
+</div>
+</div>
+<script src="admin/ckeditor/ckeditor.js"></script>
+<script>
+     CKEDITOR.replace('desc', {
+            height: 400,
+        });
+
+CKFinder.setupCKEditor();
+</script>
 @endsection

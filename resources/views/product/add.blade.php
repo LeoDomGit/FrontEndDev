@@ -1,7 +1,24 @@
 @extends('layout.layout1')
 @section('title','Thêm sản phẩm')
 @section('main-container')
-<button id="addNewsTypeBtn" class="btn btn-primary mb-3">Thêm loại sản phẩm</button>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<button data-bs-toggle="modal" data-bs-target="#q" class="btn btn-primary mb-3">Thêm loại sản phẩm</button>
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
  tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -24,7 +41,6 @@
 	<div class="clearfix">
 		<div class="pull-left">
 			<h4 class="text-blue h4">Thêm sản phẩm</h4>
-			<p class="mb-30">All bootstrap element classies</p>
 		</div>
 	</div>
 	<form>
@@ -56,10 +72,11 @@
 				</div>
                 </div>
             <div class="col-md-12">
-                <label >Textarea</label>
+                <label >Nội dung</label>
                 <textarea class="form-control" id="desc" rows="4"></textarea>
             </div>
         </div>
+        <br>
         <button type="submit" id="" class="btn btn-primary me-2">Thêm</button>
             <button class="btn btn-light">Thoát</button>
 	</form>
