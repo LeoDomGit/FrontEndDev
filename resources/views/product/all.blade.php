@@ -12,8 +12,32 @@
 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#addProdTag">
   Thêm tag sản phẩm
 </button>
+<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#allProdType">
+  Loại sản phẩm
+</button>
 {{-- ============================ --}}
-<div class="modal fade" id="addProdTag" tabindex="-1" aria-labelledby="addProdTag" aria-hidden="true">
+<div class="modal fade" id="allProdType" tabindex="-1" aria-labelledby="allProdType" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="allProdType">Loại sản phẩm</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {{-- @csrf
+        <input type="text" class="form-control" id="tagName" placeholder="Tên tag sản phẩm"> --}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+        <button type="button" class="btn btn-primary">Lưu</button>
+      </div>
+    </div>
+  </div>
+</div>
+{{-- ============================ --}}
+<div class="modal fade" id=" " tabindex="-1" aria-labelledby="addProdTag" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
