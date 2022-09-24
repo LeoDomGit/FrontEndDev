@@ -11,14 +11,10 @@ class ProductsController extends Controller
     {
         return view('product.all');
     }
-
-
-    public function create()
+    public function addprod()
     {
         return view('product.add');
     }
-
-
     public function store(Request $request)
     {
         
