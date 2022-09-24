@@ -21,3 +21,4 @@ Route::get('/addUser',[UserController::class,'index']);
 Route::get('/allUser',[UserController::class,'allUser']);
 Route::get('/allProduct',[ProductsController::class,"index"]);
 Route::get('/addProduct',[ProductsController::class,"addprod"]);
+Route::get('/editProduct',[ProductsController::class,"editprod"]);

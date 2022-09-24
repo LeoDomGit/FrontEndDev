@@ -1,29 +1,10 @@
 @extends('layout.layout1')
-@section('title','Thêm sản phẩm')
+@section('title','Sửa sản phẩm')
 @section('main-container')
-<button id="addNewsTypeBtn" class="btn btn-primary mb-3">Thêm loại sản phẩm</button>
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
- tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Tên loại sản phẩm</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <input type="text" placeholder="Tên loại sản phẩm" id="tenLoaiSP" class="form-control p-4">
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-          <button type="button" id="addNewsTypeBtn" class="btn btn-primary">Chấp nhận</button>
-        </div>
-      </div>
-    </div>
-  </div>
 <div class="pd-20 card-box mb-30">
 	<div class="clearfix">
 		<div class="pull-left">
-			<h4 class="text-blue h4">Thêm sản phẩm</h4>
+			<h4 class="text-blue h4">Sửa sản phẩm</h4>
 		</div>
 	</div>
 	<form>
@@ -31,7 +12,7 @@
 			<div class="col-md-6 ">
 				<div class="form-group">
 					<label>Tên sản phẩm</label>
-					<input type="text" class="form-control" id="prodName" placeholder="Tên sản phẩm" />
+					<input type="text" class="form-control" id="productName"  placeholder="Tên sản phẩm" />
 				</div>
 			</div>
             <div class="col-md-6 ">
@@ -40,8 +21,6 @@
 					<input type="number" class="form-control" id="price" placeholder="Giá"/>
 				</div>
 			</div>
-		
-        				
 			<div class="col-md-6 ">
 				<div class="form-group">
 					<label>Giảm giá</label>
@@ -60,7 +39,7 @@
             </div>
         </div>
         <br>
-        <button type="submit" id="" class="btn btn-primary me-2">Thêm</button>
+        <button type="submit" id="" class="btn btn-primary me-2">Cập nhật</button>
 	</form>
 </div>
     <script src="admin/ckeditor/ckeditor.js"></script>

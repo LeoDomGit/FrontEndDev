@@ -15,6 +15,10 @@ class ProductsController extends Controller
     {
         return view('product.add');
     }
+    public function editprod()
+    {
+        return view('product.edit');
+    }
     public function store(Request $request)
     {
         
