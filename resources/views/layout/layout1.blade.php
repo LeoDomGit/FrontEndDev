@@ -500,9 +500,21 @@
 								><span class="mtext">Quản lý sản phẩm</span>
 							</a>
 							<ul class="submenu">
-								<li><a href="/allProduct">Tất cả sản phẩm</a></li>
 								<li>
-									<a href="/addProduct">Thêm mới sản phẩm</a>
+									<a href="/brandManager">Quản lý thương hiệu</a>
+								</li>
+								<li><a href="/prodManager">Quản lý sản phẩm</a></li>
+								<li>
+									<a href="/tagManager">Quản lý Tag</a>
+								</li>
+								<li>
+									<a href="/cateManager">Quản lý Loại sản phẩm</a>
+								</li>
+								<li>
+									<a href="/colorManager">Quản lý màu sản phẩm</a>
+								</li>
+								<li>
+									<a href="/sizeManager">Quản lý size sản phẩm</a>
 								</li>
 								<!-- <li><a href="form-wizard.html">Form Wizard</a></li>
 								<li><a href="html5-editor.html">HTML5 Editor</a></li>
@@ -714,7 +726,6 @@
 		<script src="admin/src/plugins/datatables/js/dataTables.responsive.min.js"></script>
 		<script src="admin/src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
 		<script src="admin/vendors/scripts/jquery-3.6.1.min.js"></script>
-		{{-- <script src="admin/script/jquery-3.6.1.min.js"></script> --}}
 		<script src="admin/script/admin.js"></script>
 		<script src="admin/script/sweetalert2.js"></script>
         <script src="admin/vendors/scripts/datatable-setting.js"></script>

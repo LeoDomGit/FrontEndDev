@@ -1,9 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Http;
 class BrandController extends Controller
 {
     /**
@@ -12,8 +11,10 @@ class BrandController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    {   
+        $allBrand= Http::get('http://127.0.0.1:3000/api/allBrand');
+        $allBrand = json_decode($allBrand);
+        return view('brand.index',compact('allBrand'));
     }
 
     /**
