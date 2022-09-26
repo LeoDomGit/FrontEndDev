@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).ready(function() {
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -8,14 +8,15 @@ $(document).ready(function () {
     deleteBrand();
     editBrand();
 });
-function editBrand(){
-    $(".editbrand").click(function (e) { 
+
+function editBrand() {
+    $(".editbrand").click(function(e) {
         e.preventDefault();
-        var idBrand=$(this).attr('data-id');
-        $('#saveeditBrandbtn').click(function (e) { 
+        var idBrand = $(this).attr('data-id');
+        $('#saveeditBrandbtn').click(function(e) {
             e.preventDefault();
             var newBrand = $("#newBrandedit").val().trim();
-            if(newBrand==''){
+            if (newBrand == '') {
                 const Toast = Swal.mixin({
                     toast: true,
                     position: 'top-end',
@@ -23,27 +24,27 @@ function editBrand(){
                     timer: 3000,
                     timerProgressBar: true,
                     didOpen: (toast) => {
-                      toast.addEventListener('mouseenter', Swal.stopTimer)
-                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
                     }
-                  })
-                  
-                  Toast.fire({
+                })
+
+                Toast.fire({
                     icon: 'error',
                     title: 'Thiếu tên thương hiệu'
-                  })
-            }else{
+                })
+            } else {
                 $.ajax({
                     type: "method",
                     url: "http://127.0.0.1:3000/api/editBrand",
-                    type: "POST",   
+                    type: "POST",
                     data: {
-                        brandname:newBrand,
-                        idBrand:idBrand
+                        brandname: newBrand,
+                        idBrand: idBrand
                     },
                     dataType: "json",
-                    success: function (response) {
-                        if(response.check==true){
+                    success: function(response) {
+                        if (response.check == true) {
                             const Toast = Swal.mixin({
                                 toast: true,
                                 position: 'top-end',
@@ -51,19 +52,19 @@ function editBrand(){
                                 timer: 3000,
                                 timerProgressBar: true,
                                 didOpen: (toast) => {
-                                  toast.addEventListener('mouseenter', Swal.stopTimer)
-                                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                                    toast.addEventListener('mouseleave', Swal.resumeTimer)
                                 }
-                              })
-                              
-                              Toast.fire({
+                            })
+
+                            Toast.fire({
                                 icon: 'success',
                                 title: 'Đã thay đổi thành công'
-                              }).then(()=>{
+                            }).then(() => {
                                 window.location.reload();
-                              })
-                        }else{
-                            if(response.message=='rejected'){
+                            })
+                        } else {
+                            if (response.message == 'rejected') {
                                 const Toast = Swal.mixin({
                                     toast: true,
                                     position: 'top-end',
@@ -71,16 +72,16 @@ function editBrand(){
                                     timer: 3000,
                                     timerProgressBar: true,
                                     didOpen: (toast) => {
-                                      toast.addEventListener('mouseenter', Swal.stopTimer)
-                                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                                        toast.addEventListener('mouseleave', Swal.resumeTimer)
                                     }
-                                  })
-                                  
-                                  Toast.fire({
+                                })
+
+                                Toast.fire({
                                     icon: 'error',
                                     title: 'Dữ liệu không hợp lệ'
-                                  });
-                            }else if(response.message=='exist'){
+                                });
+                            } else if (response.message == 'exist') {
                                 const Toast = Swal.mixin({
                                     toast: true,
                                     position: 'top-end',
@@ -88,15 +89,15 @@ function editBrand(){
                                     timer: 3000,
                                     timerProgressBar: true,
                                     didOpen: (toast) => {
-                                      toast.addEventListener('mouseenter', Swal.stopTimer)
-                                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                                        toast.addEventListener('mouseleave', Swal.resumeTimer)
                                     }
-                                  })
-                                  
-                                  Toast.fire({
+                                })
+
+                                Toast.fire({
                                     icon: 'error',
                                     title: 'Thương hiệu đã được thêm trước đó'
-                                  });
+                                });
                             }
                         }
                     }
@@ -114,30 +115,30 @@ function editBrand(){
             * 
                 *  
 ------------------
-*/ 
-function deleteBrand(){
-    $(".deleteBrandBtn").click(function (e) { 
+*/
+function deleteBrand() {
+    $(".deleteBrandBtn").click(function(e) {
         e.preventDefault();
         var idBrand = $(this).attr('data-id');
         Swal.fire({
-            icon:'question',
+            icon: 'question',
             text: 'Bạn muốn xóa thương hiệu',
             showDenyButton: true,
             showCancelButton: true,
             confirmButtonText: 'Xóa',
             denyButtonText: `Không xóa`,
-          }).then((result) => {
+        }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
                 $.ajax({
                     type: "post",
                     url: "http://127.0.0.1:3000/api/deleteBrand",
                     data: {
-                        idBrand:idBrand
+                        idBrand: idBrand
                     },
                     dataType: "json",
-                    success: function (response) {
-                        if(response.check==false){
+                    success: function(response) {
+                        if (response.check == false) {
                             const Toast = Swal.mixin({
                                 toast: true,
                                 position: 'top-end',
@@ -145,16 +146,16 @@ function deleteBrand(){
                                 timer: 3000,
                                 timerProgressBar: true,
                                 didOpen: (toast) => {
-                                  toast.addEventListener('mouseenter', Swal.stopTimer)
-                                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                                    toast.addEventListener('mouseleave', Swal.resumeTimer)
                                 }
-                              })
-                              
-                              Toast.fire({
+                            })
+
+                            Toast.fire({
                                 icon: 'error',
                                 title: 'Xóa không thành công'
-                              })
-                        }else{
+                            })
+                        } else {
                             const Toast = Swal.mixin({
                                 toast: true,
                                 position: 'top-end',
@@ -162,17 +163,17 @@ function deleteBrand(){
                                 timer: 3000,
                                 timerProgressBar: true,
                                 didOpen: (toast) => {
-                                  toast.addEventListener('mouseenter', Swal.stopTimer)
-                                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                                    toast.addEventListener('mouseleave', Swal.resumeTimer)
                                 }
-                              })
-                              
-                              Toast.fire({
+                            })
+
+                            Toast.fire({
                                 icon: 'success',
                                 title: 'Đã xóa thành công'
-                              }).then(()=>{
+                            }).then(() => {
                                 window.location.reload();
-                              })
+                            })
                         }
                     }
                 });
@@ -184,17 +185,17 @@ function deleteBrand(){
                     timer: 3000,
                     timerProgressBar: true,
                     didOpen: (toast) => {
-                      toast.addEventListener('mouseenter', Swal.stopTimer)
-                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
                     }
-                  })
-                  
-                  Toast.fire({
+                })
+
+                Toast.fire({
                     icon: 'success',
                     title: 'OK ! Không xóa !'
-                  })
+                })
             }
-          })
+        })
     });
 }
 /* 
@@ -205,13 +206,13 @@ function deleteBrand(){
             * 
                 *  
 ------------------
-*/ 
+*/
 
-function addBrand(){
-    $("#addBrandBtn").click(function (e) { 
+function addBrand() {
+    $("#form-add-brand").submit(function(e) {
         e.preventDefault();
         var newBrand = $("#newBrandadd").val().trim();
-        if(newBrand==''){
+        if (newBrand == '') {
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',
@@ -219,26 +220,24 @@ function addBrand(){
                 timer: 3000,
                 timerProgressBar: true,
                 didOpen: (toast) => {
-                  toast.addEventListener('mouseenter', Swal.stopTimer)
-                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
                 }
-              })
-              
-              Toast.fire({
+            })
+
+            Toast.fire({
                 icon: 'error',
                 title: 'Thiếu tên thương hiệu'
-              })
-        }else{
+            })
+        } else {
             $.ajax({
                 type: "method",
                 url: "http://127.0.0.1:3000/api/addBrand",
-                type: "POST",   
-                data: {
-                    brandname:newBrand
-                },
+                type: "POST",
+                data: $(this).serialize(),
                 dataType: "json",
-                success: function (response) {
-                    if(response.check==true){
+                success: function(response) {
+                    if (response.check == true) {
                         const Toast = Swal.mixin({
                             toast: true,
                             position: 'top-end',
@@ -246,19 +245,19 @@ function addBrand(){
                             timer: 3000,
                             timerProgressBar: true,
                             didOpen: (toast) => {
-                              toast.addEventListener('mouseenter', Swal.stopTimer)
-                              toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
                             }
-                          })
-                          
-                          Toast.fire({
+                        })
+
+                        Toast.fire({
                             icon: 'success',
                             title: 'Đã thêm thành công'
-                          }).then(()=>{
+                        }).then(() => {
                             window.location.reload();
-                          })
-                    }else{
-                        if(response.message=='rejected'){
+                        })
+                    } else {
+                        if (response.message == 'rejected') {
                             const Toast = Swal.mixin({
                                 toast: true,
                                 position: 'top-end',
@@ -266,16 +265,16 @@ function addBrand(){
                                 timer: 3000,
                                 timerProgressBar: true,
                                 didOpen: (toast) => {
-                                  toast.addEventListener('mouseenter', Swal.stopTimer)
-                                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                                    toast.addEventListener('mouseleave', Swal.resumeTimer)
                                 }
-                              })
-                              
-                              Toast.fire({
+                            })
+
+                            Toast.fire({
                                 icon: 'error',
                                 title: 'Dữ liệu không hợp lệ'
-                              });
-                        }else if(response.message=='exist'){
+                            });
+                        } else if (response.message == 'exist') {
                             const Toast = Swal.mixin({
                                 toast: true,
                                 position: 'top-end',
@@ -283,15 +282,15 @@ function addBrand(){
                                 timer: 3000,
                                 timerProgressBar: true,
                                 didOpen: (toast) => {
-                                  toast.addEventListener('mouseenter', Swal.stopTimer)
-                                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                                    toast.addEventListener('mouseleave', Swal.resumeTimer)
                                 }
-                              })
-                              
-                              Toast.fire({
+                            })
+
+                            Toast.fire({
                                 icon: 'error',
                                 title: 'Thương hiệu đã được thêm trước đó'
-                              });
+                            });
                         }
                     }
                 }

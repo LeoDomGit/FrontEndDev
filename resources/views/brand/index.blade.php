@@ -5,27 +5,30 @@
 <div class="modal fade" id="addBrandMd" tabindex="-1" aria-labelledby="addBrandMdLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="addBrandMdLabel">Thêm thương hiệu</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        @csrf
-        <input type="text" placeholder="Thương hiệu mới" id="newBrandadd" class="form-control">
-        <h5 class="modal-title mt-2 mb-2" id="addBrandMdLabel">Chọn danh mục</h5>  
-        @foreach($allCategory as $row)
-        <div class="custom-control custom-checkbox custom-qtcs-create">
-          <input type="checkbox" name="cate[]" value="{{ $row->idcate }}" class="custom-control-input" id="ip-cate-create-brand-{{ $row->idcate }}">
-          <label style="color: #282739;font-weight:bold;" class="custom-control-label" for="ip-cate-create-brand-{{ $row->idcate }}">{{ $row->cateName }}</label>
+      <form id="form-add-brand">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addBrandMdLabel">Thêm thương hiệu</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-        @endforeach
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-        <button type="button" class="btn btn-primary" id="addBrandBtn">Lưu thương hiệu</button>
-      </div>
+        <div class="modal-body">
+
+          <input type="text" placeholder="Thương hiệu mới" id="newBrandadd" name="nameBrand" class="form-control">
+          <h5 class="modal-title mt-2 mb-2" id="addBrandMdLabel">Chọn danh mục</h5>
+          @foreach($allCategory as $row)
+          <div class="custom-control custom-checkbox custom-qtcs-create">
+            <input type="checkbox" name="cate[]" value="{{ $row->idcate }}" class="custom-control-input" id="ip-cate-create-brand-{{ $row->idcate }}">
+            <label style="color: #282739;font-weight:bold;" class="custom-control-label" for="ip-cate-create-brand-{{ $row->idcate }}">{{ $row->cateName }}</label>
+          </div>
+          @endforeach
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+          <button type="submit" class="btn btn-primary" id="addBrandBtn">Lưu thương hiệu</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
