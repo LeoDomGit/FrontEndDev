@@ -227,6 +227,8 @@ function addUser(){
         var username=$("#username").val().trim();
         var userRole = $("#userRole option:selected").val();
         if(email.length>5&&username.length>3&&username.length<80&&email.match(/(.+)@(.+)\.(com)/i)){
+          var waiting = `<img style="width:200px" src="images/smile_loader_by_gleb.gif" id="WaitingImg" alt="">`;
+          $("#waitingimage").append(waiting);
             $.ajax({
                 url: 'http://127.0.0.1:3000/api/register',
                 type: "POST",
@@ -236,6 +238,7 @@ function addUser(){
                     userRole:userRole
                 },
                 success: function (response) {
+                  $("#WaitingImg").remove();
                     if(response.check==401){
                         const Toast = Swal.mixin({
                             toast: true,

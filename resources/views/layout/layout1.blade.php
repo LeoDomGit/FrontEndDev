@@ -508,7 +508,7 @@
 									<a href="/tagManager">Quản lý Tag</a>
 								</li>
 								<li>
-									<a href="/cateManager">Quản lý Loại sản phẩm</a>
+									<a href="/categrories">Quản lý Loại sản phẩm</a>
 								</li>
 								<li>
 									<a href="/colorManager">Quản lý màu sản phẩm</a>

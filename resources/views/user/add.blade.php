@@ -1,6 +1,9 @@
 @extends('layout.layout1')
 @section('title','Quản lý tài khoản')
 @section('main-container')
+<div style="with:100px;height:auto;position: absolute; top:50%;left:50%" id="waitingimage">
+           
+</div>
     <div class="row mt-3">
         <div class="col-md-6">
             <label for=""><b>Tên tài khoản</b></label>
