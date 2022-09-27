@@ -1,6 +1,10 @@
 @extends('layout.layout1')
 @section('title','Quản lý thương hiệu')
 @section('main-container')
+<?php
+use Carbon\Carbon;
+Carbon::setLocale('vi');
+?>
 {{-- Model Add Brand --}}
 <div class="modal fade" id="addBrandMd" tabindex="-1" aria-labelledby="addBrandMdLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -68,7 +72,7 @@
           <p>{{$item->brandname}}</p>
         </td>
         <td>
-          <p><?php echo date('H:i d/m/yy', strtotime($item->created_at)) ?></p>
+          <p><?php echo date('H:i d/m/yy', strtotime($item->created_at))." - ( ".Carbon::parse($item->created_at)->diffForHumans()." ) "; ?></p>
         </td>
         <td>
           <div class="dropdown">
