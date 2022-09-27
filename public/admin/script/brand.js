@@ -230,7 +230,8 @@ function addBrand() {
                 icon: 'error',
                 title: 'Thiếu tên thương hiệu'
             })
-        } else if ($('input[name="cate[]"]:checked').length == 0) {
+            return false;
+        } else if ($('input[class="custom-control-input ip-checkbox-cate-brand"]:checked').length == 0) {
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',
@@ -247,6 +248,7 @@ function addBrand() {
                 icon: 'error',
                 title: 'Vui lòng chọn danh mục',
             })
+            return false;
         } else {
             $.ajax({
                 type: "method",

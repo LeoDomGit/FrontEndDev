@@ -22,7 +22,7 @@ Carbon::setLocale('vi');
           <h5 class="modal-title mt-2 mb-2" id="addBrandMdLabel">Chọn danh mục</h5>
           @foreach($allCategory as $row)
           <div class="custom-control custom-checkbox custom-qtcs-create">
-            <input type="checkbox" name="cate[]" value="{{ $row->idcate }}" class="custom-control-input" id="ip-cate-create-brand-{{ $row->idcate }}">
+            <input type="checkbox" name="cate[]" value="{{ $row->idcate }}" class="custom-control-input ip-checkbox-cate-brand" id="ip-cate-create-brand-{{ $row->idcate }}">
             <label style="color: #282739;font-weight:bold;" class="custom-control-label" for="ip-cate-create-brand-{{ $row->idcate }}">{{ $row->cateName }}</label>
           </div>
           @endforeach
