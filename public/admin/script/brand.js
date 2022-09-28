@@ -212,6 +212,7 @@ function addBrand() {
     $("#form-add-brand").submit(function(e) {
         e.preventDefault();
         var newBrand = $("#newBrandadd").val().trim();
+
         if (newBrand == '') {
             const Toast = Swal.mixin({
                 toast: true,
@@ -229,6 +230,25 @@ function addBrand() {
                 icon: 'error',
                 title: 'Thiếu tên thương hiệu'
             })
+            return false;
+        } else if ($('input[class="custom-control-input ip-checkbox-cate-brand"]:checked').length == 0) {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'error',
+                title: 'Vui lòng chọn danh mục',
+            })
+            return false;
         } else {
             $.ajax({
                 type: "method",

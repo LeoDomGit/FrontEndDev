@@ -1,6 +1,10 @@
 @extends('layout.layout1')
 @section('title','Quản lý thương hiệu')
 @section('main-container')
+<?php
+use Carbon\Carbon;
+Carbon::setLocale('vi');
+?>
 {{-- Model Add Brand --}}
 <div class="modal fade" id="addBrandMd" tabindex="-1" aria-labelledby="addBrandMdLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -18,7 +22,7 @@
           <h5 class="modal-title mt-2 mb-2" id="addBrandMdLabel">Chọn danh mục</h5>
           @foreach($allCategory as $row)
           <div class="custom-control custom-checkbox custom-qtcs-create">
-            <input type="checkbox" name="cate[]" value="{{ $row->idcate }}" class="custom-control-input" id="ip-cate-create-brand-{{ $row->idcate }}">
+            <input type="checkbox" name="cate[]" value="{{ $row->idcate }}" class="custom-control-input ip-checkbox-cate-brand" id="ip-cate-create-brand-{{ $row->idcate }}">
             <label style="color: #282739;font-weight:bold;" class="custom-control-label" for="ip-cate-create-brand-{{ $row->idcate }}">{{ $row->cateName }}</label>
           </div>
           @endforeach
@@ -41,25 +45,7 @@
                     =========
                              ======= --}}
 
-<div class="modal fade" id="editBrandModal" tabindex="-1" aria-labelledby="editBrandModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="editBrandModalLabel">Sửa thương hiệu</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <input type="text" placeholder="Thương hiệu mới" id="newBrandedit" class="form-control">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-        <button type="button" class="btn btn-primary" id="saveeditBrandbtn">Lưu</button>
-      </div>
-    </div>
-  </div>
-</div>
+
 {{-- ====== 
                 =========
                             ======
@@ -75,12 +61,18 @@
     </thead>
     <tbody>
       @foreach ($allBrand as $item)
+      @php
+      $arr = [];
+      foreach ($item->cate as $key => $value) {
+      $arr[] = $value->idcate;
+      }
+      @endphp
       <tr>
         <td class="table-plus">
           <p>{{$item->brandname}}</p>
         </td>
         <td>
-          <p><?php echo date('H:i d/m/yy', strtotime($item->created_at)) ?></p>
+          <p><?php echo date('H:i d/m/yy', strtotime($item->created_at))." - ( ".Carbon::parse($item->created_at)->diffForHumans()." ) "; ?></p>
         </td>
         <td>
           <div class="dropdown">
@@ -88,13 +80,39 @@
               <i class="dw dw-more"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-              <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
-              <a class="dropdown-item editbrand" data-toggle="modal" data-id="{{$item->idbrand}}" data-target="#editBrandModal" href="#"><i class="dw dw-edit2"></i> Edit</a>
-              <a class="dropdown-item deleteBrandBtn" data-id="{{$item->idbrand}}" href="#"><i class="dw dw-delete-3"></i> Delete</a>
+              <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> Xem</a>
+              <a class="dropdown-item editbrand" data-toggle="modal" data-id="{{$item->idbrand}}" data-target="#editBrandModal{{ $item->idbrand }}" href="#"><i class="dw dw-edit2"></i> Chỉnh sửa</a>
+              <a class="dropdown-item deleteBrandBtn" data-id="{{$item->idbrand}}" href="#"><i class="dw dw-delete-3"></i> Xóa</a>
             </div>
           </div>
         </td>
       </tr>
+      <div class="modal fade" id="editBrandModal{{ $item->idbrand }}" tabindex="-1" aria-labelledby="editBrandModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="editBrandModalLabel">Sửa thương hiệu</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <input type="text" placeholder="Thương hiệu mới" value="{{ $item->brandname }}" id="newBrandedit" class="form-control">
+              <h5 class="modal-title mt-2 mb-2" id="addBrandMdLabel">Chọn danh mục</h5>
+              @foreach($allCategory as $row)
+              <div class="custom-control custom-checkbox">
+                <input type="checkbox" name="cate[]" value="{{ $row->idcate }}" class="custom-control-input" id="ip-cate-edit-brand-{{ $row->idcate }}-by-brand-id-{{$item->idbrand}}" {{ $show = (in_array($row->idcate,$arr)) ? 'checked' : '' }}>
+                <label style="color: #282739;font-weight:bold;" class="custom-control-label" for="ip-cate-edit-brand-{{ $row->idcate }}-by-brand-id-{{$item->idbrand}}">{{ $row->cateName }}</label>
+              </div>
+              @endforeach
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+              <button type="button" class="btn btn-primary" id="saveeditBrandbtn">Lưu</button>
+            </div>
+          </div>
+        </div>
+      </div>
       @endforeach
     </tbody>
   </table>
