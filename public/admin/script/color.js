@@ -6,6 +6,7 @@ function deleteColor(){
   $(".deleteColor").click(function (e) { 
     e.preventDefault();
     let idColor= $(this).attr('data-id');
+    
   });
 }
 /**
