@@ -1,15 +1,15 @@
 $(document).ready(function () {
     addTag();
-    editColor();
-    deleteColor();
+    editTag();
+    deleteTag();
 });
-function deleteColor(){
-  $(".deleteColor").click(function (e) { 
+function deleteTag(){
+  $(".deleteTag").click(function (e) { 
     e.preventDefault();
-    let idColor= $(this).attr('data-id');
+    let idtag= $(this).attr('data-id');
     Swal.fire({
       icon:'question',
-      title: 'Bạn muốn xóa màu ?',
+      title: 'Bạn muốn xóa tag ?',
       showDenyButton: true,
       showCancelButton: false,
       confirmButtonText: 'Xóa',
@@ -19,8 +19,8 @@ function deleteColor(){
       if (result.isConfirmed) {
         $.ajax({
           type: "post",
-          url: "http://127.0.0.1:3000/api/deleteColor",
-          data: {idColor:idColor},
+          url: "http://127.0.0.1:3000/api/deleteTag",
+          data: {idtag:idtag},
           dataType: "JSON",
           success: function (response) {
             if(response.check==true){
@@ -75,7 +75,7 @@ function deleteColor(){
                 
                 Toast.fire({
                   icon: 'error',
-                  title: 'Tồn tại sản phẩm có màu sắc này'
+                  title: ' Tồn tại sản phẩm có tag này'
                 });
               }
           }
@@ -193,15 +193,15 @@ function addTag(){
  * 
  * 
  */
-function editColor(){
-  $('.colorclass').click(function (e) { 
+function editTag(){
+  $('.tagclass').click(function (e) { 
     e.preventDefault();
-    let idColor= $(this).attr('data-id');
+    let idtag= $(this).attr('data-id');
     $('#submiteditTag').click(function (e) { 
       e.preventDefault();
-      var colorname1 = $("#newColorName1").val().trim();
-      var newColorcode1 = $("#newColorpath1").val().trim();
-      if(colorname1==''){
+      var tagname1 = $("#newTagName1").val().trim();
+      
+      if(tagname1==''){
         const Toast = Swal.mixin({
           toast: true,
           position: 'top-end',
@@ -216,33 +216,16 @@ function editColor(){
         
         Toast.fire({
           icon: 'error',
-          title: 'Thiếu tên màu'
-        })
-      }else if(newColorcode1==''){
-        const Toast = Swal.mixin({
-          toast: true,
-          position: 'top-end',
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-          }
-        })
-        
-        Toast.fire({
-          icon: 'error',
-          title: 'Thiếu mã màu'
+          title: 'Thiếu tên tag'
         })
       }else{
         $.ajax({
           type: "post",
-          url: "http://127.0.0.1:3000/api/editColor",
+          url: "http://127.0.0.1:3000/api/editTag",
           data: {
-            idColor:idColor,
-            colorname:colorname1,
-            newColorcode:newColorcode1,
+            idtag:idtag,
+            tagname:tagname1,
+            
           },
           dataType: "JSON",
           success: function (response) {
@@ -298,7 +281,7 @@ function editColor(){
                 
                 Toast.fire({
                   icon: 'error',
-                  title: 'Đã tồn tại màu sắc này'
+                  title: 'Đã tồn tại tag này'
                 });
               }
           }

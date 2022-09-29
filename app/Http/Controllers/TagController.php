@@ -13,8 +13,9 @@ class TagController extends Controller
      */
     public function index()
     {
-        $tag = Http::get('http://127.0.0.1:3000/api/allTag');
-        return view('tag.index');
+        $allTag = Http::get('http://127.0.0.1:3000/api/allTag');
+        $allTag=json_decode($allTag);
+        return view('tag.index',compact('allTag'));
     }
 
     /**
