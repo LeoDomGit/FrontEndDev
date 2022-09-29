@@ -94,10 +94,10 @@
                           <div
                               class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
                           >
-                              <a class="dropdown-item" href="#" class="colorclass" data-id="{{$item->id}}" data-toggle="modal" data-target="#editColorModal"
+                              <a class="dropdown-item colorclass" href="#" data-id="{{$item->id}}" data-toggle="modal" data-target="#editColorModal"
                                   ><i class="dw dw-edit2"></i> Edit</a
                               >
-                              <a class="dropdown-item" href="#" class="deleteColor" data-id="{{$item->id}}"
+                              <a class="dropdown-item deleteColor" href="#" data-id="{{$item->id}}"
                                   ><i class="dw dw-delete-3"></i> Delete</a
                               >
                           </div>
