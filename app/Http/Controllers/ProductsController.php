@@ -3,13 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class ProductsController extends Controller
 {
 
     public function index()
-    {
-        return view('product.all');
+    {   $brand = Http::get('http://127.0.0.1:3000/api/allBrand');
+        $cate = Http::get('http://127.0.0.1:3000/api/allCate');
+        $allBrand =  json_decode($brand);
+        $allCategory = json_decode($cate);
+        return view('product.all',compact('brand','cate'));
     }
     public function addprod()
     {

@@ -7,6 +7,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\SizeController;
+use App\Http\Controllers\ProductsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +31,7 @@ Route::get('colorManager',[colorController::class,'index']);
 Route::get('sizeManager',[SizeController::class,'index']);
 Route::get('tagManager',[TagController::class,'index']);
 // Route::get('/brandManager',[ProductsController::class,"index"]);
-// Route::get('/allProduct',[ProductsController::class,"index"]);
+Route::get('/prodManager',[ProductsController::class,"index"]);
 // Route::get('/allProduct',[ProductsController::class,"index"]);
 // Route::get('/addProduct',[ProductsController::class,"addprod"]);
 // Route::get('/editProduct',[ProductsController::class,"editprod"]);
