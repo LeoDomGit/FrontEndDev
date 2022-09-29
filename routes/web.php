@@ -6,6 +6,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\SizeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,6 +27,7 @@ Route::get('/allUser',[UserController::class,'allUser']);
 Route::get('brandManager',[BrandController::class,'index']);
 Route::get('categrories',[CategoryController::class,'index']);
 Route::get('colorManager',[colorController::class,'index']);
+Route::get('sizeManager',[colorController::class,'index']);
 Route::get('tagManager',[TagController::class,'index']);
 // Route::get('/brandManager',[ProductsController::class,"index"]);
 // Route::get('/allProduct',[ProductsController::class,"index"]);
