@@ -11,8 +11,8 @@ class ProductsController extends Controller
     public function index()
     {   $brand = Http::get('http://127.0.0.1:3000/api/allBrand');
         $cate = Http::get('http://127.0.0.1:3000/api/allCate');
-        $allBrand =  json_decode($brand);
-        $allCategory = json_decode($cate);
+        $brand =  json_decode($brand);
+        $cate = json_decode($cate);
         return view('product.all',compact('brand','cate'));
     }
     public function addprod()
