@@ -37,9 +37,7 @@
                   <label>Giá</label>
                   <input type="number" class="form-control" id="price" placeholder="Giá"/>
                 </div>
-              </div>
-            
-                        
+              </div>       
               <div class="col-md-6 ">
                 <div class="form-group">
                   <label>Giảm giá</label>
@@ -55,7 +53,17 @@
                     @endforeach
                   </select>
                 </div>
-                        </div>
+                  </div>
+                  <div class="col-md-12 ">
+                  <div class="form-group">
+                    <label>Thương hiệu</label>
+                    <select name="" id="" class="form-control">
+                    @foreach($brand as $item)
+                    <option value="">{{$item->brandname}}</option>
+                    @endforeach
+                  </select>
+                  </div>
+                </div>
                     <div class="col-md-12">
                         <label >Nội dung</label>
                         <textarea class="form-control" id="desc" rows="4"></textarea>
