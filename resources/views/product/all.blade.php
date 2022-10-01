@@ -31,30 +31,26 @@
                   <label>Tên sản phẩm</label>
                   <input type="text" class="form-control" id="prodName" placeholder="Tên sản phẩm" />
                 </div>
-              </div>
-                    <div class="col-md-6 ">
-                <div class="form-group">
-                  <label>Giá</label>
-                  <input type="number" class="form-control" id="price" placeholder="Giá"/>
-                </div>
-              </div>       
+              </div>    
               <div class="col-md-6 ">
                 <div class="form-group">
-                  <label>Giảm giá</label>
-                  <input type="number" class="form-control" id="discount" placeholder="Giảm giá"/>
+                  <label>Tóm tắt sản phẩm</label>
+                  <input type="text" class="form-control" id="summary" placeholder="Tóm tắt sản phẩm" />
                 </div>
-              </div>
-                    <div class="col-md-6 ">
-                <div class="form-group">
-                  <label>Loại sản phẩm</label>
-                  <select name="" id="prodTypeID" class="form-control">
-                    @foreach($cate as $item)
-                    <option value="{{$item->idcate}}">{{$item->cateName}}</option>
-                    @endforeach
-                  </select>
+              </div> 
                 </div>
-                  </div>
-                  <div class="col-md-12 ">
+                <div class="row">
+                  <div class="col-md-6 ">
+                    <div class="form-group">
+                      <label>Loại sản phẩm</label>
+                      <select name="" id="prodTypeID" class="form-control">
+                        @foreach($cate as $item)
+                        <option value="{{$item->idcate}}">{{$item->cateName}}</option>
+                        @endforeach
+                      </select>
+                    </div>
+                      </div>
+                  <div class="col-md-6 ">
                   <div class="form-group">
                     <label>Thương hiệu</label>
                     <select name="" id="brandID" class="form-control">
