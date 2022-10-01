@@ -47,9 +47,9 @@
                     <div class="col-md-6 ">
                 <div class="form-group">
                   <label>Loại sản phẩm</label>
-                  <select name="" id="" class="form-control">
+                  <select name="" id="prodTypeID" class="form-control">
                     @foreach($cate as $item)
-                    <option value="">{{$item->cateName}}</option>
+                    <option value="{{$item->idcate}}">{{$item->cateName}}</option>
                     @endforeach
                   </select>
                 </div>
@@ -57,9 +57,9 @@
                   <div class="col-md-12 ">
                   <div class="form-group">
                     <label>Thương hiệu</label>
-                    <select name="" id="" class="form-control">
+                    <select name="" id="brandID" class="form-control">
                     @foreach($brand as $item)
-                    <option value="">{{$item->brandname}}</option>
+                    <option value="{{$item->idbrand}}">{{$item->brandname}}</option>
                     @endforeach
                   </select>
                   </div>
