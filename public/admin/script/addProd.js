@@ -3,5 +3,8 @@ $(document).ready(function () {
     addProduct();
 });
 function addProduct(){
-    j
+    $("#btnAddProduct").click(function (e) { 
+        e.preventDefault();
+        
+    });
 }
