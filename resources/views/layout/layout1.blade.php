@@ -501,6 +501,9 @@
 							</a>
 							<ul class="submenu">
 								<li>
+									<a href="/storagesManager">Quản lý kho</a>
+								</li>
+								<li>
 									<a href="/brandManager">Quản lý thương hiệu</a>
 								</li>
 								<li><a href="/prodManager">Quản lý sản phẩm</a></li>
