@@ -67,14 +67,41 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="submit" id="" class="btn btn-primary me-2">Thêm</button>
+        <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#addImageProductModal" id="btnAddImageProduct">Thêm hình ảnh</button>
+        <button type="submit" id="btnAddProduct" class="btn btn-primary me-2">Thêm</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
 </div>
+{{-- End Modal 1 --}}
+{{-- Modal 2 --}}
+
+<div class="modal fade" id="addImageProductModal" tabindex="-1" aria-labelledby="addImageProductModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addImageProductModalLabel">Thêm hình ảnh sản phẩm</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
 </div>
+{{-- End Modal 2 --}}
+</div>
+<script src="admin/script/jquery-3.6.1.min.js"></script>
+<script src="admin/script/addProd.js"></script>
 <script src="admin/ckeditor/ckeditor.js"></script>
+<script src="admin/ckfinder/ckfinder.js"></script>
 <script>
      CKEDITOR.replace('desc', {
             height: 400,
