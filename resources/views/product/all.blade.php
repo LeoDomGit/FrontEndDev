@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="admin/src/styles/dropdrag.css">
 @extends('layout.layout1')
 @section('title','Quản lý sản phẩm')
 @section('main-container')
@@ -91,11 +92,23 @@
         </button>
       </div>
       <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <div class="card">
+          <div class="top">
+            <p>Drag & drop image uploading</p>
+            <button id="submitImageProd" type="button">Upload</button>
+          </div>
+          <div class="drag-area">
+            <span class="visible">
+            Drag & drop image here or
+            <span class="select" role="button">Browse</span>
+          </span>
+          <span class="on-drop">Drop images here</span>
+            <input name="file" type="file" class="file" multiple />
+          </div>
+    
+          <!-- IMAGE PREVIEW CONTAINER -->
+          <div class="container"></div>
+        </div>
       </div>
     </div>
   </div>
