@@ -68,7 +68,7 @@ function addProduct(){
                         }).then(() => {
                             var idProd = response.id;
                             $("#btnAddImageProduct").show();
-                            
+                            console.log(idProd);
                         })
                     } else {
                         if (response.message == 'rejected') {
