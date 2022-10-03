@@ -125,11 +125,11 @@
 
 {{-- Modal 3 --}}
 <!-- Modal -->
-<div class="modal fade" id="addProductMD" tabindex="-1" aria-labelledby="addProductMDLabel" aria-hidden="true">
+<div class="modal fade" id="editProductMD" tabindex="-1" aria-labelledby="editProductMDLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="addProductMDLabel">Thêm sản phẩm</h5>
+        <h5 class="modal-title" id="editProductMDLabel">Sửa sản phẩm</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -181,9 +181,10 @@
                         <label >Nội dung</label>
                         <textarea class="form-control" id="descedit" rows="4"></textarea>
                     </div>
-                    <div class="col-md-12" id="images">
+                    
+                </div>
+                <div class="row" id="imagesedit">
 
-                    </div>
                 </div>
                 <br>
 
@@ -191,8 +192,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#addImageProductModal" id="btnAddImageProduct">Thêm hình ảnh</button>
-        <button type="submit" id="btnAddProduct" class="btn btn-primary me-2">Thêm</button>
+        <button type="submit" id="btnEditProduct" class="btn btn-primary me-2">Sửa</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
@@ -262,10 +262,6 @@
                 </div>
               </div>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
           </div>
         </div>
       </div>
@@ -277,7 +273,7 @@
         <td>{{$item->brandname}}</td>
         <td>{{$item->prodCreate}}</td>
         <td><div class="mt-2">
-          <button class="btn btn-warning">Sửa</button> <button class="btn btn-danger">Xóa</button> <button class="btn btn-success proddetailbtn" data-id="{{$item->idProd}}" data-toggle="modal" data-target="#productDetail{{$item->idProd}}">Chi tiết</button></div></td>
+          <button class="btn btn-warning editBtn" data-id="{{$item->idProd}}">Sửa</button> <button class="btn btn-danger">Xóa</button> <button class="btn btn-success proddetailbtn" data-id="{{$item->idProd}}" data-toggle="modal" data-target="#productDetail{{$item->idProd}}">Chi tiết</button></div></td>
       </tr>
       @endforeach
       
