@@ -39,6 +39,7 @@ function loadProd(){
                         response.images.forEach(el => {
                             str+=`
                             <div class="col-3">
+                            <p class="deleteImageIcon">x</p>
                             <img style="width:100%;height:auto;border-raidus:12%" src="http://127.0.0.1:3000/images/`+el["imagename"]+`" alt="">
                             </div>
                             `;

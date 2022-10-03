@@ -4,6 +4,10 @@
     width:200px;
     margin: 0px auto;
   }
+  .deleteImageIcon{
+    position:absolute;top:0px;left:82%;color:white;text-align:center;font-weight:bolder;cursor:pointer;font-size:18px;background:black;width:30px;height:30px;border-radius:50%
+  }
+ 
 </style>
 @extends('layout.layout1')
 @section('title','Quản lý sản phẩm')
@@ -194,11 +198,46 @@
       <div class="modal-footer">
         <button type="submit" id="btnEditProduct" class="btn btn-primary me-2">Sửa</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#addImageEditProductModal" id="btnAddImageProduct">Thêm hình ảnh</button>
       </div>
     </div>
   </div>
 </div>
 {{-- endModal --}}
+{{-- Modal 4 --}}
+
+<div class="modal fade" id="addImageEditProductModal" tabindex="-2" aria-labelledby="addImageEditProductModalLabel" aria-hidden="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addImageEditProductModalLabel">Thêm hình ảnh sản phẩm</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card">
+          <div class="top">
+            <p>Drag & drop image uploading</p>
+            <button id="submitImageProd" type="button">Upload</button>
+          </div>
+          <div class="drag-area">
+            <span class="visible">
+            Drag & drop image here or
+            <span class="select" role="button">Browse</span>
+          </span>
+          <span class="on-drop">Drop images here</span>
+            <input name="file" type="file" class="file" multiple />
+          </div>
+    
+          <!-- IMAGE PREVIEW CONTAINER -->
+          <div class="container"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{-- end Modal --}}
 <div class="mt-3">
   <table class="data-table table hover multiple-select-row nowrap ">
     <thead>
