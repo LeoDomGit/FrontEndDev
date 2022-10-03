@@ -9,11 +9,18 @@ class ProductsController extends Controller
 {
 
     public function index()
-    {   $brand = Http::get('http://127.0.0.1:3000/api/allBrand');
+    {   
+        $product = Http::get('http://127.0.0.1:3000/api/allProduct'); 
+        $brand = Http::get('http://127.0.0.1:3000/api/allBrand');
         $cate = Http::get('http://127.0.0.1:3000/api/allCate');
         $brand =  json_decode($brand);
         $cate = json_decode($cate);
-        return view('product.all',compact('brand','cate'));
+        $products = json_decode($product);
+        if(count($products)!=0){
+            return view('product.all',compact('brand','cate','products'));
+        }else{
+            return view('product.all',compact('brand','cate'));
+        }
     }
     public function addprod()
     {

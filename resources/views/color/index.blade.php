@@ -107,7 +107,7 @@
               @endforeach
           </tbody>
       </table>
-  </div>
+    </div>
   </div>
     <script src="admin/script/jquery-3.6.1.min.js"></script>
     <script src="admin/script/color.js"></script>

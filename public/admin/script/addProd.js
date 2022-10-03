@@ -1,6 +1,5 @@
 $("#btnAddImageProduct").hide();
 var files = [];
-var idProd='';
 $(document).ready(function () {
     idProd=addProduct();
     (dragArea = document.querySelector(".drag-area")),
@@ -69,11 +68,25 @@ $(document).ready(function () {
         showImages();
     });
     
-    function delImage(index) {
-        files.splice(index, 1);
-        showImages();
-    }
+
 });
+function delImage(index) {
+    files.splice(index, 1);
+    showImages();
+}
+// =================================
+function showImages() {
+    container.innerHTML = files.reduce((prev, curr, index) => {
+        return `${prev}
+                                        <div class="image">
+                                            <span onclick="delImage(${index})">&times;</span>
+                                            <img src="${URL.createObjectURL(
+                                                curr
+                                            )}" />
+                                        </div>`;
+    }, "");
+}
+// =============================
 function addProduct() {
     $("#btnAddProduct").click(function (e) {
         e.preventDefault();
@@ -163,7 +176,41 @@ function addProduct() {
                                         processData:false,
                                         dataType: "JSON",
                                         success: function (response) {
-                                            console.log(response.check);
+                                            if(response.check==true){
+                                                const Toast = Swal.mixin({
+                                                    toast: true,
+                                                    position: 'top-end',
+                                                    showConfirmButton: false,
+                                                    timer: 3000,
+                                                    timerProgressBar: true,
+                                                    didOpen: (toast) => {
+                                                      toast.addEventListener('mouseenter', Swal.stopTimer)
+                                                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                                    }
+                                                  })
+                                                  
+                                                  Toast.fire({
+                                                    icon: 'success',
+                                                    title: 'Đăng hình ảnh thành công'
+                                                  })
+                                            }else{
+                                                const Toast = Swal.mixin({
+                                                    toast: true,
+                                                    position: 'top-end',
+                                                    showConfirmButton: false,
+                                                    timer: 3000,
+                                                    timerProgressBar: true,
+                                                    didOpen: (toast) => {
+                                                      toast.addEventListener('mouseenter', Swal.stopTimer)
+                                                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                                    }
+                                                  })
+                                                  
+                                                  Toast.fire({
+                                                    icon: 'error',
+                                                    title: 'Đăng hình ảnh không thành công'
+                                                  })
+                                            }
                                         }
                                     });
                                 }else{
@@ -230,3 +277,4 @@ function addProduct() {
 
     });
 }
+
