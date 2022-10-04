@@ -16,11 +16,7 @@ class ProductsController extends Controller
         $brand =  json_decode($brand);
         $cate = json_decode($cate);
         $products = json_decode($product);
-        if(count($products)!=0){
-            return view('product.all',compact('brand','cate','products'));
-        }else{
-            return view('product.all',compact('brand','cate'));
-        }
+        return view('product.all',compact('cate','products','brand'));
     }
     public function addprod()
     {
