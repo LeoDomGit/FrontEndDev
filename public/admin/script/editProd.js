@@ -1,5 +1,6 @@
 $(document).ready(function () {
     loadProd();
+    addMoreimg();
 });
 function loadProd(){
     $('.editBtn').click(function (e) { 
@@ -38,9 +39,9 @@ function loadProd(){
                         `;
                         response.images.forEach(el => {
                             str+=`
-                            <div class="col-3">
-                            <p class="deleteImageIcon">x</p>
-                            <img style="width:100%;height:auto;border-raidus:12%" src="http://127.0.0.1:3000/images/`+el["imagename"]+`" alt="">
+                            <div class="col-3 mb-2 imageProds">
+                            <p  onclick="deleteImage(`+el['imagename']+`)" class="deleteImageIcon">x</p>
+                            <img style="width:300px;height:300px;border-radius:50%" src="http://127.0.0.1:3000/images/`+el["imagename"]+`" alt="">
                             </div>
                             `;
                         });
@@ -56,4 +57,124 @@ function loadProd(){
             }
         });
     });
+    function deleteImage(x){
+        alert(x);
+    }
+}
+function addMoreimg(){
+    var drop = $("input");
+    drop.on('dragenter', function (e) {
+      $(".drop").css({
+        "border": "4px dashed #09f",
+        "background": "rgba(0, 153, 255, .05)"
+      });
+      $(".cont").css({
+        "color": "#09f"
+      });
+    }).on('dragleave dragend mouseout drop', function (e) {
+      $(".drop").css({
+        "border": "3px dashed #DADFE3",
+        "background": "transparent"
+      });
+      $(".cont").css({
+        "color": "#8E99A5"
+      });
+    });
+    
+    
+    var arr=[];
+    function handleFileSelect(evt) {
+      var files = evt.target.files; // FileList object
+    
+      // Loop through the FileList and render image files as thumbnails.
+      for (var i = 0, f; f = files[i]; i++) {
+    
+        // Only process image files.
+        if (!f.type.match('image.*')) {
+          continue;
+        }else{
+          arr.push(f);
+        }
+    
+        var reader = new FileReader();
+    
+        // Closure to capture the file information.
+        reader.onload = (function(theFile) {
+          return function(e) {
+            // Render thumbnail.
+            var span = document.createElement('span');
+            span.innerHTML = ['<img class="thumb" src="', e.target.result,
+                              '" title="', escape(theFile.name), '"/>'].join('');
+            document.getElementById('list').insertBefore(span, null);
+          };
+        })(f);
+    
+        // Read in the image file as a data URL.
+        reader.readAsDataURL(f);
+      }
+      $('#addmoreimagebtn').click(function (e) { 
+        e.preventDefault();
+         var idProd = $("#idProd").val();
+         var formData = new FormData();
+         var totalfiles =arr.length;
+         
+         if(totalfiles!=0){
+            for (let index = 0; index < arr.length; index++) {
+                formData.append('files[]',files[index]);
+            }
+            formData.append('idProd',idProd);    
+            $.ajax({
+                type: "post",
+                url: "http://127.0.0.1:3000/api/updateProductGaller",
+                data: formData,
+                contentType:false,
+                cache:false,
+                processData:false,
+                dataType: "JSON",
+                success: function (response) {
+                    if(response.check==true){
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                              toast.addEventListener('mouseenter', Swal.stopTimer)
+                              toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                          })
+                          
+                          Toast.fire({
+                            icon: 'success',
+                            title: 'Đăng hình ảnh thành công'
+                          }).then(()=>{
+                            window.location.reload();
+                          })
+                    }else{
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                              toast.addEventListener('mouseenter', Swal.stopTimer)
+                              toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                          })
+                          
+                          Toast.fire({
+                            icon: 'error',
+                            title: 'Đăng hình ảnh không thành công'
+                          })
+                    }
+                }
+            });
+         }
+      });
+    
+    }
+    
+    $('#files').change(handleFileSelect);
 }
