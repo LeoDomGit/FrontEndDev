@@ -1,3 +1,10 @@
+function ajaxSetup() {
+    return $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+}
 $(document).ready(function() {
     loadProd();
     addMoreimg();
@@ -84,113 +91,93 @@ function addMoreimg() {
         });
     });
 
-
-    var arr = [];
-
-    function handleFileSelect(evt) {
-        var files = evt.target.files; // FileList object
-
-        // Loop through the FileList and render image files as thumbnails.
-        for (var i = 0, f; f = files[i]; i++) {
-
-            // Only process image files.
-            if (!f.type.match('image.*')) {
-                continue;
-            } else {
-                arr.push(f);
-            }
-
-            var reader = new FileReader();
-
-            // Closure to capture the file information.
-            reader.onload = (function(theFile) {
-                return function(e) {
-                    // Render thumbnail.
-                    var span = document.createElement('span');
-                    span.innerHTML = ['<img class="thumb" src="', e.target.result,
-                        '" title="', escape(theFile.name), '"/>'
-                    ].join('');
-                    document.getElementById('list').insertBefore(span, null);
-                };
-            })(f);
-
-            // Read in the image file as a data URL.
-            reader.readAsDataURL(f);
-        }
-        $('#addmoreimagebtn').click(function(e) {
-            e.preventDefault();
-            var idProd = $("#idProd").val();
-            var formData = new FormData();
-            var totalfiles = arr.length;
-
-            if (totalfiles != 0) {
-                for (let index = 0; index < arr.length; index++) {
-                    formData.append('files[]', files[index]);
-                }
-                formData.append('idProd', idProd);
-                $.ajax({
-                    type: "post",
-                    url: "http://127.0.0.1:3000/api/updateProductGaller",
-                    data: formData,
-                    contentType: false,
-                    cache: false,
-                    processData: false,
-                    dataType: "JSON",
-                    success: function(response) {
-                        if (response.check == true) {
-                            const Toast = Swal.mixin({
-                                toast: true,
-                                position: 'top-end',
-                                showConfirmButton: false,
-                                timer: 3000,
-                                timerProgressBar: true,
-                                didOpen: (toast) => {
-                                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                                }
-                            })
-
-                            Toast.fire({
-                                icon: 'success',
-                                title: 'Đăng hình ảnh thành công'
-                            }).then(() => {
-                                window.location.reload();
-                            })
-                        } else {
-                            const Toast = Swal.mixin({
-                                toast: true,
-                                position: 'top-end',
-                                showConfirmButton: false,
-                                timer: 3000,
-                                timerProgressBar: true,
-                                didOpen: (toast) => {
-                                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                                }
-                            })
-
-                            Toast.fire({
-                                icon: 'error',
-                                title: 'Đăng hình ảnh không thành công'
-                            })
-                        }
-                    }
-                });
-            }
-        });
-
-    }
-
-    $('#files').change(handleFileSelect);
 }
-$(document).on("submit", "#form-edit-prod", function(e) {
+
+// Code xử lý thêm ảnh sản phẩm đã có rồi
+$(document).on('submit', '#form-add-gallery', function(e) {
     e.preventDefault();
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    $(".btnaddmoreimagebtn").prop('disabled', true);
+    $(".btnaddmoreimagebtn").html('Đang xử lý...');
+    ajaxSetup();
+    $.ajax({
+        url: "http://127.0.0.1:3000/api/updateProductGaller",
+        type: "post",
+        data: new FormData($(this)[0]),
+        contentType: false,
+        cache: false,
+        processData: false,
+        success: function(response) {
+            if (response.check == true) {
+                $(".btnaddmoreimagebtn").prop('disabled', false);
+                $(".btnaddmoreimagebtn").html('Lưu');
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Đăng hình ảnh thành công'
+                }).then(() => {
+                    window.location.reload();
+                })
+            } else {
+                $(".btnaddmoreimagebtn").prop('disabled', false);
+                $(".btnaddmoreimagebtn").html('Lưu');
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+
+                Toast.fire({
+                    icon: 'error',
+                    title: 'Đăng hình ảnh không thành công'
+                })
+            }
         }
     });
+});
+// Hiện hình ảnh trước khi upload
+$(function() {
+    var imagesPreview = function(input, placeToInsertImagePreview) {
+        if (input.files) {
+            var filesAmount = input.files.length;
 
+            for (i = 0; i < filesAmount; i++) {
+                var reader = new FileReader();
+
+                reader.onload = function(event) {
+                    $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+                }
+
+                reader.readAsDataURL(input.files[i]);
+            }
+        }
+
+    };
+
+    $('.files').on('change', function() {
+        var idCurrent = $(this).data('id');
+        imagesPreview(this, '#list' + idCurrent);
+    });
+});
+// code xử lý cập nhật sản phẩm
+$(document).on("submit", "#form-edit-prod", function(e) {
+    e.preventDefault();
+    ajaxSetup();
     $.ajax({
         url: "http://127.0.0.1:3000/api/updateProduct",
         type: "post",

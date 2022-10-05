@@ -28,6 +28,12 @@
     border-radius: 50%;
     display: block;
   }
+
+  .listGalleryBeforeUpload>img {
+    width: 50%;
+    height: 100px;
+    float: left;
+  }
 </style>
 @extends('layout.layout1')
 @section('title','Quản lý sản phẩm')
@@ -178,33 +184,37 @@ Carbon::setLocale('vi');
         <div class="modal fade" id="AddMoreImgModal{{ $item->id }}" tabindex="-1" aria-labelledby="AddMoreImgModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="AddMoreImgModalLabel">Thêm hình ảnh sản phẩm</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div style="min-height:400px" class="modal-body">
-                <div class="drop">
-                  <div class="cont">
-                    <i class="fa fa-cloud-upload"></i>
-                    <div class="tit">
-
-                    </div>
-                    <div class="desc">
-
-                    </div>
-                    <div class="browse">Thêm ảnh
-                    </div>
-                  </div>
-                  <input type="number" id="idProd" value="{{ $item->id }}">
-                  <output id="list"></output><input id="files" data-id="{{ $item->id }}" class="files" multiple="true" name="files[]" type="file" />
+              <form id="form-add-gallery">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="AddMoreImgModalLabel">Thêm hình ảnh sản phẩm</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
                 </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" id="addmoreimagebtn" class="btn btn-primary addmoreimagebtn">Lưu</button>
-              </div>
+                <div style="min-height:400px" class="modal-body">
+                  <div class="drop">
+                    <div class="cont">
+                      <i class="fa fa-cloud-upload"></i>
+                      <div class="tit">
+
+                      </div>
+                      <div class="desc">
+
+                      </div>
+                      <div class="browse">Thêm ảnh
+                      </div>
+                    </div>
+                    <input type="hidden" name="idProd" id="idProd" value="{{ $item->id }}">
+                    <output class="listGalleryBeforeUpload" id="list{{ $item->id }}">
+
+                    </output><input id="files" data-id="{{ $item->id }}" class="files" multiple="true" name="files[]" type="file" />
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="submit" id="addmoreimagebtn" class="btn btn-primary btnaddmoreimagebtn">Lưu</button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
@@ -342,7 +352,7 @@ Carbon::setLocale('vi');
                             @endforeach
                           </select>
                           <div id="brandProd" class="invalid-feedback">
-                         
+
                           </div>
                         </div>
                       </div>
@@ -350,7 +360,7 @@ Carbon::setLocale('vi');
                         <label>Nội dung</label>
                         <textarea required class="form-control" name="contentProd" id="descedit{{ $item->id }}" rows="4">{!! $item->content !!}</textarea>
                         <div id="contentProd" class="invalid-feedback">
-  
+
                         </div>
                         <script>
                           CKEDITOR.replace('descedit{{ $item->id }}', {
