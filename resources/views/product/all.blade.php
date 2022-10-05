@@ -30,8 +30,10 @@
   }
 
   .listGalleryBeforeUpload>img {
-    width: 50%;
+    width: 32%;
     height: 100px;
+    margin-right: 5px;
+    margin-bottom: 5px;
     float: left;
   }
 </style>
