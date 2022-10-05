@@ -93,7 +93,7 @@ function addMoreimg() {
 
 }
 
-// Code xử lý thêm ảnh sản phẩm đã có rồi
+// Code xử lý thêm ảnh sản phẩm có sẵn
 $(document).on('submit', '#form-add-gallery', function(e) {
     e.preventDefault();
     $(".btnaddmoreimagebtn").prop('disabled', true);
