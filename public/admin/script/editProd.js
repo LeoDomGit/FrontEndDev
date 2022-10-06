@@ -10,7 +10,6 @@ $(document).ready(function() {
     addMoreImage();
 });
 function addMoreImage(){
-  var files = [];
   $('.addMoreImages').click(function (e) { 
     e.preventDefault();
     var idProd= $(this).attr('data-id');
@@ -18,7 +17,7 @@ function addMoreImage(){
     $('#submitImageProd').click(function (e) { 
       e.preventDefault();
       if(idProd!=''&&idProd!=' '&&idProd!=undefined){
-        var formData = new FormData();
+          var formData = new FormData();
         formData.append('idProd', idProd);
         for (let index = 0; index < files.length; index++) {
           formData.append('files[]', files[index]);
