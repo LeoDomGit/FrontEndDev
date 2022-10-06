@@ -228,9 +228,7 @@
     </thead>
     <tbody>
       @foreach ($products as $item)
-<<<<<<< Updated upstream
       <div class="modal fade" id="productDetail{{$item->idProd}}" tabindex="-1" aria-labelledby="productDetailLabel" aria-hidden="true">
-=======
       {{-- Modal 4 --}}
 <!-- Modal -->
 <div class="modal fade" id="AddMoreImgModal" tabindex="-1" aria-labelledby="AddMoreImgModalLabel" aria-hidden="true">
@@ -268,7 +266,6 @@
 </div>
 {{-- end Modal --}}
       {{-- <div class="modal fade" id="productDetail{{$item->idProd}}" tabindex="-1" aria-labelledby="productDetailLabel" aria-hidden="true"> --}}
->>>>>>> Stashed changes
         <div class="modal-dialog modal-xl">
           <div class="modal-content">
             <div class="modal-header">
