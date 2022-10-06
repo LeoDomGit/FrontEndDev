@@ -228,7 +228,47 @@
     </thead>
     <tbody>
       @foreach ($products as $item)
+<<<<<<< Updated upstream
       <div class="modal fade" id="productDetail{{$item->idProd}}" tabindex="-1" aria-labelledby="productDetailLabel" aria-hidden="true">
+=======
+      {{-- Modal 4 --}}
+<!-- Modal -->
+<div class="modal fade" id="AddMoreImgModal" tabindex="-1" aria-labelledby="AddMoreImgModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="AddMoreImgModalLabel">Thêm hình ảnh sản phẩm</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div style="min-height:400px" class="modal-body">
+        <div class="drop">
+          <div class="cont">
+            <i class="fa fa-cloud-upload"></i>
+            <div class="tit">
+             
+            </div>
+            <div class="desc">
+            
+            </div>
+            <div class="browse">Thêm ảnh 
+            </div>
+          </div>
+          {{-- <input type="number" id="idProd" value="{{$item->idProd}}"> --}}
+          <output id="list"></output><input id="files" multiple="true" name="files[]" type="file" />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" id="addmoreimagebtn" class="btn btn-primary">Lưu</button>
+      </div>
+    </div>
+  </div>
+</div>
+{{-- end Modal --}}
+      {{-- <div class="modal fade" id="productDetail{{$item->idProd}}" tabindex="-1" aria-labelledby="productDetailLabel" aria-hidden="true"> --}}
+>>>>>>> Stashed changes
         <div class="modal-dialog modal-xl">
           <div class="modal-content">
             <div class="modal-header">
