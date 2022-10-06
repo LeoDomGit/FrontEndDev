@@ -48,13 +48,10 @@ function loadProd() {
                         response.images.forEach(el => {
                             str += `
                             <div class="col-3 mb-2 imageProds">
-<<<<<<< Updated upstream
                             <p  onclick="deleteImage(` + el['imagename'] + `)" class="deleteImageIcon">x</p>
                             <img style="width:300px;height:300px;border-radius:50%" src="http://127.0.0.1:3000/images/` + el["imagename"] + `" alt="">
-=======
                             <p  onclick="deleteImage1(`+el['imagename']+`)" class="deleteImageIcon">x</p>
                             <img style="width:300px;height:300px;border-radius:50%" src="http://127.0.0.1:3000/images/`+el["imagename"]+`" alt="">
->>>>>>> Stashed changes
                             </div>
                             `;
                         });
@@ -70,16 +67,15 @@ function loadProd() {
             }
         });
     });
-<<<<<<< Updated upstream
-
-    function deleteImage(x) {
-=======
-    function deleteImage1(x){
->>>>>>> Stashed changes
-        alert(x);
-    }
-}
-
+function deleteImage1(x){
+          alert(x);
+      }
+  }
+function deleteImage(x) {
+      function deleteImage1(x){
+          alert(x);
+      }
+  }
 function addMoreimg() {
     var drop = $("input");
     drop.on('dragenter', function(e) {
