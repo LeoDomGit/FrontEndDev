@@ -8,7 +8,74 @@ function ajaxSetup() {
 $(document).ready(function() {
     loadProd();
     addMoreImage();
+    switchSP();
 });
+function switchSP(){
+  $('.turnBtn').click(function (e) { 
+    e.preventDefault();
+    var idSP = $(this).attr('data-id');
+    $.ajax({
+      type: "post",
+      url: "http://127.0.0.1:3000/api/switchSP",
+      data: {idSP:idSP},
+      dataType: "JSON",
+      success: function (response) {
+        if (response.check == true) {
+          const Toast = Swal.mixin({
+              toast: true,
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                  toast.addEventListener(
+                      "mouseenter",
+                      Swal.stopTimer
+                  );
+                  toast.addEventListener(
+                      "mouseleave",
+                      Swal.resumeTimer
+                  );
+              },
+          });
+
+          Toast.fire({
+              icon: "success",
+              title: "Đã thay đổi thành công",
+          }).then(() => {
+            window.location.reload();
+          });
+      } else {
+          if (response.message == "rejected") {
+              const Toast = Swal.mixin({
+                  toast: true,
+                  position: "top-end",
+                  showConfirmButton: false,
+                  timer: 3000,
+                  timerProgressBar: true,
+                  didOpen: (toast) => {
+                      toast.addEventListener(
+                          "mouseenter",
+                          Swal.stopTimer
+                      );
+                      toast.addEventListener(
+                          "mouseleave",
+                          Swal.resumeTimer
+                      );
+                  },
+              });
+
+              Toast.fire({
+                  icon: "error",
+                  title: "Dữ liệu không hợp lệ",
+              });
+          }
+      }
+      }
+  });
+  });
+
+}
 function addMoreImage(){
   $('.addMoreImages').click(function (e) { 
     e.preventDefault();
