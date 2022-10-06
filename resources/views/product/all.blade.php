@@ -217,7 +217,6 @@
       <div class="modal-footer">
         <button type="submit" id="btnEditProduct" class="btn btn-primary me-2">Sửa</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#addImageEditProductModal" id="btnAddImageProduct">Thêm hình ảnh</button>
       </div>
     </div>
   </div>
@@ -244,6 +243,7 @@
 <!-- Modal -->
 
 {{-- end Modal --}}
+
         <div class="modal-dialog modal-xl">
           <div class="modal-content">
             <div class="modal-header">

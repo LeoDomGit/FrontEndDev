@@ -194,7 +194,7 @@ function loadProd(){
       
                               Toast.fire({
                                   icon: "success",
-                                  title: "Đã thêm thành công",
+                                  title: "Đã thay đổi thành công",
                               }).then(() => {
                                   var idProd = response.id;
                                   $("#btnAddImageProduct").show();
