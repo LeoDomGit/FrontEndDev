@@ -6,15 +6,25 @@
     width:200px;
     margin: 0px auto;
   }
+  .imageProds{
+    width:300px;height:300px;border-radius:50%;
+  } 
   .deleteImageIcon{
-    display: none;
     transition: ease-in-out 2s;
-
+    /* display: none; */
+    position:absolute;
+    top:45%;
+    left:45%;
+    color:white;
+    text-align:center;
+    font-weight:bolder;
+    cursor:pointer;
+    font-size:18px;
+    background:rgb(191, 32, 32);
+    width:30px;
+    height:30px;
+    border-radius:50%;
   }
-  .imageProds:hover .deleteImageIcon{
-    position:absolute;top:45%;left:45%;color:white;text-align:center;font-weight:bolder;cursor:pointer;font-size:18px;background:black;width:30px;height:30px;border-radius:50%; display: block;
-  }
-
  
 </style>
 @extends('layout.layout1')

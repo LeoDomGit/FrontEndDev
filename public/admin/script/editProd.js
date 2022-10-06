@@ -9,73 +9,67 @@ $(document).ready(function() {
     loadProd();
     addMoreimg();
 });
+function loadProd(){
+  $('.editBtn').click(function (e) { 
+      e.preventDefault();
+      var idProd = $(this).attr('data-id');
+      $.ajax({
+          type: "post",
+          url: "http://127.0.0.1:3000/api/productDetail",
+          data: {
+              idProd:idProd
+          },
+          dataType: "JSON",
+          success: function (response) {
+              if(response.check==true){
+                  var str=``;
+                  response.result.forEach(element => {
+                      var idProd = element['idProd'];
+                      var prodName = element['prodName'];
+                      var status = element['prodStatus'];
+                      var created_at = element['prodCreate'];
+                      var updated_at = element['prodUpdate'];
+                      var summary = element['summary'];
+                      var cateName = element['cateName'];
+                      var brandname = element['brandname'];
+                      var prodBrandId = element['prodBrandId'];
+                      var prodCateId = element['prodCateId'];
+                      var content = element['content'];
+                      $("#prodNameedit").val(prodName);
+                      $("#summaryedit").val(summary);
+                      $('#prodTypeIDedit option[value='+prodCateId+']').prop("selected", true);
+                      $('#brandIDedit option[value='+prodBrandId+']').prop("selected", true);
+                      CKEDITOR.instances['descedit'].setData(content);
 
-function loadProd() {
-    $('.editBtn').click(function(e) {
-        e.preventDefault();
-        var idProd = $(this).attr('data-id');
-        $.ajax({
-            type: "post",
-            url: "http://127.0.0.1:3000/api/productDetail",
-            data: {
-                idProd: idProd
-            },
-            dataType: "JSON",
-            success: function(response) {
-                if (response.check == true) {
-                    var str = ``;
-                    response.result.forEach(element => {
-                        var idProd = element['idProd'];
-                        var prodName = element['prodName'];
-                        var status = element['prodStatus'];
-                        var created_at = element['prodCreate'];
-                        var updated_at = element['prodUpdate'];
-                        var summary = element['summary'];
-                        var cateName = element['cateName'];
-                        var brandname = element['brandname'];
-                        var prodBrandId = element['prodBrandId'];
-                        var prodCateId = element['prodCateId'];
-                        var content = element['content'];
-                        $("#prodNameedit").val(prodName);
-                        $("#summaryedit").val(summary);
-                        $('#prodTypeIDedit option[value=' + prodCateId + ']').prop("selected", true);
-                        $('#brandIDedit option[value=' + prodBrandId + ']').prop("selected", true);
-                        CKEDITOR.instances['descedit'].setData(content);
+                      str+=`
+                          <div style="width:98%;margin:0px auto" class="row mt-2">
+                      `;
+                      response.images.forEach(el => {
+                          str+=`
+                          <div class="col-3">
+                          <p data-id="`+el["imagename"]+`" class="deleteImageIcon">x</p>
+                          <img class="imageProds" src="http://127.0.0.1:3000/images/`+el["imagename"]+`" alt="">
+                          </div>
+                          `;
+                      });
+                      str+=`
+                      </div>
+                      `;
 
-                        str += `
-                            <div style="width:98%;margin:0px auto" class="row mt-2">
-                        `;
-                        response.images.forEach(el => {
-                            str += `
-                            <div class="col-3 mb-2 imageProds">
-                            <p  onclick="deleteImage(` + el['imagename'] + `)" class="deleteImageIcon">x</p>
-                            <img style="width:300px;height:300px;border-radius:50%" src="http://127.0.0.1:3000/images/` + el["imagename"] + `" alt="">
-                            <p  onclick="deleteImage1(`+el['imagename']+`)" class="deleteImageIcon">x</p>
-                            <img style="width:300px;height:300px;border-radius:50%" src="http://127.0.0.1:3000/images/`+el["imagename"]+`" alt="">
-                            </div>
-                            `;
-                        });
-                        str += `
-                        </div>
-                        `;
-
-
-                    });
-                    $("#imagesedit").html(str);
-                    $("#editProductMD").modal('show');
-                }
-            }
-        });
-    });
-function deleteImage1(x){
-          alert(x);
-      }
-  }
-function deleteImage(x) {
-      function deleteImage1(x){
-          alert(x);
-      }
-  }
+                  
+                  });
+                  $("#imagesedit").html(str);
+                  $("#editProductMD").modal('show');
+              }
+              $('.deleteImageIcon').click(function (e) { 
+                e.preventDefault();
+                let imageName = $(this).attr('data-id');
+                console.log(imageName);
+              });
+          }
+      });
+  });
+}
 function addMoreimg() {
     var drop = $("input");
     drop.on('dragenter', function(e) {
