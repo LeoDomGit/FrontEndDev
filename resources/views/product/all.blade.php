@@ -7,7 +7,7 @@
     margin: 0px auto;
   }
   .imageProds{
-    width:300px;height:300px;border-radius:50%;
+    width:250px;height:250px;border-radius:50%;
   } 
   .deleteImageIcon{
     transition: ease-in-out 2s;
@@ -244,7 +244,6 @@
 <!-- Modal -->
 
 {{-- end Modal --}}
-      {{-- <div class="modal fade" id="productDetail{{$item->idProd}}" tabindex="-1" aria-labelledby="productDetailLabel" aria-hidden="true"> --}}
         <div class="modal-dialog modal-xl">
           <div class="modal-content">
             <div class="modal-header">
