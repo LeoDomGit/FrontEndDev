@@ -16,12 +16,62 @@ function addMoreImage(){
     $("#idProdEdit").val(idProd);
     $('#submitImageProd').click(function (e) { 
       e.preventDefault();
-      if(idProd!=''&&idProd!=' '&&idProd!=undefined){
+      if(idProd!=''&&idProd!=' '&&idProd!=undefined && files.length>0){
           var formData = new FormData();
-        formData.append('idProd', idProd);
+          formData.append('idProd', idProd);
         for (let index = 0; index < files.length; index++) {
           formData.append('files[]', files[index]);
         }
+        $.ajax({
+          type: "post",
+          url: "http://127.0.0.1:3000/api/updateProductGaller",
+          data: formData,
+          contentType: false,
+          cache: false,
+          processData: false,
+          dataType: "JSON",
+          success: function (response) {
+              if(response.check==false){
+                if(response.message=='rejected'){
+                  const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                      toast.addEventListener('mouseenter', Swal.stopTimer)
+                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                  })
+                  
+                  Toast.fire({
+                    icon: 'error',
+                    title: 'Dữ liệu không hợp lệ !'
+                  })
+                }
+              }else{
+                const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top-end',
+                  showConfirmButton: false,
+                  timer: 3000,
+                  timerProgressBar: true,
+                  didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                  }
+                })
+                
+                Toast.fire({
+                  icon: 'success',
+                  title: 'Đã cập nhật thành công !'
+                })
+              }
+          }
+          
+        }); 
+      
       }
     });
   });

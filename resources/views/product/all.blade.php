@@ -303,7 +303,7 @@
         <td>{{$item->brandname}}</td>
         <td>{{$item->prodCreate}}</td>
         <td><div class="mt-2">
-          <button class="btn btn-warning editBtn" data-id="{{$item->idProd}}">Sửa</button> <button class="btn btn-danger">Xóa</button> <button class="btn btn-success proddetailbtn" data-id="{{$item->idProd}}" data-toggle="modal" data-target="#productDetail{{$item->idProd}}">Chi tiết</button>         <button class="btn btn-warning addMoreImages" data-toggle="modal" data-id="{{$item->idProd}}" data-target="#addImageProductModal">Thêm hình ảnh</button></div></td>
+          <button class="btn btn-warning editBtn" data-id="{{$item->idProd}}">Sửa</button> <button class="btn btn-danger">Xóa</button> <button class="btn btn-success proddetailbtn" data-id="{{$item->idProd}}" data-toggle="modal" data-target="#productDetail{{$item->idProd}}">Chi tiết</button>         <button class="btn btn-warning addMoreImages" data-toggle="modal" data-id="{{$item->idProd}}" data-target="#addImageProductModal">Hình ảnh mới</button></div></td>
       </tr>
       @endforeach
       
