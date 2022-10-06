@@ -100,7 +100,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#addImageProductModal" id="btnAddImageProduct">Thêm hình ảnh</button>
+
         <button type="submit" id="btnAddProduct" class="btn btn-primary me-2">Thêm</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
@@ -132,6 +132,7 @@
           </span>
           <span class="on-drop">Drop images here</span>
             <input name="file" type="file" class="file" multiple />
+            <input type="hidden" name="" id="idProdEdit">
           </div>
     
           <!-- IMAGE PREVIEW CONTAINER -->
@@ -241,39 +242,7 @@
       <div class="modal fade" id="productDetail{{$item->idProd}}" tabindex="-1" aria-labelledby="productDetailLabel" aria-hidden="true">
       {{-- Modal 4 --}}
 <!-- Modal -->
-<div class="modal fade" id="AddMoreImgModal" tabindex="-1" aria-labelledby="AddMoreImgModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="AddMoreImgModalLabel">Thêm hình ảnh sản phẩm</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div style="min-height:400px" class="modal-body">
-        <div class="drop">
-          <div class="cont">
-            <i class="fa fa-cloud-upload"></i>
-            <div class="tit">
-             
-            </div>
-            <div class="desc">
-            
-            </div>
-            <div class="browse">Thêm ảnh 
-            </div>
-          </div>
-          {{-- <input type="number" id="idProd" value="{{$item->idProd}}"> --}}
-          <output id="list"></output><input id="files" multiple="true" name="files[]" type="file" />
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" id="addmoreimagebtn" class="btn btn-primary">Lưu</button>
-      </div>
-    </div>
-  </div>
-</div>
+
 {{-- end Modal --}}
       {{-- <div class="modal fade" id="productDetail{{$item->idProd}}" tabindex="-1" aria-labelledby="productDetailLabel" aria-hidden="true"> --}}
         <div class="modal-dialog modal-xl">
@@ -334,7 +303,7 @@
         <td>{{$item->brandname}}</td>
         <td>{{$item->prodCreate}}</td>
         <td><div class="mt-2">
-          <button class="btn btn-warning editBtn" data-id="{{$item->idProd}}">Sửa</button> <button class="btn btn-danger">Xóa</button> <button class="btn btn-success proddetailbtn" data-id="{{$item->idProd}}" data-toggle="modal" data-target="#productDetail{{$item->idProd}}">Chi tiết</button></div></td>
+          <button class="btn btn-warning editBtn" data-id="{{$item->idProd}}">Sửa</button> <button class="btn btn-danger">Xóa</button> <button class="btn btn-success proddetailbtn" data-id="{{$item->idProd}}" data-toggle="modal" data-target="#productDetail{{$item->idProd}}">Chi tiết</button>         <button class="btn btn-warning addMoreImages" data-toggle="modal" data-id="{{$item->idProd}}" data-target="#addImageProductModal">Thêm hình ảnh</button></div></td>
       </tr>
       @endforeach
       

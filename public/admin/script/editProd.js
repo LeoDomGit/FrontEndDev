@@ -7,8 +7,26 @@ function ajaxSetup() {
 }
 $(document).ready(function() {
     loadProd();
-    addMoreimg();
+    addMoreImage();
 });
+function addMoreImage(){
+  var files = [];
+  $('.addMoreImages').click(function (e) { 
+    e.preventDefault();
+    var idProd= $(this).attr('data-id');
+    $("#idProdEdit").val(idProd);
+    $('#submitImageProd').click(function (e) { 
+      e.preventDefault();
+      if(idProd!=''&&idProd!=' '&&idProd!=undefined){
+        var formData = new FormData();
+        formData.append('idProd', idProd);
+        for (let index = 0; index < files.length; index++) {
+          formData.append('files[]', files[index]);
+        }
+      }
+    });
+  });
+}
 function loadProd(){
   $('.editBtn').click(function (e) { 
       e.preventDefault();
@@ -55,8 +73,6 @@ function loadProd(){
                       str+=`
                       </div>
                       `;
-
-                  
                   });
                   $("#imagesedit").html(str);
                   $("#editProductMD").modal('show');
@@ -64,150 +80,32 @@ function loadProd(){
               $('.deleteImageIcon').click(function (e) { 
                 e.preventDefault();
                 let imageName = $(this).attr('data-id');
-                console.log(imageName);
+                Swal.fire({
+                  title: 'Bạn muốn xóa ảnh ?',
+                  showDenyButton: true,
+                  showCancelButton: true,
+                  confirmButtonText: 'Đúng',
+                  denyButtonText: `Không !`,
+                }).then((result) => {
+                  /* Read more about isConfirmed, isDenied below */
+                  if (result.isConfirmed) {
+                    $.ajax({
+                      type: "post",
+                      url: "url",
+                      data: {
+                        imageName:imageName
+                      },
+                      dataType: "JSON",
+                      success: function (response) {
+                        
+                      }
+                    });
+                  } else if (result.isDenied) {
+                    
+                  }
+                })
               });
           }
       });
   });
 }
-function addMoreimg() {
-    var drop = $("input");
-    drop.on('dragenter', function(e) {
-        $(".drop").css({
-            "border": "4px dashed #09f",
-            "background": "rgba(0, 153, 255, .05)"
-        });
-        $(".cont").css({
-            "color": "#09f"
-        });
-    }).on('dragleave dragend mouseout drop', function(e) {
-        $(".drop").css({
-            "border": "3px dashed #DADFE3",
-            "background": "transparent"
-        });
-        $(".cont").css({
-            "color": "#8E99A5"
-        });
-    });
-
-}
-
-// Code xử lý thêm ảnh sản phẩm có sẵn
-$(document).on('submit', '#form-add-gallery', function(e) {
-    e.preventDefault();
-    $(".btnaddmoreimagebtn").prop('disabled', true);
-    $(".btnaddmoreimagebtn").html('Đang xử lý...');
-    ajaxSetup();
-    $.ajax({
-        url: "http://127.0.0.1:3000/api/updateProductGaller",
-        type: "post",
-        data: new FormData($(this)[0]),
-        contentType: false,
-        cache: false,
-        processData: false,
-        success: function(response) {
-            if (response.check == true) {
-                $(".btnaddmoreimagebtn").prop('disabled', false);
-                $(".btnaddmoreimagebtn").html('Lưu');
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
-                })
-                Toast.fire({
-                    icon: 'success',
-                    title: 'Đăng hình ảnh thành công'
-                }).then(() => {
-                    window.location.reload();
-                })
-            } else {
-                $(".btnaddmoreimagebtn").prop('disabled', false);
-                $(".btnaddmoreimagebtn").html('Lưu');
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
-                })
-
-                Toast.fire({
-                    icon: 'error',
-                    title: 'Đăng hình ảnh không thành công'
-                })
-            }
-        }
-    });
-});
-// Hiện hình ảnh trước khi upload
-$(function() {
-    var imagesPreview = function(input, placeToInsertImagePreview) {
-        if (input.files) {
-            var filesAmount = input.files.length;
-
-            for (i = 0; i < filesAmount; i++) {
-                var reader = new FileReader();
-
-                reader.onload = function(event) {
-                    $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
-                }
-
-                reader.readAsDataURL(input.files[i]);
-            }
-        }
-
-    };
-
-    $('.files').on('change', function() {
-        var idCurrent = $(this).data('id');
-        imagesPreview(this, '#list' + idCurrent);
-    });
-});
-// code xử lý cập nhật sản phẩm
-$(document).on("submit", "#form-edit-prod", function(e) {
-    e.preventDefault();
-    ajaxSetup();
-    $.ajax({
-        url: "http://127.0.0.1:3000/api/updateProduct",
-        type: "post",
-        data: $(this).serialize(),
-        success: function(data) {
-            if (data.status == 200) {
-                Swal.fire({
-                    icon: "success",
-                    showConfirmButton: false,
-                    text: data.msg,
-                });
-                setInterval(() => {
-                    window.location.reload();
-                }, 1500);
-            } else if (data.status == 202) {
-                Swal.fire({
-                    icon: "error",
-                    showConfirmButton: false,
-                    text: data.msg,
-                });
-            } else if (data.status == 204) {
-                $.each(data.msg, function(index, value) {
-                    if (index == 'brandProd') {
-                        $('select[name="' + index + '"]').addClass("is-invalid");
-                        ('#' + index).html(value);
-                    }
-
-                    $('input[name="' + index + '"]').addClass("is-invalid");
-                    $('input[name="' + index + '"]').next().html(value);
-                })
-            }
-        }
-    })
-})

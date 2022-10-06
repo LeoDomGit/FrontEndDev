@@ -161,8 +161,9 @@ function addProduct() {
                             $("#btnAddImageProduct").show();
                             $("#submitImageProd").click(function(e) {
                                 e.preventDefault();
-                                if (idProd != '' && files.length != 0) {
-                                    var formData = new FormData();
+                                if (files.length != 0) {
+                                    if( $("#idProdEdit").val()==''||$("#idProdEdit").val()==' '||$("#idProdEdit").val()==undefined){
+                                        var formData = new FormData();
                                     var totalfiles = files.length;
                                     formData.append('idProd', idProd);
                                     for (let index = 0; index < files.length; index++) {
@@ -214,6 +215,8 @@ function addProduct() {
                                             }
                                         }
                                     });
+                                    }
+                                    
                                 } else {
                                     Swal.fire({
                                         icon: "error",
