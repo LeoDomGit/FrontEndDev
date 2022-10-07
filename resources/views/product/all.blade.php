@@ -9,6 +9,9 @@
   .imageProds{
     width:250px;height:250px;border-radius:50%;
   } 
+  .turnBtn{
+    cursor: pointer;
+  }
   .deleteImageIcon{
     transition: ease-in-out 2s;
     /* display: none; */
