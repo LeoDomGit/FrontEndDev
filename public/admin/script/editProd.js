@@ -98,45 +98,7 @@ function addMoreImage(){
           processData: false,
           dataType: "JSON",
           success: function (response) {
-              if(response.check==false){
-                if(response.message=='rejected'){
-                  const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                      toast.addEventListener('mouseenter', Swal.stopTimer)
-                      toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
-                  })
-                  
-                  Toast.fire({
-                    icon: 'error',
-                    title: 'Dữ liệu không hợp lệ !'
-                  })
-                }
-              }else{
-                const Toast = Swal.mixin({
-                  toast: true,
-                  position: 'top-end',
-                  showConfirmButton: false,
-                  timer: 3000,
-                  timerProgressBar: true,
-                  didOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                  }
-                })
-                
-                Toast.fire({
-                  icon: 'success',
-                  title: 'Đã cập nhật thành công !'
-                }).then(()=>{
-                  window.location.reload();
-                });
-              }
+            console.log(response.check);
           }
           
         }); 
