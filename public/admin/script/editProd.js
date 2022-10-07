@@ -16,7 +16,7 @@ function switchSP(){
     var idSP = $(this).attr('data-id');
     $.ajax({
       type: "post",
-      url: "http://127.0.0.1:3000/api/switchSP",
+      url: "https://api.trungthanhweb.com/api/switchSP",
       data: {idSP:idSP},
       dataType: "JSON",
       success: function (response) {
@@ -149,9 +149,10 @@ function loadProd(){
   $('.editBtn').click(function (e) { 
       e.preventDefault();
       var idProd = $(this).attr('data-id');
+      console.log(idProd);
       $.ajax({
           type: "post",
-          url: "http://127.0.0.1:3000/api/productDetail",
+          url: "https://api.trungthanhweb.com/api/productDetail",
           data: {
               idProd:idProd
           },
@@ -184,7 +185,7 @@ function loadProd(){
                           str+=`
                           <div class="col-3">
                           <p data-id="`+el["imagename"]+`" class="deleteImageIcon">x</p>
-                          <img class="imageProds" src="http://127.0.0.1:3000/images/`+el["imagename"]+`" alt="">
+                          <img class="imageProds" src="https://api.trungthanhweb.com/images/`+el["imagename"]+`" alt="">
                           </div>
                           `;
                       });
@@ -229,7 +230,7 @@ function loadProd(){
                   } else {
                     $.ajax({
                       type: "post",
-                      url: "http://127.0.0.1:3000/api/editProduct",
+                      url: "https://api.trungthanhweb.com/api/editProduct",
                       data: {
                           id:id,
                           prodName: prodNameedit,
@@ -334,7 +335,7 @@ function loadProd(){
                   if (result.isConfirmed) {
                     $.ajax({
                       type: "post",
-                      url: "http://127.0.0.1:3000/api/deleteImage",
+                      url: "https://api.trungthanhweb.com/api/deleteImage",
                       data: {
                         imageName:imageName
                       },
