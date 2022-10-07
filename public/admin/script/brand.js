@@ -55,7 +55,7 @@ $(document).on("submit", "#form-update-brand", function(e) {
         ajaxSetup();
         $.ajax({
             type: "method",
-            url: " https://api.trungthanhweb.com/api/editBrand",
+            url: "https://api.trungthanhweb.com/api/editBrand",
             type: "POST",
             data: $(this).serialize(),
             dataType: "json",
@@ -129,7 +129,7 @@ function deleteBrand() {
             if (result.isConfirmed) {
                 $.ajax({
                     type: "post",
-                    url: " https://api.trungthanhweb.com/api/deleteBrand",
+                    url: "https://api.trungthanhweb.com/api/deleteBrand",
                     data: {
                         idBrand: idBrand
                     },
@@ -249,7 +249,7 @@ function addBrand() {
         } else {
             $.ajax({
                 type: "method",
-                url: " https://api.trungthanhweb.com/api/addBrand",
+                url: "https://api.trungthanhweb.com/api/addBrand",
                 type: "POST",
                 data: $(this).serialize(),
                 dataType: "json",

@@ -19,7 +19,7 @@ function deleteColor(){
       if (result.isConfirmed) {
         $.ajax({
           type: "post",
-          url: " https://api.trungthanhweb.com/api/deleteColor",
+          url: "https://api.trungthanhweb.com/api/deleteColor",
           data: {idColor:idColor},
           dataType: "JSON",
           success: function (response) {
@@ -122,7 +122,7 @@ function addColor(){
         }else{
             $.ajax({
                 type: "post",
-                url: " https://api.trungthanhweb.com/api/addColor",
+                url: "https://api.trungthanhweb.com/api/addColor",
                 data: {
                     colorname:colorname,
                     newColorcode:newColorcode
@@ -240,7 +240,7 @@ function editColor(){
       }else{
         $.ajax({
           type: "post",
-          url: " https://api.trungthanhweb.com/api/editColor",
+          url: "https://api.trungthanhweb.com/api/editColor",
           data: {
             idColor:idColor,
             colorname:colorname1,

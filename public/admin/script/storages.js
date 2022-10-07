@@ -18,7 +18,7 @@ function deleteStorages(){
             if (result.isConfirmed) {
               $.ajax({
                 type: "post",
-                url: " https://api.trungthanhweb.com/api/deleteStorages",
+                url: "https://api.trungthanhweb.com/api/deleteStorages",
                 data: {
                     id:id
                 },
@@ -140,7 +140,7 @@ function deleteStorages(){
         }else{
             $.ajax({
                 type: "post",
-                url: " https://api.trungthanhweb.com/api/addStorages",
+                url: "https://api.trungthanhweb.com/api/addStorages",
                 data: {
                     storageName:storageName,
                     storageInfo:storageInfo
@@ -230,7 +230,7 @@ function deleteStorages(){
             }else{
                 $.ajax({
                     type: "post",
-                    url: " https://api.trungthanhweb.com/api/editStorages",
+                    url: "https://api.trungthanhweb.com/api/editStorages",
                     data: {
                         id:id,
                         storageNameEdit:storageNameEdit,

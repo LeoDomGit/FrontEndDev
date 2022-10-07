@@ -21,7 +21,7 @@ function deleteCate(){
             if (result.isConfirmed) {
               $.ajax({
                 type: "post",
-                url: " https://api.trungthanhweb.com/api/deleteCate",
+                url: "https://api.trungthanhweb.com/api/deleteCate",
                 data: {
                     idCate:idCate
                 },
@@ -125,7 +125,7 @@ function editCate(){
             }else{
                 $.ajax({
                     type: "post",
-                    url: " https://api.trungthanhweb.com/api/editCate",
+                    url: "https://api.trungthanhweb.com/api/editCate",
                     data: {
                         idCate:idCate,
                         newCate:newCate
@@ -211,7 +211,7 @@ function switchCate(){
         $("#waitingimage").append(waiting);
         $.ajax({
             type: "post",
-            url: " https://api.trungthanhweb.com/api/switchCate",
+            url: "https://api.trungthanhweb.com/api/switchCate",
             data: {
                 idCate:idCate
             },
@@ -294,7 +294,7 @@ function addCate(){
         }else{
             $.ajax({
                 type: "post",
-                url: " https://api.trungthanhweb.com/api/addCate",
+                url: "https://api.trungthanhweb.com/api/addCate",
                 data: {
                     newcate:newcate
                 },

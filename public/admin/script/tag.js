@@ -19,7 +19,7 @@ function deleteTag(){
       if (result.isConfirmed) {
         $.ajax({
           type: "post",
-          url: " https://api.trungthanhweb.com/api/deleteTag",
+          url: "https://api.trungthanhweb.com/api/deleteTag",
           data: {idtag:idtag},
           dataType: "JSON",
           success: function (response) {
@@ -121,7 +121,7 @@ function addTag(){
         }else{
             $.ajax({
                 type: "post",
-                url: " https://api.trungthanhweb.com/api/addTag",
+                url: "https://api.trungthanhweb.com/api/addTag",
                 data: {
                     tagname:tagname
                 },
@@ -221,7 +221,7 @@ function editTag(){
       }else{
         $.ajax({
           type: "post",
-          url: " https://api.trungthanhweb.com/api/editTag",
+          url: "https://api.trungthanhweb.com/api/editTag",
           data: {
             idtag:idtag,
             tagname:tagname1,
