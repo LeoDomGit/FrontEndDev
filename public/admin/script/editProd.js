@@ -184,7 +184,7 @@ function loadProd(){
                           str+=`
                           <div class="col-3">
                           <p data-id="`+el["imagename"]+`" class="deleteImageIcon">x</p>
-                          <img class="imageProds" src="http://127.0.0.1:3000/images/`+el["imagename"]+`" alt="">
+                          <img class="imageProds" src="https://api.trungthanhweb.com/images/`+el["imagename"]+`" alt="">
                           </div>
                           `;
                       });
