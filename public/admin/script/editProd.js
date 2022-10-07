@@ -16,7 +16,7 @@ function switchSP(){
     var idSP = $(this).attr('data-id');
     $.ajax({
       type: "post",
-      url: " https://api.trungthanhweb.com/api/switchSP",
+      url: "http://127.0.0.1:3000/api/switchSP",
       data: {idSP:idSP},
       dataType: "JSON",
       success: function (response) {
@@ -91,14 +91,52 @@ function addMoreImage(){
         }
         $.ajax({
           type: "post",
-          url: " https://api.trungthanhweb.com/api/updateProductGaller",
+          url: "https://api.trungthanhweb.com/api/updateProductGaller",
           data: formData,
           contentType: false,
           cache: false,
           processData: false,
           dataType: "JSON",
           success: function (response) {
-            console.log(response.check);
+              if(response.check==false){
+                if(response.message=='rejected'){
+                  const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                      toast.addEventListener('mouseenter', Swal.stopTimer)
+                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                  })
+                  
+                  Toast.fire({
+                    icon: 'error',
+                    title: 'Dữ liệu không hợp lệ !'
+                  })
+                }
+              }else{
+                const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top-end',
+                  showConfirmButton: false,
+                  timer: 3000,
+                  timerProgressBar: true,
+                  didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                  }
+                })
+                
+                Toast.fire({
+                  icon: 'success',
+                  title: 'Đã cập nhật thành công !'
+                }).then(()=>{
+                  window.location.reload();
+                });
+              }
           }
           
         }); 
@@ -113,7 +151,7 @@ function loadProd(){
       var idProd = $(this).attr('data-id');
       $.ajax({
           type: "post",
-          url: " https://api.trungthanhweb.com/api/productDetail",
+          url: "http://127.0.0.1:3000/api/productDetail",
           data: {
               idProd:idProd
           },
@@ -146,7 +184,7 @@ function loadProd(){
                           str+=`
                           <div class="col-3">
                           <p data-id="`+el["imagename"]+`" class="deleteImageIcon">x</p>
-                          <img class="imageProds" src="https://api.trungthanhweb.com/images/`+el["imagename"]+`" alt="">
+                          <img class="imageProds" src="http://127.0.0.1:3000/images/`+el["imagename"]+`" alt="">
                           </div>
                           `;
                       });
@@ -191,7 +229,7 @@ function loadProd(){
                   } else {
                     $.ajax({
                       type: "post",
-                      url: " https://api.trungthanhweb.com/api/editProduct",
+                      url: "http://127.0.0.1:3000/api/editProduct",
                       data: {
                           id:id,
                           prodName: prodNameedit,
@@ -296,7 +334,7 @@ function loadProd(){
                   if (result.isConfirmed) {
                     $.ajax({
                       type: "post",
-                      url: " https://api.trungthanhweb.com/api/deleteImage",
+                      url: "http://127.0.0.1:3000/api/deleteImage",
                       data: {
                         imageName:imageName
                       },
