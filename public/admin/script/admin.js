@@ -35,7 +35,7 @@ function showarea(){
                       }).then((result) => {
                         if (result.isConfirmed) {
                             $.ajax({
-                                url: 'http://127.0.0.1:3000/api/deleteRole',
+                                url: ' https://api.trungthanhweb.com/api/deleteRole',
                                 type: "POST",
                                 data: {
                                     idRole: idRole,
@@ -132,7 +132,7 @@ function UserRole(){
         var newUsRole = $("#newUserRole").val().trim();
         if(newUsRole!=''){
             $.ajax({
-                url: 'http://127.0.0.1:3000/api/addUserRole',
+                url: ' https://api.trungthanhweb.com/api/addUserRole',
                 type: "POST",
                 data: {
                     newUsRole: newUsRole,
@@ -230,7 +230,7 @@ function addUser(){
           var waiting = `<img style="width:200px" src="images/smile_loader_by_gleb.gif" id="WaitingImg" alt="">`;
           $("#waitingimage").append(waiting);
             $.ajax({
-                url: 'http://127.0.0.1:3000/api/register',
+                url: ' https://api.trungthanhweb.com/api/register',
                 type: "POST",
                 data: {
                     username: username,

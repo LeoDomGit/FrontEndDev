@@ -14,7 +14,7 @@ class colorController extends Controller
      */
     public function index()
     {
-        $colors = Http::get('http://127.0.0.1:3000/api/allColor');
+        $colors = Http::get('https://api.trungthanhweb.com/api/allColor');
         $colors= json_decode($colors);
         return view('color.index',compact('colors'));
     }

@@ -13,7 +13,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $allcate = Http::get('http://127.0.0.1:3000/api/allCate');
+        $allcate = Http::get('https://api.trungthanhweb.com/api/allCate');
         $allcate = json_decode($allcate);
         return view('categrories.index',compact('allcate'));
     }

@@ -16,7 +16,7 @@ function switchSP(){
     var idSP = $(this).attr('data-id');
     $.ajax({
       type: "post",
-      url: "http://127.0.0.1:3000/api/switchSP",
+      url: " https://api.trungthanhweb.com/api/switchSP",
       data: {idSP:idSP},
       dataType: "JSON",
       success: function (response) {
@@ -91,7 +91,7 @@ function addMoreImage(){
         }
         $.ajax({
           type: "post",
-          url: "http://127.0.0.1:3000/api/updateProductGaller",
+          url: " https://api.trungthanhweb.com/api/updateProductGaller",
           data: formData,
           contentType: false,
           cache: false,
@@ -151,7 +151,7 @@ function loadProd(){
       var idProd = $(this).attr('data-id');
       $.ajax({
           type: "post",
-          url: "http://127.0.0.1:3000/api/productDetail",
+          url: " https://api.trungthanhweb.com/api/productDetail",
           data: {
               idProd:idProd
           },
@@ -229,7 +229,7 @@ function loadProd(){
                   } else {
                     $.ajax({
                       type: "post",
-                      url: "http://127.0.0.1:3000/api/editProduct",
+                      url: " https://api.trungthanhweb.com/api/editProduct",
                       data: {
                           id:id,
                           prodName: prodNameedit,
@@ -334,7 +334,7 @@ function loadProd(){
                   if (result.isConfirmed) {
                     $.ajax({
                       type: "post",
-                      url: "http://127.0.0.1:3000/api/deleteImage",
+                      url: " https://api.trungthanhweb.com/api/deleteImage",
                       data: {
                         imageName:imageName
                       },

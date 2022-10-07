@@ -14,8 +14,8 @@ class BrandController extends Controller
      */
     public function index()
     {
-        $brand = Http::get('http://127.0.0.1:3000/api/allBrand');
-        $cate = Http::get('http://127.0.0.1:3000/api/allCate');
+        $brand = Http::get('https://api.trungthanhweb.com/api/allBrand');
+        $cate = Http::get('https://api.trungthanhweb.com/api/allCate');
         $allBrand =  json_decode($brand);
         $allCategory = json_decode($cate);
         return view('brand.index', compact('allBrand','allCategory'));

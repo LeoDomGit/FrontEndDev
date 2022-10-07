@@ -10,9 +10,9 @@ class ProductsController extends Controller
 
     public function index()
     {   
-        $product = Http::get('http://127.0.0.1:3000/api/allProduct'); 
-        $brand = Http::get('http://127.0.0.1:3000/api/allBrand');
-        $cate = Http::get('http://127.0.0.1:3000/api/allCate');
+        $product = Http::get('https://api.trungthanhweb.com/api/allProduct'); 
+        $brand = Http::get('https://api.trungthanhweb.com/api/allBrand');
+        $cate = Http::get('https://api.trungthanhweb.com/api/allCate');
         $brand =  json_decode($brand);
         $cate = json_decode($cate);
         $products = json_decode($product);

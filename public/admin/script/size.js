@@ -18,7 +18,7 @@ function deleteSize(){
             if (result.isConfirmed) {
               $.ajax({
                 type: "post",
-                url: "http://127.0.0.1:3000/api/deleteSize",
+                url: " https://api.trungthanhweb.com/api/deleteSize",
                 data: {
                     idSize:idSize
                 },
@@ -143,7 +143,7 @@ function editSize(){
             }else{
                 $.ajax({
                     type: "post",
-                    url: "http://127.0.0.1:3000/api/editSize",
+                    url: " https://api.trungthanhweb.com/api/editSize",
                     data: {
                         idSize:idSize,
                         newName:newName,
@@ -234,7 +234,7 @@ function addSize(){
         }else{
             $.ajax({
                 type: "post",
-                url: "http://127.0.0.1:3000/api/addSize",
+                url: " https://api.trungthanhweb.com/api/addSize",
                 data: {
                     sizeName:sizeName,
                     sizeInfo:sizeInfo

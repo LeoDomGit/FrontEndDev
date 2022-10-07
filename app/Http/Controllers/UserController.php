@@ -12,7 +12,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $userRoles = Http::get('http://127.0.0.1:3000/api/allUserRole');
+        $userRoles = Http::get('https://api.trungthanhweb.com/api/allUserRole');
         $userRoles= json_decode($userRoles);
         return view('user.add',compact('userRoles'));
     }
@@ -24,8 +24,8 @@ class UserController extends Controller
      */
     public function allUser()
     {
-        $response = Http::get('http://127.0.0.1:3000/api/allUser');
-        $userRoles = Http::get('http://127.0.0.1:3000/api/allUserRole');
+        $response = Http::get('https://api.trungthanhweb.com/api/allUser');
+        $userRoles = Http::get('https://api.trungthanhweb.com/api/allUserRole');
         $users= json_decode($response);
         $userRoles= json_decode($userRoles);
         return view('user.all',compact('users','userRoles'));

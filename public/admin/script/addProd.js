@@ -124,7 +124,7 @@ function addProduct() {
         } else {
             $.ajax({
                 type: "post",
-                url: "http://127.0.0.1:3000/api/addProduct",
+                url: " https://api.trungthanhweb.com/api/addProduct",
                 data: {
                     prodName: prodName,
                     summary: summary,
@@ -171,7 +171,7 @@ function addProduct() {
                                     }
                                     $.ajax({
                                         type: "post",
-                                        url: "http://127.0.0.1:3000/api/addProdGallery",
+                                        url: " https://api.trungthanhweb.com/api/addProdGallery",
                                         data: formData,
                                         contentType: false,
                                         cache: false,
@@ -297,7 +297,7 @@ function SelectBrandBySelectCate(el) {
         }
     });
     $.ajax({
-        url: "http://127.0.0.1:3000/api/GetBRandByCate",
+        url: " https://api.trungthanhweb.com/api/GetBRandByCate",
         type: "post",
         data: {
             id: valueCate

@@ -14,7 +14,7 @@ class StoragesCotroller extends Controller
      */
     public function index()
     {
-        $allStorages = json_decode(Http::get('http://127.0.0.1:3000/api/allStorages'));
+        $allStorages = json_decode(Http::get('https://api.trungthanhweb.com/api/allStorages'));
         return view('storages.index',compact('allStorages'));
     }
 
@@ -45,7 +45,7 @@ class StoragesCotroller extends Controller
      * @param  \App\storagesM  $storagesM
      * @return \Illuminate\Http\Response
      */
-    public function show(storagesM $storagesM)
+    public function show()
     {
         //
     }
@@ -56,7 +56,7 @@ class StoragesCotroller extends Controller
      * @param  \App\storagesM  $storagesM
      * @return \Illuminate\Http\Response
      */
-    public function edit(storagesM $storagesM)
+    public function edit()
     {
         //
     }
@@ -68,7 +68,7 @@ class StoragesCotroller extends Controller
      * @param  \App\storagesM  $storagesM
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, storagesM $storagesM)
+    public function update()
     {
         //
     }
@@ -79,7 +79,7 @@ class StoragesCotroller extends Controller
      * @param  \App\storagesM  $storagesM
      * @return \Illuminate\Http\Response
      */
-    public function destroy(storagesM $storagesM)
+    public function destroy()
     {
         //
     }

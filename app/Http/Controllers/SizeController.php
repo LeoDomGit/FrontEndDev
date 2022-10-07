@@ -14,7 +14,7 @@ class SizeController extends Controller
      */
     public function index()
     {
-        $allSize = json_decode(Http::get('http://127.0.0.1:3000/api/allSize'));
+        $allSize = json_decode(Http::get('https://api.trungthanhweb.com/api/allSize'));
         return view('size.index',compact('allSize'));
     }
 
