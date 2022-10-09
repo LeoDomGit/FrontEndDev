@@ -168,6 +168,23 @@ function editUser(){
                   icon: 'error',
                   title: 'Tài khoản không tồn tại'
                 })
+              }else if(response.message=='noAdminUser'){
+                const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top-end',
+                  showConfirmButton: false,
+                  timer: 2000,
+                  timerProgressBar: true,
+                  didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                  }
+                })
+                
+                Toast.fire({
+                  icon: 'error',
+                  title: 'Phải có tài khoản Quản trị viên'
+                })
               }
             }
           }
