@@ -10,9 +10,8 @@
     
     <div id="waitingimage"></div>
     <img style="width:100%" src="images\nice1.gif" alt="">
-    <script>
-        document.getElementbyId('waitingimage').innerHTML('');
-    </script>
+   
+    <script src="admin/script/jquery-3.6.1.min.js"></script>
 
 </body>
 </html>
