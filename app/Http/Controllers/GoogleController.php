@@ -31,6 +31,7 @@ class GoogleController extends Controller
                 'image'=>$image,
                 'name'=>$name,
             ]);
+            echo $check;
 
         
         } catch (Exception $e) {
