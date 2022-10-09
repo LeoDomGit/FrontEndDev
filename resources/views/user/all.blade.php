@@ -24,7 +24,43 @@
             </div> --}}
         </div>
     </div>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editUserModal">
+      Launch demo modal
+    </button>
     <!-- Button trigger modal -->
+    <div class="modal" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editUserModalLabel">Thay đổi tài khoản</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" id="userResult">
+            <input type="hidden" name="" id="idUser">
+            <div class="form-group">
+              <label for="">Username</label>
+              <input type="text" name="" id="usernameEdit" class="form-control" placeholder="" value="">
+            </div>
+            <div class="form-group">
+              <label for="">Email</label>
+              <input type="text" name="" id="emailEdit" class="form-control" placeholder="" value="">
+            </div>
+            <div class="form-group">
+              <label for="">Loại tài khoản</label>
+             <select name="" class="form-control" id="">
+                <option value="">Loại A</option>
+             </select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="submitEditUserBtn" class="btn btn-primary">Lưu</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
   <!-- Modal -->
   <div class="modal fade" id="userManager" tabindex="-1" aria-labelledby="userManagerLabel" aria-hidden="true">
@@ -44,7 +80,7 @@
                     <div class="pd-20 card-box height-100-p w-100">
                         <div class="list-group">
                             @foreach ($userRoles as $item)
-                            <a href=""  data-id='{{$item->id}}'class="list-group-item rolename list-group-item-action"
+                            <a href="" data-id='{{$item->id}}'class="list-group-item rolename list-group-item-action"
                             >{{$item->name}}</a>
                             <br>
                             @endforeach
@@ -53,6 +89,8 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 mb-30 hidden" id="updatebtnarea">
                     <div class="pd-20 card-box height-100-p w-100">
+                        <h5 class="mb-2">Sửa Loại tài khoản</h5>
+                        <input type="text" id="newUserEditRole" class="form-control"><br>
                         <button class="btn btn-danger" id="updateRoleBtn">Cập nhật</button>
                     </div>
                 </div>
@@ -100,7 +138,7 @@
                 @foreach ($users as $item)
                 <tr>
                     <td class="table-plus"><p>{{$item->username}}</p></td>
-                    <td>{{$item->name}}</td>
+                    <td><p>{{$item->name}}</p></td>
                     <td><?php if($item->status==0){?>
                         <p>Đang khóa</p>
                     <?php }else{ ?>
@@ -126,8 +164,8 @@
                                 <a class="dropdown-item" href="#"
                                     ><i class="dw dw-eye"></i> View</a
                                 >
-                                <a class="dropdown-item" href="#"
-                                    ><i class="dw dw-edit2"></i> Edit</a
+                                <a class="dropdown-item editUser" data-id="{{$item->id}}" href="#"
+                                    ><i class="dw dw-edit2 " ></i> Edit</a
                                 >
                                 <a class="dropdown-item" href="#"
                                     ><i class="dw dw-delete-3"></i> Delete</a
@@ -140,4 +178,5 @@
             </tbody>
         </table>
     </div>
+    <!-- Button trigger modal -->
 @endsection

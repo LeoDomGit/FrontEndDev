@@ -24,7 +24,7 @@ use App\Http\Controllers\StoragesCotroller;
 //     return view('welcome');
 // });
 Route::get('/addUser',[UserController::class,'index']);
-Route::get('/allUser',[UserController::class,'allUser']);
+Route::get('/users',[UserController::class,'allUser']);
 Route::get('brandManager',[BrandController::class,'index']);
 Route::get('categrories',[CategoryController::class,'index']);
 Route::get('colorManager',[colorController::class,'index']);
