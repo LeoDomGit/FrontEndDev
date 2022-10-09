@@ -251,7 +251,7 @@
               </button>
             </div>
             <div class="modal-body">
-              <button class="btn btn-warning" id="editProdBtn">Sửa</button> <button class="btn btn-danger">Xóa</button> <button class="btn btn-success" data-toggle="modal" data-target="#productDetail{{$item->idProd}}">Chi tiết</button>         <button class="btn btn-warning" id="addMoreImages" data-toggle="modal" data-target="#addImageProductModal">Hình ảnh mới</button></div>
+              <button class="btn btn-warning" id="editProdBtn">Sửa</button> <button class="btn btn-danger" id="deleteProdBtn">Xóa</button> <button class="btn btn-success" data-toggle="modal" data-target="#productDetail{{$item->idProd}}">Chi tiết</button>         <button class="btn btn-warning" id="addMoreImages" data-toggle="modal" data-target="#addImageProductModal">Hình ảnh mới</button></div>
             </div>
             <div class="modal-footer">
             </div>
