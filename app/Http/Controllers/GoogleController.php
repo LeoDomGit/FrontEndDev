@@ -32,7 +32,8 @@ class GoogleController extends Controller
                 'name'=>$name,
             ]);
             if($check==true){
-                return redirect('/prodManager');
+                // return view('login.afterlogin',);
+                // return redirect('/prodManager');
             }else{
                 return redirect('/login');
             }
