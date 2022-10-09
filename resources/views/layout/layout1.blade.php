@@ -123,7 +123,7 @@
 							/>
 							<div class="dropdown">
 								<a
-									class="dropdown-toggle no-arrow"
+									class="dropdown-toggle no-arrow mt-2"
 									href="#"
 									role="button"
 									data-toggle="dropdown"

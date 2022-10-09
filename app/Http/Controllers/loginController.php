@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Session;
 class loginController extends Controller
 {
     /**
@@ -21,9 +21,17 @@ class loginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+    public function afterlogin()
+    {   
+        $name='';
+        $image='';
+        if(Session::has('name')){
+            $name= Session::get('name');
+        }
+        if(Session::has('image')){
+            $image=Session::get('image');
+        } 
+        return view('login.afterlogin',compact('name','image'));
     }
 
     /**

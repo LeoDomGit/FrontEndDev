@@ -38,6 +38,7 @@ Route::get('storagesManager',[StoragesCotroller::class,'index']);
 // Route::get('/brandManager',[ProductsController::class,"index"]);
 Route::get('/prodManager',[ProductsController::class,"index"]);
 Route::get('/login',[loginController::class,"index"]);
+Route::get('/afterlogin',[loginController::class,"afterlogin"]);
 Route::get('auth/google', [GoogleController::class,'redirect'])->name('google-auth');
 Route::get('auth/google/call-back',[GoogleController::class,'callbackGoogle']);
 // Route::get('/allProduct',[ProductsController::class,"index"]);
