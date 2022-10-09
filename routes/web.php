@@ -10,6 +10,8 @@ use App\Http\Controllers\SizeController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\StoragesCotroller;
 use App\Http\Controllers\loginController;
+use App\Http\Controllers\GoogleController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +38,8 @@ Route::get('storagesManager',[StoragesCotroller::class,'index']);
 // Route::get('/brandManager',[ProductsController::class,"index"]);
 Route::get('/prodManager',[ProductsController::class,"index"]);
 Route::get('/login',[loginController::class,"index"]);
-
+Route::get('auth/google', [GoogleController::class,'redirect'])->name('google-auth');
+Route::get('auth/google/call-back',[GoogleController::class,'callbackGoogle']);
 // Route::get('/allProduct',[ProductsController::class,"index"]);
 // Route::get('/addProduct',[ProductsController::class,"addprod"]);
 // Route::get('/editProduct',[ProductsController::class,"editprod"]);
