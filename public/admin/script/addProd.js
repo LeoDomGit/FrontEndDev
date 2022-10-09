@@ -157,74 +157,7 @@ function addProduct() {
                             icon: "success",
                             title: "Đã thêm thành công",
                         }).then(() => {
-                            var idProd = response.id;
-                            $("#btnAddImageProduct").show();
-                            $("#submitImageProd").click(function(e) {
-                                e.preventDefault();
-                                if (files.length != 0) {
-                                    if( $("#idProdEdit").val()==''||$("#idProdEdit").val()==' '||$("#idProdEdit").val()==undefined){
-                                        var formData = new FormData();
-                                    var totalfiles = files.length;
-                                    formData.append('idProd', idProd);
-                                    for (let index = 0; index < files.length; index++) {
-                                        formData.append('files[]', files[index]);
-                                    }
-                                    $.ajax({
-                                        type: "post",
-                                        url: "https://api.trungthanhweb.com/api/addProdGallery",
-                                        data: formData,
-                                        contentType: false,
-                                        cache: false,
-                                        processData: false,
-                                        dataType: "JSON",
-                                        success: function(response) {
-                                            if (response.check == true) {
-                                                const Toast = Swal.mixin({
-                                                    toast: true,
-                                                    position: 'top-end',
-                                                    showConfirmButton: false,
-                                                    timer: 3000,
-                                                    timerProgressBar: true,
-                                                    didOpen: (toast) => {
-                                                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                                                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                                                    }
-                                                })
-
-                                                Toast.fire({
-                                                    icon: 'success',
-                                                    title: 'Đăng hình ảnh thành công'
-                                                })
-                                            } else {
-                                                const Toast = Swal.mixin({
-                                                    toast: true,
-                                                    position: 'top-end',
-                                                    showConfirmButton: false,
-                                                    timer: 3000,
-                                                    timerProgressBar: true,
-                                                    didOpen: (toast) => {
-                                                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                                                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                                                    }
-                                                })
-
-                                                Toast.fire({
-                                                    icon: 'error',
-                                                    title: 'Đăng hình ảnh không thành công'
-                                                })
-                                            }
-                                        }
-                                    });
-                                    }
-                                    
-                                } else {
-                                    Swal.fire({
-                                        icon: "error",
-                                        showConfirmButton: false,
-                                        text: "Chưa nhận được file hình ảnh ",
-                                    });
-                                }
-                            });
+                            window.location.reload();
                         });
                     } else {
                         if (response.message == "rejected") {

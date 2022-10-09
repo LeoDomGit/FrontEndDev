@@ -103,7 +103,7 @@
         </div>
       </div>
       <div class="modal-footer">
-
+        <button class="btn btn-success" id="btnAddImageProduct">Thêm sản phẩm</button>
         <button type="submit" id="btnAddProduct" class="btn btn-primary me-2">Thêm</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
