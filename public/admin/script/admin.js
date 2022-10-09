@@ -25,17 +25,9 @@ function searchSingle(){
             var str =``;
             response.result.forEach(el => {
               str+=`
-              <input type="hidden" name="" id="idUser">
-              <div class="form-group">
-                <label for="">Username</label>
-                <input type="text" name="" id="usernameEdit" class="form-control" placeholder="" value="">
-              </div>
-              <div class="form-group">
-                <label for="">Email</label>
-                <input type="text" name="" id="emailEdit" class="form-control" placeholder="" value="">
-              </div>
+
               `;
-              
+
             });
           }
       }
