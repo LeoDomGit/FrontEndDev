@@ -16,6 +16,7 @@ function editUser(){
       var username = $("#usernameEdit").val().trim();
       var email = $("#emailEdit").val().trim();
       var idRole = $("#idRoleEdit option:selected" ).val();
+      var idUser = $('#idUserEdit').val().trim();
       if(username==''){
         const Toast = Swal.mixin({
           toast: true,
@@ -50,6 +51,23 @@ function editUser(){
           icon: 'error',
           title: 'Email không được bỏ trống '
         })
+      }else if(!email.match(/\w@gmail.com|@fpt.edu.vn/gi)){
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+        
+        Toast.fire({
+          icon: 'error',
+          title: 'Email không hợp lệ '
+        })
       }else if(isNaN(idRole)==true){
         const Toast = Swal.mixin({
           toast: true,
@@ -68,7 +86,92 @@ function editUser(){
           title: 'Dữ liệu không hợp lệ'
         })
       }else{
-
+        $.ajax({
+          type: "post",
+          url: "https://api.trungthanhweb.com/api/editUser",
+          data: {
+            username:username,
+            email:email,
+            idRole:idRole,
+            idUser:idUser
+          },
+          dataType: "JSON",
+          success: function (response) {
+            if(response.check==true){
+              const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+              })
+              
+              Toast.fire({
+                icon: 'success',
+                title: 'Thay đổi thành công'
+              }).then(()=>{
+                window.location.reload();
+              });
+            }else{
+              if(response.message=='rejected'){
+                const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top-end',
+                  showConfirmButton: false,
+                  timer: 2000,
+                  timerProgressBar: true,
+                  didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                  }
+                })
+                
+                Toast.fire({
+                  icon: 'error',
+                  title: 'Dữ liệu không hợp lệ'
+                })
+              }else if(response.message=='exist'){
+                const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top-end',
+                  showConfirmButton: false,
+                  timer: 2000,
+                  timerProgressBar: true,
+                  didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                  }
+                })
+                
+                Toast.fire({
+                  icon: 'error',
+                  title: 'Tài khoản đã tồn tại'
+                })
+              }else if(response.message=='notexist'){
+                const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top-end',
+                  showConfirmButton: false,
+                  timer: 2000,
+                  timerProgressBar: true,
+                  didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                  }
+                })
+                
+                Toast.fire({
+                  icon: 'error',
+                  title: 'Tài khoản không tồn tại'
+                })
+              }
+            }
+          }
+        });
       }
 
     });
