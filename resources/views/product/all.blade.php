@@ -241,12 +241,24 @@
     </thead>
     <tbody>
       @foreach ($products as $item)
-      <div class="modal fade" id="productDetail{{$item->idProd}}" tabindex="-1" aria-labelledby="productDetailLabel" aria-hidden="true">
-      {{-- Modal 4 --}}
+      <div class="modal fade" id="optionModal" tabindex="-1" aria-labelledby="optionModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="optionModalLabel">Tùy chỉnh</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <button class="btn btn-warning editBtn" data-id="{{$item->idProd}}">Sửa</button> <button class="btn btn-danger">Xóa</button> <button class="btn btn-success proddetailbtn" data-id="{{$item->idProd}}" data-toggle="modal" data-target="#productDetail{{$item->idProd}}">Chi tiết</button>         <button class="btn btn-warning addMoreImages" data-toggle="modal" data-id="{{$item->idProd}}" data-target="#addImageProductModal">Hình ảnh mới</button></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+          </div>
+        </div>
 <!-- Modal -->
-
-{{-- end Modal --}}
-
+      <div class="modal fade" id="productDetail{{$item->idProd}}" tabindex="-1" aria-labelledby="productDetailLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
           <div class="modal-content">
             <div class="modal-header">
@@ -305,7 +317,9 @@
         <td>{{$item->brandname}}</td>
         <td>{{$item->prodCreate}}</td>
         <td><div class="mt-2">
-          <button class="btn btn-warning editBtn" data-id="{{$item->idProd}}">Sửa</button> <button class="btn btn-danger">Xóa</button> <button class="btn btn-success proddetailbtn" data-id="{{$item->idProd}}" data-toggle="modal" data-target="#productDetail{{$item->idProd}}">Chi tiết</button>         <button class="btn btn-warning addMoreImages" data-toggle="modal" data-id="{{$item->idProd}}" data-target="#addImageProductModal">Hình ảnh mới</button></div></td>
+          <button class="btn btn-warning" data-toggle="modal" data-target="#optionModal">Tùy chỉnh</button>
+          </div>
+        </td>
       </tr>
       @endforeach
       
