@@ -7,9 +7,9 @@ $(document).ready(function () {
     addUser();
     UserRole();
     showarea();
-    searchSingle();
+    preEdit();
 });
-function searchSingle(){
+function preEdit(){
   $('.editUser').click(function (e) { 
     e.preventDefault();
     var idUser = $(this).attr('data-id');
@@ -23,12 +23,41 @@ function searchSingle(){
       success: function (response) {
           if(response.check==true){
             var str =``;
-            response.result.forEach(el => {
+            var idRole ='';
+            var role='';
+            idRole =response.user[0]['idRole'];
+            for (let u = 0; u < response.roles.length; u++) {
+                if(response.roles[u]['idRole']==idRole){
+                  role+=`
+                  <option selected value="`+response.roles[u]['idRole']+`">`+response.roles[u]['name']+`</option>
+                  `;
+                }else{
+                  role+=`
+                  <option value="`+response.roles[u]['idRole']+`">`+response.roles[u]['name']+`</option>
+                  `;
+                }
+            }
+            for (let i = 0; i < response.user.length; i++) {
               str+=`
-
+              <input type="hidden" name="" value="`+response.user[0]['id']+`" id="idUserEdit">
+              <div class="form-group">
+                <label for="">Username</label>
+                <input type="text" name="" id="usernameEdit" class="form-control" placeholder="" value="`+response.user[0]['username']+`">
+              </div>
+              <div class="form-group">
+                <label for="">Email</label>
+                <input type="text" name="" id="emailEdit" class="form-control" placeholder="" value="`+response.user[0]['email']+`">
+              </div>
+              <div class="form-group">
+                <label for="">Loại tài khoản</label>
+               <select name="" class="form-control" id="idRoleEdit">
+                  `+role+`
+               </select>
+              </div>
               `;
-
-            });
+            }
+            $("#userResult").html(str);
+            $('#editUserModal').modal('show');
           }
       }
     });

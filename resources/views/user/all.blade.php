@@ -24,9 +24,6 @@
             </div> --}}
         </div>
     </div>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editUserModal">
-      Launch demo modal
-    </button>
     <!-- Button trigger modal -->
     <div class="modal" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -38,21 +35,7 @@
             </button>
           </div>
           <div class="modal-body" id="userResult">
-            <input type="hidden" name="" id="idUser">
-            <div class="form-group">
-              <label for="">Username</label>
-              <input type="text" name="" id="usernameEdit" class="form-control" placeholder="" value="">
-            </div>
-            <div class="form-group">
-              <label for="">Email</label>
-              <input type="text" name="" id="emailEdit" class="form-control" placeholder="" value="">
-            </div>
-            <div class="form-group">
-              <label for="">Loại tài khoản</label>
-             <select name="" class="form-control" id="">
-                <option value="">Loại A</option>
-             </select>
-            </div>
+          
           </div>
           <div class="modal-footer">
             <button type="button" id="submitEditUserBtn" class="btn btn-primary">Lưu</button>
