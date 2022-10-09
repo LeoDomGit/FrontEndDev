@@ -7,7 +7,7 @@ function ajaxSetup() {
 }
 $(document).ready(function() {
     // loadProd();
-    addMoreImage();
+    // addMoreImage();
     switchSP();
 });
 function switchSP(){
