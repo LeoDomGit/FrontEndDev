@@ -19,7 +19,7 @@ class GoogleController extends Controller
     public function callbackGoogle()
     {
         try {
-        
+            
             $google_user = Socialite::driver('google')->user();
             $google_id = $google_user->getId();
             $email = $google_user->getEmail();
@@ -31,7 +31,11 @@ class GoogleController extends Controller
                 'image'=>$image,
                 'name'=>$name,
             ]);
-            echo $check;
+            if($check==true){
+                return redirect('/prodManager');
+            }else{
+                return redirect('/login');
+            }
 
         
         } catch (Exception $e) {
