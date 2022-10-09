@@ -194,6 +194,7 @@ function loadProd(){
                       `;
                   });
                   $("#imagesedit").html(str);
+                  $('.modal').modal('hide');
                   $("#editProductMD").modal('show');
                   $("#btnEditProduct").click(function (e) { 
                     e.preventDefault();

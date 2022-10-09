@@ -152,7 +152,7 @@
 {{-- Modal 3 --}}
 <!-- Modal -->
 <div class="modal fade" id="editProductMD" tabindex="-1" aria-labelledby="editProductMDLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl">
+  <div class="modal-dialog modal-xl modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="editProductMDLabel">Sửa sản phẩm</h5>
