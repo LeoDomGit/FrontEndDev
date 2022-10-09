@@ -7,11 +7,12 @@
     <title>Document</title>
 </head>
 <body>
-    
-    <div id="waitingimage"></div>
-    <img style="width:100%" src="images\nice1.gif" alt="">
-   
+    <img style="width:100%;margin-top:-8%" src="images\nice1.gif" id="waitingimg" alt="">
     <script src="admin/script/jquery-3.6.1.min.js"></script>
-
+    <script>
+        $(document).ready(function () {
+            // $('#waitingimg').remove();
+        });
+    </script>
 </body>
 </html>
