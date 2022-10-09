@@ -8,7 +8,19 @@ $(document).ready(function () {
     UserRole();
     showarea();
     preEdit();
+    editUser();
 });
+function editUser(){
+  
+}
+/*
+=
+  =
+    = 
+      =
+        =
+          = 
+*/
 function preEdit(){
   $('.editUser').click(function (e) { 
     e.preventDefault();
