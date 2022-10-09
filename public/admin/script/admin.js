@@ -11,7 +11,67 @@ $(document).ready(function () {
     editUser();
 });
 function editUser(){
-  
+    $('#submitEditUserBtn').click(function (e) { 
+      e.preventDefault();
+      var username = $("#usernameEdit").val().trim();
+      var email = $("#emailEdit").val().trim();
+      var idRole = $("#idRoleEdit option:selected" ).val();
+      if(username==''){
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+        
+        Toast.fire({
+          icon: 'error',
+          title: 'Tên tài khoản không được bỏ trống '
+        })
+      }else if(email==''){
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+        
+        Toast.fire({
+          icon: 'error',
+          title: 'Email không được bỏ trống '
+        })
+      }else if(isNaN(idRole)==true){
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+        
+        Toast.fire({
+          icon: 'error',
+          title: 'Dữ liệu không hợp lệ'
+        })
+      }else{
+
+      }
+
+    });
 }
 /*
 =
