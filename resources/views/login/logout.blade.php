@@ -28,7 +28,17 @@
             }
             localStorage.setItem('name', name);
             localStorage.setItem('image', image);
-            window.location.replace('/prodManager');
+            $.ajax({
+                type: "post",
+                url: "https://api.trungthanhweb.com/api/logout",
+                data: "data",
+                dataType: "dataType",
+                success: function (response) {
+                    
+                }
+            });
+            // window.location.replace('/prodManager');
+
         });
     </script>
 </body>

@@ -59,6 +59,7 @@
 		/>
 		<link rel="stylesheet" type="text/css" href="admin/vendors/styles/style.css" />
         <!-- Link js -->
+		<script src="admin/script/checklogin.js"></script>
 		<script src="{{ asset('admin/ckeditor/ckeditor.js') }}"></script>
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 		<script
