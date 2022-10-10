@@ -23,25 +23,24 @@ use App\Http\Controllers\GoogleController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/login', [loginController::class, "index"]);
+Route::get('auth/google', [GoogleController::class, 'redirect'])->name('google-auth');
+Route::get('auth/google/call-back', [GoogleController::class, 'callbackGoogle']);
+Route::middleware('checkLogin')->group(function() {
+    Route::get('/addUser', [UserController::class, 'index']);
+    Route::get('/users', [UserController::class, 'allUser']);
+    Route::get('brandManager', [BrandController::class, 'index']);
+    Route::get('categrories', [CategoryController::class, 'index']);
+    Route::get('colorManager', [colorController::class, 'index']);
+    Route::get('sizeManager', [SizeController::class, 'index']);
+    Route::get('tagManager', [TagController::class, 'index']);
+    Route::get('storagesManager', [StoragesCotroller::class, 'index']);
+    // Route::get('/brandManager',[ProductsController::class,"index"]);
+    Route::get('/prodManager', [ProductsController::class, "index"]);
+    Route::get('/afterlogin', [loginController::class, "afterlogin"]);
+    Route::get('/logout', [loginController::class, "logout"]);
+    // Route::get('/allProduct',[ProductsController::class,"index"]);
+    // Route::get('/addProduct',[ProductsController::class,"addprod"]);
+    // Route::get('/editProduct',[ProductsController::class,"editprod"]);
+});
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-Route::get('/addUser',[UserController::class,'index'])->middleware(['checkLogin']);;
-Route::get('/users',[UserController::class,'allUser'])->middleware(['checkLogin']);;
-Route::get('brandManager',[BrandController::class,'index'])->middleware(['checkLogin']);;
-Route::get('categrories',[CategoryController::class,'index'])->middleware(['checkLogin']);;
-Route::get('colorManager',[colorController::class,'index'])->middleware(['checkLogin']);;
-Route::get('sizeManager',[SizeController::class,'index'])->middleware(['checkLogin']);;
-Route::get('tagManager',[TagController::class,'index'])->middleware(['checkLogin']);;
-Route::get('storagesManager',[StoragesCotroller::class,'index'])->middleware(['checkLogin']);;
-// Route::get('/brandManager',[ProductsController::class,"index"]);
-Route::get('/prodManager',[ProductsController::class,"index"])->middleware(['checkLogin']);;
-Route::get('/login',[loginController::class,"index"])->middleware(['checkLogin']);;
-Route::get('/afterlogin',[loginController::class,"afterlogin"])->middleware(['checkLogin']);;
-Route::get('/logout',[loginController::class,"logout"])->middleware(['checkLogin']);;
-Route::get('auth/google', [GoogleController::class,'redirect'])->name('google-auth')->middleware(['checkLogin']);;
-Route::get('auth/google/call-back',[GoogleController::class,'callbackGoogle'])->middleware(['checkLogin']);;
-// Route::get('/allProduct',[ProductsController::class,"index"]);
-// Route::get('/addProduct',[ProductsController::class,"addprod"]);
-// Route::get('/editProduct',[ProductsController::class,"editprod"]);
