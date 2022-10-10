@@ -112,6 +112,13 @@ function swip(id){
                 brandname =el['brandname'];
                 content =el['content'];
               });
+              var img = `<div class="row mb-2">`;
+              response.images.forEach(el => {
+                img+=`<div class="col-3">
+                <img class="imageProds" src="`+el.url+`" alt=""></img>
+                </div>`;
+              });
+              img+=`</div>`;
               str+=`  
                 <div class="row">
                 <div class="col-6"><h5>Tên sản phẩm : `+prodName+`</h5></div>
@@ -134,12 +141,16 @@ function swip(id){
                   </div>
                 </div>
                 <br>
+                <hr>
                 <div class="row">
                 <div class="col">
                   `+content+`
                 </div>
                 </div>
+                <hr>
+                `+img+`
               `;
+
               $("#detailProductResult").html(str);
               $("#productDetail").modal('show');
             }else{
