@@ -565,7 +565,7 @@ function addUser(){
           var waiting = `<img style="width:200px" src="images/smile_loader_by_gleb.gif" id="WaitingImg" alt="">`;
           $("#waitingimage").append(waiting);
             $.ajax({
-                url: 'https://api.trungthanhweb.com/register',
+                url: 'https://api.trungthanhweb.com/api/register',
                 type: "POST",
                 data: {
                     username: username,
