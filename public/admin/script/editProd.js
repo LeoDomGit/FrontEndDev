@@ -76,9 +76,117 @@ function switchSP(){
   });
 
 }
+
 var idPod='';
 function swip(id){
     idProd=id;
+
+    $('.productdetailbtn').click(function (e) { 
+      e.preventDefault();
+      if(isNaN(idProd)==false){
+        $.ajax({
+          type: "post",
+          url: "https://api.trungthanhweb.com/api/productDetail",
+          data: {idProd:idProd},
+          dataType: "JSON",
+          success: function (response) {
+            if(response.check==true){
+              var str=``;
+              var prodName='';
+              var prodCreate='';
+              var summary='';
+              var prodStatus='';
+              var cateName ='';
+              var brandname ='';
+              var content ='';
+              response.result.forEach(el => {
+                prodName=el["prodName"];
+                prodCreate=el['prodCreate'];
+                summary=el['summary'];
+                if(el['prodStatus']==1){
+                  prodStatus='Đang mở';
+                }else{
+                  prodStatus='Đang khóa';
+                }
+                cateName =el['cateName'];
+                brandname =el['brandname'];
+                content =el['content'];
+              });
+              str+=`  
+                <div class="row">
+                <div class="col-6"><h5>Tên sản phẩm : `+prodName+`</h5></div>
+                <div class="col-4"><h5>Tình trạng : `+prodStatus+`</h5></div>
+                </div>
+                <div class="row">
+                <div class="col-6">
+                  <h5> Tóm tắt sản phẩm : `+summary+`</h5>
+                </div>
+                <div class="col-3">
+                  <h5>  Loại : `+cateName+`</h5>
+                </div>
+                <div class="col-3">
+                  <h5>  Hãng : `+brandname+` </h5>
+                </div>
+              
+                </div>
+                <div class="row">
+                  <div class="col-3">
+                  </div>
+                </div>
+                <br>
+                <div class="row">
+                <div class="col">
+                  `+content+`
+                </div>
+                </div>
+              `;
+              $("#detailProductResult").html(str);
+              $("#productDetail").modal('show');
+            }else{
+              const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+              })
+              
+              Toast.fire({
+                icon: 'error',
+                title: 'Dữ liệu không hợp lệ'
+              }).then(()=>{
+                window.location.reload();
+              })
+            }
+          }
+        });
+      }else{
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+        
+        Toast.fire({
+          icon: 'error',
+          title: 'Dữ liệu không hợp lệ'
+        })
+      }
+      
+    });
+
+    // =====================================================================================
+
 
     $('#deleteProdBtn').click(function (e) { 
       e.preventDefault();
@@ -249,10 +357,10 @@ function swip(id){
                           <div style="width:98%;margin:0px auto" class="row mt-2">
                       `;
                       response.images.forEach(el => {
-                          str+=`
+                        str+=`
                           <div class="col-3">
-                          <p data-id="`+el["imagename"]+`" class="deleteImageIcon">x</p>
-                          <img class="imageProds" src="https://api.trungthanhweb.com/images/`+el["imagename"]+`" alt="">
+                          <p data-id="`+el.name.imagename+`" class="deleteImageIcon">x</p>
+                          <img class="imageProds" src="`+el.url+`" alt="">
                           </div>
                           `;
                       });

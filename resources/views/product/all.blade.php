@@ -251,14 +251,14 @@
               </button>
             </div>
             <div class="modal-body">
-              <button class="btn btn-warning" id="editProdBtn">Sửa</button> <button class="btn btn-danger" id="deleteProdBtn">Xóa</button> <button class="btn btn-success" data-toggle="modal" data-target="#productDetail{{$item->idProd}}">Chi tiết</button>         <button class="btn btn-warning" id="addMoreImages" data-toggle="modal" data-target="#addImageProductModal">Hình ảnh mới</button></div>
+              <button class="btn btn-warning" id="editProdBtn">Sửa</button> <button class="btn btn-danger" id="deleteProdBtn">Xóa</button> <button class="btn btn-success productdetailbtn" data-id="{{$item->idProd}}" >Chi tiết</button>         <button class="btn btn-warning" id="addMoreImages" data-toggle="modal" data-target="#addImageProductModal">Hình ảnh mới</button></div>
             </div>
             <div class="modal-footer">
             </div>
           </div>
         </div>
 <!-- Modal -->
-      <div class="modal fade" id="productDetail{{$item->idProd}}" tabindex="-1" aria-labelledby="productDetailLabel" aria-hidden="true">
+      <div class="modal fade" id="productDetail" tabindex="-1" aria-labelledby="productDetailLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
           <div class="modal-content">
             <div class="modal-header">
@@ -267,44 +267,8 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body">
-              <div class="row">
-                <div class="col">
-                  <?php
-                      if($item->prodStatus==0){
-                    $tinhtrang='Đang Khóa';
-                }else{
-                    $tinhtrang='Đang Mở';
-                }
-                    ?>     
-                <div class="row">
-                <div class="col-6"><h5>Tên sản phẩm : {{$item->prodName}}</h5></div>
-                <div class="col-4"><h5>Tình trạng : <?= $tinhtrang?></h5></div>
-                </div>
-                <div class="row">
-                <div class="col-6">
-                  <h5> Tóm tắt sản phẩm : {{$item->summary}}</h5>
-                </div>
-                <div class="col-3">
-                  <h5>  Loại : {{$item->cateName}}</h5>
-                </div>
-                <div class="col-3">
-                  <h5>  Hãng : {{$item->brandname}} </h5>
-                </div>
-              
-                </div>
-                <div class="row">
-                  <div class="col-3">
-                  </div>
-                </div>
-                <br>
-                <div class="row">
-                <div class="col">
-                  {!!$item->content!!}
-                </div>
-                </div>
-                </div>
-              </div>
+            <div class="modal-body" id="detailProductResult">
+
             </div>
           </div>
         </div>
