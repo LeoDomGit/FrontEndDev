@@ -272,9 +272,9 @@
 							data-toggle="dropdown"
 						>
 							<span class="user-icon">
-								<img src="admin/vendors/images/photo1.jpg" alt="" />
+								<img src="admin/vendors/images/photo1.jpg" id="profilePicture" alt="" />
 							</span>
-							<span class="user-name">Ross C. Lopez</span>
+							<span class="user-name" id="nameUser">Ross C. Lopez</span>
 						</a>
 						<div
 							class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
