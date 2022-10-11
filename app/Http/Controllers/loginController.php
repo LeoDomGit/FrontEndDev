@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 class loginController extends Controller
 {
@@ -42,7 +43,15 @@ class loginController extends Controller
      */
     public function logout()
     {
-        return view('login.logout');
+        if(Session::has('name')&&Session::has('image')){
+            Session::remove('image');
+            $name = Session::get('name');
+            Http::post('https://api.trungthanhweb.com/api/logout',['name'=>$name]);
+            Session::remove('name');
+            return redirect('/login');
+        }else{
+            return redirect('/login');  
+        }
     }
 
     /**

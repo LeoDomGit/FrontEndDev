@@ -34,6 +34,7 @@ class GoogleController extends Controller
             if($check==true){
                 Session::put('name',$name);
                 Session::put('image',$image);
+                return redirect('/prodManager');
             }else{
                 return redirect('/login');
             }
