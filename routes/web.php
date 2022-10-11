@@ -37,7 +37,7 @@ Route::get('tagManager',[TagController::class,'index'])->middleware(['checkLogin
 Route::get('storagesManager',[StoragesCotroller::class,'index'])->middleware(['checkLogin']);;
 // Route::get('/brandManager',[ProductsController::class,"index"]);
 Route::get('/prodManager',[ProductsController::class,"index"])->middleware(['checkLogin']);;
-Route::get('/login',[loginController::class,"index"])->middleware(['checkLogin']);;
+Route::get('/login',[loginController::class,"index"]);
 Route::get('/afterlogin',[loginController::class,"afterlogin"])->middleware(['checkLogin']);;
 Route::get('/logout',[loginController::class,"logout"])->middleware(['checkLogin']);;
 Route::get('auth/google', [GoogleController::class,'redirect'])->name('google-auth')->middleware(['checkLogin']);;
