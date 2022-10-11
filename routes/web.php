@@ -23,6 +23,7 @@ use App\Http\Controllers\GoogleController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', [loginController::class, "index"]);
 Route::get('/login', [loginController::class, "index"]);
 Route::get('auth/google', [GoogleController::class, 'redirect'])->name('google-auth');
 Route::get('auth/google/call-back', [GoogleController::class, 'callbackGoogle']);

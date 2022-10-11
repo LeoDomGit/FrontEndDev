@@ -59,6 +59,7 @@
 		/>
 		<link rel="stylesheet" type="text/css" href="admin/vendors/styles/style.css" />
         <!-- Link js -->
+		<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 		<script src="admin/script/checklogin.js"></script>
 		<script src="{{ asset('admin/ckeditor/ckeditor.js') }}"></script>
 		<!-- Global site tag (gtag.js) - Google Analytics -->
@@ -271,10 +272,10 @@
 							role="button"
 							data-toggle="dropdown"
 						>
-							<span class="user-icon">
-								<img src="admin/vendors/images/photo1.jpg" id="profilePicture" alt="" />
-							</span>
-							<span class="user-name" id="nameUser">Ross C. Lopez</span>
+							<div class="user-icon" id="profilePicture">
+								<img src="" id="propic" alt="" />
+							</div>
+							<div class="user-name" id="nameUser">Ross C. Lopez</div>
 						</a>
 						<div
 							class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
