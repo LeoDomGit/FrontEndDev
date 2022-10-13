@@ -51,10 +51,10 @@
     <table class="data-table table stripe hover nowrap">
         <thead>
             <tr>
-                <th class="table-plus datatable-nosort">Tên size</th>
-                <th class="table-plus datatable-nosort">Thông tin size</th>
+                <th class="table-plus datatable-nosort">Tên kho</th>
+                <th class="table-plus datatable-nosort">Thông tin kho</th>
                 <th>Ngày tạo</th>
-                <th class="datatable-nosort">Action</th>
+                <th class="datatable-nosort">Tùy chỉnh</th>
             </tr>
         </thead>
         <tbody>
