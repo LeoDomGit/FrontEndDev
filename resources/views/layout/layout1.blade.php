@@ -60,7 +60,6 @@
 		<link rel="stylesheet" type="text/css" href="admin/vendors/styles/style.css" />
         <!-- Link js -->
 		<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-		<script src="admin/script/checklogin.js"></script>
 		<script src="{{ asset('admin/ckeditor/ckeditor.js') }}"></script>
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 		<script

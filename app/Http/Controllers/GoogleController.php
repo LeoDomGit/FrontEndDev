@@ -25,7 +25,7 @@ class GoogleController extends Controller
             $email = $google_user->getEmail();
             $image = $google_user->getAvatar();
             $name = $google_user->getName();
-            $check = Http::post('http://127.0.0.1:3000/api/checkEmail',[
+            $check = Http::post('https://api.trungthanhweb.com/api/checkEmail',[
                 'email'=>$email,
                 'google_id'=>$google_id,
                 'image'=>$image,
