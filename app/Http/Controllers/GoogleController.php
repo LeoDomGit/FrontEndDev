@@ -20,18 +20,18 @@ class GoogleController extends Controller
     {
         try {
             
-            $google_user = Socialite::driver('google')->user();
+            $google_user = Socialite::driver('google')->stateless()->user();
             $google_id = $google_user->getId();
             $email = $google_user->getEmail();
             $image = $google_user->getAvatar();
             $name = $google_user->getName();
-            $check = Http::post('https://api.trungthanhweb.com/api/checkEmail',[
+            $check = Http::post('http://127.0.0.1:3000/api/checkEmail',[
                 'email'=>$email,
                 'google_id'=>$google_id,
                 'image'=>$image,
                 'name'=>$name,
             ]);
-            if($check==true){
+            if(json_decode($check)==true){
                 Session::put('name',$name);
                 Session::put('image',$image);
                 return redirect('/prodManager');

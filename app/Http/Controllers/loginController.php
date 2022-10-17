@@ -46,7 +46,7 @@ class loginController extends Controller
         if(Session::has('name')&&Session::has('image')){
             Session::remove('image');
             $name = Session::get('name');
-            Http::post('https://api.trungthanhweb.com/api/logout',['name'=>$name]);
+            Http::post('http://127.0.0.1:3000/api/logout',['name'=>$name]);
             Session::remove('name');
             return redirect('/login');
         }else{

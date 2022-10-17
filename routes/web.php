@@ -26,9 +26,9 @@ use App\Http\Controllers\GoogleController;
 */
 //test thử
 Route::get('/', [loginController::class, "index"]);
-Route::get('/login', [loginController::class, "index"]);
-Route::get('auth/google', [GoogleController::class, 'redirect'])->name('google-auth');
-Route::get('auth/google/call-back', [GoogleController::class, 'callbackGoogle']);
+Route::get('/login', [loginController::class, "index"])->middleware('IfLogined');
+Route::get('auth/google', [GoogleController::class, 'redirect'])->name('google-auth')->middleware('IfLogined');
+Route::get('auth/google/call-back', [GoogleController::class, 'callbackGoogle'])->middleware('IfLogined');
 Route::middleware('checkLogin')->group(function() {
     Route::get('/addUser', [UserController::class, 'index']);
     Route::get('/users', [UserController::class, 'allUser']);
