@@ -94,9 +94,9 @@
 	</head>
 	<body>
 		<div class="pre-loader">
-			<div class="pre-loader-box">
+			<div style="margin-top:-10%" class="pre-loader-box">
 				<div class="loader-logo">
-					<img src="admin/vendors/images/deskapp-logo.svg" alt="" />
+					<img style="margin-bottom:-20%" src="images/waiting.gif" alt="" />
 				</div>
 				<div class="loader-progress" id="progress_div">
 					<div class="bar" id="bar1"></div>
@@ -124,7 +124,7 @@
 							/>
 							<div class="dropdown">
 								<a
-									class="dropdown-toggle no-arrow mt-2"
+									class="dropdown-toggle no-arrow"
 									href="#"
 									role="button"
 									data-toggle="dropdown"
