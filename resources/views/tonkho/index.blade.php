@@ -7,4 +7,5 @@
     @endforeach
 </select>
 <script src="admin/script/jquery-3.6.1.min.js"></script>
+<script src="admin/script/storage.js"></script>
 @endsection
