@@ -502,7 +502,7 @@
 							</a>
 							<ul class="submenu">
 								<li>
-									<a href="/storagesManager">Quản lý kho</a>
+									<a href="/storagesManager">Quản lý tồn kho</a>
 								</li>
 								<li>
 									<a href="/brandManager">Quản lý thương hiệu</a>
