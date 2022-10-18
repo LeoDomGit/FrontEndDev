@@ -76,7 +76,7 @@
           ?>
             <tr>
                 <td class="table-plus"><p>{{$item->tagname}}</p></td>
-                <td class="table-plus"><p><?=$trangthai?></p></td>
+                <td class="turnBtn" data-id="{{$item->idtag}}"><p><?=$trangthai?></p></td>
                 <td><p><?php echo date('H:i d/m/yy',strtotime($item->created_at))?></p></td>
                 <td>
                     <div class="dropdown">

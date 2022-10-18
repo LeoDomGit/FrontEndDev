@@ -2,6 +2,7 @@ $(document).ready(function () {
     addTag();
     editTag();
     deleteTag();
+    switchTag();
 });
 function deleteTag(){
   $(".deleteTag").click(function (e) { 
@@ -102,12 +103,6 @@ function deleteTag(){
     })
   });
 }
-/**
- * 
- * 
- * 
- */
-
 function addTag(){
     $("#saveTagBtn").click(function (e) { 
         e.preventDefault(); 
@@ -188,11 +183,6 @@ function addTag(){
         }
     });
 }
-/**
- * 
- * 
- * 
- */
 function editTag(){
   $('.tagclass').click(function (e) { 
     e.preventDefault();
@@ -290,4 +280,70 @@ function editTag(){
       }
     });
   });
+}
+function switchTag(){
+  $('.turnBtn').click(function (e) { 
+    e.preventDefault();
+    var idtag  = $(this).attr('data-id');
+    $.ajax({
+      type: "post",
+      url: "https://api.trungthanhweb.com/api/switchTag",
+      data: {idtag:idtag},
+      dataType: "JSON",
+      success: function (response) {
+        if (response.check == true) {
+          const Toast = Swal.mixin({
+              toast: true,
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                  toast.addEventListener(
+                      "mouseenter",
+                      Swal.stopTimer
+                  );
+                  toast.addEventListener(
+                      "mouseleave",
+                      Swal.resumeTimer
+                  );
+              },
+          });
+
+          Toast.fire({
+              icon: "success",
+              title: "Đã thay đổi thành công",
+          }).then(() => {
+            window.location.reload();
+          });
+      } else {
+          if (response.message == "rejected") {
+              const Toast = Swal.mixin({
+                  toast: true,
+                  position: "top-end",
+                  showConfirmButton: false,
+                  timer: 3000,
+                  timerProgressBar: true,
+                  didOpen: (toast) => {
+                      toast.addEventListener(
+                          "mouseenter",
+                          Swal.stopTimer
+                      );
+                      toast.addEventListener(
+                          "mouseleave",
+                          Swal.resumeTimer
+                      );
+                  },
+              });
+
+              Toast.fire({
+                  icon: "error",
+                  title: "Dữ liệu không hợp lệ",
+              });
+          }
+      }
+      }
+  });
+  });
+
 }
