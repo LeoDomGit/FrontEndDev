@@ -71,15 +71,21 @@
               </tr>
           </thead>
           <tbody>
-              @foreach ($colors as $item)
+            <?php
+            $trangthai='';
+            ?>
+            @foreach ($colors as $item)
+             
+          <?php if($item->status==0){
+              $trangthai='<b>Đang khóa</b>';
+              }else{
+                $trangthai='<b>Đang mở</b>';
+            }
+          ?>
               <tr>
                   <td class="table-plus"><p class="colorclass" data-id="{{$item->id}}" data-toggle="modal" data-target="#editColorModal">{{$item->colorName}}</p></td>
                   <td><p class="colorclass" data-id="{{$item->id}}" data-toggle="modal" data-target="#editColorModal" style="width:20px;height:20px;border-radius:50%;background:<?=$item->colorpicker?>" ></p></td>
-                  <td><?php if($item->status==0){?>
-                      <p>Đang khóa</p>
-                  <?php }else{ ?>
-                      <p>Đang hiện</p>
-                  <?php } ?></td>
+                  <td><p class="turnBtncolor" data-id="{{$item->id}}"><?=$trangthai?></p></td>
                   <td><p><?php echo date('H:i d/m/yy',strtotime($item->created_at))?></p></td>
                   <td>
                       <div class="dropdown">

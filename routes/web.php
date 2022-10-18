@@ -32,11 +32,11 @@ Route::get('auth/google/call-back', [GoogleController::class, 'callbackGoogle'])
 Route::middleware('checkLogin')->group(function() {
     Route::get('/addUser', [UserController::class, 'index']);
     Route::get('/users', [UserController::class, 'allUser']);
-    Route::get('brandManager', [BrandController::class, 'index']);
-    Route::get('categrories', [CategoryController::class, 'index']);
-    Route::get('colorManager', [colorController::class, 'index']);
-    Route::get('sizeManager', [SizeController::class, 'index']);
-    Route::get('tagManager', [TagController::class, 'index']);
+    Route::get('/brandManager', [BrandController::class, 'index']);
+    Route::get('/categrories', [CategoryController::class, 'index']);
+    Route::get('/colorManager', [colorController::class, 'index']);
+    Route::get('/sizeManager', [SizeController::class, 'index']);
+    Route::get('/tagManager', [TagController::class, 'index']);
     Route::get('/storagesManager', [StoragesCotroller::class, 'index']);
     Route::get('/prodManager', [ProductsController::class, "index"]);
     Route::get('/afterlogin', [loginController::class, "afterlogin"]);
