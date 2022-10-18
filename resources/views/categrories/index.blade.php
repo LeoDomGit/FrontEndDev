@@ -71,7 +71,7 @@
                 }?>
             <tr>
                 <td class="table-plus"><p>{{$item->cateName}}</p></td>
-                <td><?=$tinhtrang?></td>
+                <td class="switchCateBtn" data-id="{{$item->idcate}}"><?=$tinhtrang?></td>
                 <td><p><?php echo date('H:i d/m/yy',strtotime($item->created_at))?></p></td>
                 <td>
                     <div class="dropdown">
