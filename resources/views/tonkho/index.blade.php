@@ -13,7 +13,7 @@
 
   <!-- Modal -->
   <div class="modal fade" id="ResultColorModal" tabindex="-1" aria-labelledby="ResultColorModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-dialog modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="ResultColorModalLabel"></h5>
@@ -23,24 +23,22 @@
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-6">
+            <div class="col-6 mr-2">
               <div class="example square">
                 <input type="text" id="colorPath" class="coloris instance1 form-control" value="rgb(255, 0, 0)">
                 </div>
             </div>
             <div class="col-4">
-                <button class="btn btn-secondary w-100">Thêm</button>
+                <button class="btn btn-secondary w-100" id="addColorBtn">Thêm</button>
             </div>
           </div>
-          <div class="row">
-            <div id="arrColor">
-              
-            </div>
+          <div class="row" id="arrColor">
+            <br>
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Lưu</button>
+          <button type="button" class="btn btn-primary" id="saveColorProductBtn">Lưu</button>
         </div>
       </div>
     </div>
