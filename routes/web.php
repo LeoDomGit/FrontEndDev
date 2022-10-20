@@ -1,6 +1,4 @@
 <?php
-
-use App\Http\Controllers\colorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BrandController;
@@ -34,7 +32,6 @@ Route::middleware('checkLogin')->group(function() {
     Route::get('/users', [UserController::class, 'allUser']);
     Route::get('/brandManager', [BrandController::class, 'index']);
     Route::get('/categrories', [CategoryController::class, 'index']);
-    Route::get('/colorManager', [colorController::class, 'index']);
     Route::get('/sizeManager', [SizeController::class, 'index']);
     Route::get('/tagManager', [TagController::class, 'index']);
     Route::get('/storagesManager', [StoragesCotroller::class, 'index']);

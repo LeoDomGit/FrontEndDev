@@ -492,7 +492,6 @@
 							<ul class="submenu">
 								<li><a href="/addUser">Thêm tài khoản</a></li>
 								<li><a href="/users">Tất cả tài khoản</a></li>
-								{{-- <li><a href="index3.html">Dashboard style 3</a></li> --}}
 							</ul>
 						</li>
 						<li class="dropdown">
@@ -513,9 +512,6 @@
 								</li>
 								<li>
 									<a href="/categrories">Quản lý Loại sản phẩm</a>
-								</li>
-								<li>
-									<a href="/colorManager">Quản lý màu sản phẩm</a>
 								</li>
 								<li>
 									<a href="/sizeManager">Quản lý size sản phẩm</a>
