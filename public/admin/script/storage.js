@@ -1,6 +1,11 @@
 $(document).ready(function () {
     selectProduct();
+    ColorPick();
+
 });
+function ColorPick(){
+
+}
 function selectProduct(){
     $('#ProductSelect').change(function (e) { 
         e.preventDefault();
@@ -13,7 +18,7 @@ function selectProduct(){
             success: function (response) {
                 if(response.check==true){
                     if(response.state==0){
-                        
+                        $("#ResultColorModal").modal('show');
                     }
                 }
             }
