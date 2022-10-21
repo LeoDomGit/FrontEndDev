@@ -29,6 +29,7 @@
     @foreach($allSize as $item)
   <div class="modal fade" id="editFormModal{{$item->idSize}}" tabindex="-1" aria-labelledby="editFormModalLabel" aria-hidden="true">
     <div class="modal-dialog">
+    <form data-id="{{ $item->idSize}}" id="form-update-size">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="editFormModalLabel">Chỉnh sửa size "{{$item->sizename}}"</h5>
@@ -37,14 +38,16 @@
           </button>
         </div>
         <div class="modal-body">
-          <input type="text" class="form-control" value="{{$item->sizename}}" placeholder="Tên size mới" id="sizenameEdit"><br>
-          <input type="text" class="form-control" value="{{$item->sizeinfo}}" placeholder="Thông tin size" id="sizeinfoEdit">
+        <input type="hidden" name="idSize" value="{{ $item->idSize }}">
+          <input type="text" class="form-control" value="{{$item->sizename}}" placeholder="Tên size mới" id="sizenameEdit{{$item->idSize}}"><br>
+          <input type="text" class="form-control" value="{{$item->sizeinfo}}" placeholder="Thông tin size" id="sizeinfoEdit{{$item->idSize}}">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-          <button type="button" class="btn btn-primary" id="editSizeSubmitBtn">Lưu</button>
+          <button type="submit" class="btn btn-primary" id="editSizeSubmitBtn">Lưu</button>
         </div>
       </div>
+    </form>
     </div>
   </div>
   @endforeach

@@ -28,30 +28,7 @@
 
         {{-- ====================Modal 2 --}}
 
-        <!-- Modal -->
-        @foreach($allcate as $item)
-        <div class="modal fade" id="editCateModal{{ $item->idcate }}" tabindex="-1" aria-labelledby="editCateModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="editCateModalLabel">Chỉnh sửa "{{$item->cateName}}"</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
-                <div class="modal-body">
-                <input type="hidden" name="idCate" value="{{ $item->idcate }}">
-                <input type="text" class="form-control"value="{{ $item->cateName }}" id="newCateEdit" placeholder="Tên loại sản phẩm mới">
-                </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                <button type="button" class="btn btn-primary" id="submiteditCateBtn">Lưu</button>
-                </div>
-            </div>
-            </div>
-        </div>
-        @endforeach
-  {{-- ------------------------- --}}
+
     <button class="btn btn-primary" data-toggle="modal" data-target="#addDMSP">Thêm danh mục</button><br><br>
     <table class="data-table table stripe hover nowrap">
         <thead>
@@ -91,7 +68,7 @@
                             <a class="dropdown-item switchCateBtn" data-id="{{$item->idcate}}" href="#"
                                 ><i class="dw dw-eye"></i> Switch</a
                             >
-                            <a class="dropdown-item editCate" data-toggle="modal" data-id="{{$item->idcate}}" data-target="#editCateModal{{ $item->idcate}}" href="#"
+                            <a class="dropdown-item editCate" data-toggle="modal" data-id="{{$item->idcate}}" data-target="#editCateModal{{$item->idcate}}" href="#"
                                 ><i class="dw dw-edit2"></i> Edit</a
                             >
                             <a class="dropdown-item deleteCate" data-id="{{$item->idcate}}" href="#"
@@ -101,6 +78,32 @@
                     </div>
                 </td>
             </tr>
+                    <!-- Modal -->
+
+        <div class="modal fade" id="editCateModal{{$item->idcate}}" tabindex="-1" aria-labelledby="editCateModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <form data-id="{{ $item->idcate }}" id="form-update-cate">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="editCateModalLabel">Chỉnh sửa "{{$item->cateName}}"</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                    <input type="hidden" name="idcate" value="{{ $item->idcate }}">
+                    <input type="text" class="form-control" value="{{$item->cateName}}" id="newCateEdit{{ $item->idcate }}" placeholder="Tên loại sản phẩm mới">
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-primary" id="submiteditCateBtn">Lưu</button>
+                    </div>
+                </div>
+            </form>
+            </div>
+        </div>
+
+  {{-- ------------------------- --}}
             @endforeach
         </tbody>
     </table>

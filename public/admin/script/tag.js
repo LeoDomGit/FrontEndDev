@@ -187,10 +187,10 @@ function editTag(){
   $('.tagclass').click(function (e) { 
     e.preventDefault();
     let idtag= $(this).attr('data-id');
-    $('#submiteditTag').click(function (e) { 
+    $(document).on("submit", "#form-update-tag",function (e) { 
       e.preventDefault();
-      var tagname1 = $("#newTagName1").val().trim();
-      
+      var idTag = $(this).data("id");
+      var tagname1 = $("#newTagName1" + idTag).val();
       if(tagname1==''){
         const Toast = Swal.mixin({
           toast: true,
