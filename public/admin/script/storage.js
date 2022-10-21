@@ -83,7 +83,7 @@ function ColorPick(){
         });
     }
  
-    function showColor(){
+function showColor(){
         var str= ``;
         colorArr.forEach(el => {
             str+=`
@@ -114,9 +114,9 @@ function ColorPick(){
                 showColor();
 
         });
-    }
+}
 
-    function selectProduct(){
+function selectProduct(){
         $('#ProductSelect').change(function (e) { 
             e.preventDefault();
             var idProd = $("#ProductSelect option:selected").val();
@@ -135,4 +135,4 @@ function ColorPick(){
             });
             
         });
-    }
+}
