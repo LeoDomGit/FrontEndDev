@@ -14,8 +14,8 @@
     </select>
     </div>
     <div class="col-4">
-      <select class="form-control col-12" name="" id="ProductSelect">
-        <option value="" disabled selected>Sản phẩm chưa nhập kho</option>
+      <select class="form-control col-12" name="" id="ProductSelect2">
+        <option value="" disabled selected>Sản phẩm nhập kho</option>
         @foreach ($allProducts2 as $item)
         <option value="{{$item->idProd}}">{{$item->prodName}}</option>        
         @endforeach
