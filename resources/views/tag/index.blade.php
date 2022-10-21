@@ -27,11 +27,12 @@
 </div>
 <!-- Button trigger modal -->
   <!-- Modal -->
-  <div class="modal fade" id="editTagModal" tabindex="-1" aria-labelledby="editTagModalLabel" aria-hidden="true">
+  @foreach($allTag as $item)
+  <div class="modal fade" id="editTagModal{{ $item->idtag }}" tabindex="-1" aria-labelledby="editTagModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="editTagModalLabel">Chỉnh sửa Tag</h5>
+          <h5 class="modal-title" id="editTagModalLabel">Chỉnh sửa "{{$item->tagname}}"</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -39,7 +40,8 @@
         <div class="modal-body">
             <div>
                 <div>
-                    <input type="text" placeholder="Tên tag" class="form-control" id="newTagName1">
+                <input type="hidden" name="idTag" value="{{ $item->idtag }}">
+                    <input type="text" placeholder="Tên tag"value="{{ $item->tagname }}" class="form-control" id="newTagName1">
                 </div>
             </div>
         </div>
@@ -50,6 +52,7 @@
       </div>
     </div>
   </div>
+  @endforeach
   {{-- End Modal Color --}}
   <div>
     <button data-toggle="modal" data-target="#addTagModal" class="btn btn-warning">Thêm tag </button><br><br>
@@ -91,7 +94,7 @@
                         <div
                             class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
                         >
-                            <a class="dropdown-item tagclass" data-toggle="modal" data-target="#editTagModal" data-id="{{$item->idtag}}" href="#"
+                            <a class="dropdown-item tagclass" data-toggle="modal" data-target="#editTagModal{{ $item->idtag }}" data-id="{{$item->idtag}}" href="#"
                                 ><i class="dw dw-edit2"></i> Edit</a
                             >
                             <a class="dropdown-item deleteTag" data-id="{{$item->idtag}}" href="#"
