@@ -2,7 +2,30 @@ $(document).ready(function () {
     selectProduct();
     ColorPick();
     submitColor();
+    getSingleStorage();
 });
+function getSingleStorage(){
+    $("#ProductSelect2").change(function (e) { 
+        e.preventDefault();
+        var idProd = $("#ProductSelect2 option:selected").val();
+        $.ajax({
+            type: "post",
+            url: "https://api.trungthanhweb.com/api/selectColorProduct",
+            data: {idProd:idProd},
+            dataType: "JSON",
+            success: function (response) {
+                if(response.check==true){
+                    if(response.state==0){
+                        $("#ResultColorModal").modal('show');
+                    }
+                }
+            }
+        });
+    });
+}
+
+// ===========================
+
 var colorArr = [];
 
 function submitColor(){
@@ -61,6 +84,7 @@ function submitColor(){
         });
     });
 }
+
 // ===========================
 
 function ColorPick(){
@@ -82,8 +106,8 @@ function ColorPick(){
             showColor()
         });
     }
- 
-    function showColor(){
+ // ===========================
+function showColor(){
         var str= ``;
         colorArr.forEach(el => {
             str+=`
@@ -114,9 +138,9 @@ function ColorPick(){
                 showColor();
 
         });
-    }
-
-    function selectProduct(){
+}
+// ===========================
+function selectProduct(){
         $('#ProductSelect').change(function (e) { 
             e.preventDefault();
             var idProd = $("#ProductSelect option:selected").val();
@@ -135,4 +159,4 @@ function ColorPick(){
             });
             
         });
-    }
+}
