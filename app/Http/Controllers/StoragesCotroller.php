@@ -14,7 +14,7 @@ class StoragesCotroller extends Controller
      */
     public function index()
     {
-        $allProducts = json_decode(Http::get('https://api.trungthanhweb.com/api/allProduct'));
+        $allProducts = json_decode(Http::get('https://api.trungthanhweb.com/api/allProductStorage'));
         return view('tonkho.index',compact('allProducts'));
     }
 
