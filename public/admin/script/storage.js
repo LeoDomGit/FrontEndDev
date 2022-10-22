@@ -15,9 +15,38 @@ function getSingleStorage(){
             dataType: "JSON",
             success: function (response) {
                 if(response.check==true){
-                    if(response.state==0){
-                        $("#ResultColorModal").modal('show');
-                    }
+                    var str = ``;
+                    response.colors.forEach(el => {
+                        if(el['colorname']==null||el['colorname']==''){
+                            if(el['quantity']==0){
+                                str+=`
+                                <div class="row p-3">
+                                <div class="col-1">
+                                    <div style="background-color:`+el["path"]+`;width:40px;height:40px;border-radius:50%"></div>
+                                </div>
+                                <div class="col-4">
+                                <input type="text" class="form-control" placeholder="Tên màu sắc"></input>
+                                </div>
+                                <div class="col-2">
+                                    <h5 style="padding-top:11%">Size: `+el["sizeName"]+`</h5>
+                                </div>
+                                <div class="col-2">
+                                <h5 style="padding-top:11%">Số lượng: `+el["quantity"]+`</h5>
+                                </div>
+                                <div class="col-3">
+                                <input type="number" class="form-control" placeholder="Số lượng"></input>
+                                </div>
+                              </div>
+                                `;
+                            }
+
+                        }else{
+
+                        }
+                    });
+
+                    $('#resultColors').css("background-color","#e6e6e6");
+                    $("#resultColors").html(str);
                 }
             }
         });
@@ -144,19 +173,19 @@ function selectProduct(){
         $('#ProductSelect').change(function (e) { 
             e.preventDefault();
             var idProd = $("#ProductSelect option:selected").val();
-            $.ajax({
-                type: "post",
-                url: "https://api.trungthanhweb.com/api/colorProduct",
-                data: {idProd:idProd},
-                dataType: "JSON",
-                success: function (response) {
-                    if(response.check==true){
-                        if(response.state==0){
-                            $("#ResultColorModal").modal('show');
-                        }
-                    }
-                }
-            });
-            
+            $("#ResultColorModal").modal('show');
+            // $.ajax({
+            //     type: "post",
+            //     url: "https://api.trungthanhweb.com/api/colorProduct",
+            //     data: {idProd:idProd},
+            //     dataType: "JSON",
+            //     success: function (response) {
+            //         if(response.check==true){
+            //             if(response.state==0){
+            //                 $("#ResultColorModal").modal('show');
+            //             }
+            //         }
+            //     }
+            // });
         });
 }

@@ -54,22 +54,9 @@
       </div>
     </div>
   </div>
-  <div class="modal fade" id="ColorResultModal" tabindex="-1" aria-labelledby="ColorResultModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="ColorResultModalLabel">Chi tiết màu sắc</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div id="result">
-   
-          </div>
-        </div>
-      </div>
-    </div>
+
+  <div id="resultColors" style="width:54%" class="mt-3">
+
   </div>
 
 <script src="admin/colors/script.js"></script>
