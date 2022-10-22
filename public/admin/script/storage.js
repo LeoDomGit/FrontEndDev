@@ -31,10 +31,10 @@ function getSingleStorage(){
                                 <input type="text" class="form-control colornameInpt" data-id="`+el["idStorage"]+`" placeholder="Tên màu sắc"></input>
                                 </div>
                                 <div class="col-2">
-                                    <h5 style="padding-top:11%">Size: `+el["sizeName"]+`</h5>
+                                    <h5 style="padding-top:11%;font-size:17px">Size: `+el["sizeName"]+`</h5>
                                 </div>
                                 <div class="col-2">
-                                <h5 style="padding-top:11%">Số lượng: `+el["quantity"]+`</h5>
+                                <h5 style="padding-top:11%;font-size:17px">Số lượng: `+el["quantity"]+`</h5>
                                 </div>
                                 <div class="col-3">
                                 <input type="number" class="form-control" placeholder="Số lượng"></input>
