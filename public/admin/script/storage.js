@@ -4,6 +4,9 @@ $(document).ready(function () {
     submitColor();
     getSingleStorage();
 });
+
+// ==============================
+
 function getSingleStorage(){
     $("#ProductSelect2").change(function (e) { 
         e.preventDefault();
@@ -25,7 +28,7 @@ function getSingleStorage(){
                                     <div style="background-color:`+el["path"]+`;width:40px;height:40px;border-radius:50%"></div>
                                 </div>
                                 <div class="col-4">
-                                <input type="text" class="form-control" placeholder="Tên màu sắc"></input>
+                                <input type="text" class="form-control colornameInpt" data-id="`+el["idStorage"]+`" placeholder="Tên màu sắc"></input>
                                 </div>
                                 <div class="col-2">
                                     <h5 style="padding-top:11%">Size: `+el["sizeName"]+`</h5>
@@ -41,13 +44,95 @@ function getSingleStorage(){
                             }
 
                         }else{
-
+                            if(el['quantity']==0){
+                                str+=`
+                                <div class="row p-3">
+                                <div class="col-1">
+                                    <div style="background-color:`+el["path"]+`;width:40px;height:40px;border-radius:50%"></div>
+                                </div>
+                                <div class="col-4">
+                                <h5 style="padding-top:4%;font-size:17px">Màu: `+el["colorname"]+`</h5>
+                                </div>
+                                <div class="col-2">
+                                    <h5 style="padding-top:11%;font-size:17px">Size: `+el["sizeName"]+`</h5>
+                                </div>
+                                <div class="col-2">
+                                <h5 style="padding-top:11%;font-size:17px">Số lượng: `+el["quantity"]+`</h5>
+                                </div>
+                                <div class="col-3">
+                                <input type="number" class="form-control" placeholder="Số lượng"></input>
+                                </div>
+                              </div>
+                                `;
+                            }
                         }
                     });
 
                     $('#resultColors').css("background-color","#e6e6e6");
                     $("#resultColors").html(str);
                 }
+
+                $('.colornameInpt').keyup(function (e) { 
+                    e.preventDefault();
+                    var newName = $(this).val();
+                    if(e.keyCode===13){
+                        newName= newName.trim();
+                        var idStrorage= $(this).attr('data-id');
+                        if(newName!=''&& isNaN(idStrorage)==false){
+                            $.ajax({
+                                type: "post",
+                                url: "https://api.trungthanhweb.com/api/updateNameColor",
+                                data: {
+                                    colorName:newName,
+                                    idStrorage:idStrorage
+                                },
+                                dataType: "JSON",
+                                success: function (response) {
+                                    if(response.check==false){
+                                        if(response.message=='rejected'){
+                                            const Toast = Swal.mixin({
+                                                toast: true,
+                                                position: 'top-end',
+                                                showConfirmButton: false,
+                                                timer: 3000,
+                                                timerProgressBar: true,
+                                                didOpen: (toast) => {
+                                                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                                                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                                }
+                                              })
+                                              
+                                              Toast.fire({
+                                                icon: 'error',
+                                                title: 'Dữ liệu không hợp lệ '
+                                              })
+                                        }
+                                    }else{
+                                        const Toast = Swal.mixin({
+                                            toast: true,
+                                            position: 'top-end',
+                                            showConfirmButton: false,
+                                            timer: 3000,
+                                            timerProgressBar: true,
+                                            didOpen: (toast) => {
+                                              toast.addEventListener('mouseenter', Swal.stopTimer)
+                                              toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                            }
+                                          })
+                                          
+                                          Toast.fire({
+                                            icon: 'success',
+                                            title: 'Đã thêm thành công'
+                                          }).then(()=>{
+                                            window.location.reload();
+                                          });
+                                    }
+                                }
+                               });
+                        }
+
+                    }
+                });
             }
         });
     });
