@@ -102,9 +102,11 @@ function editCate(){
     $(".editCate").click(function (e) { 
         e.preventDefault();
         var idCate = $(this).attr('data-id');
-        $("#submiteditCateBtn").click(function (e) { 
+        console.log(idCate);
+        $(document).on("submit", "#form-update-cate",function (e) { 
             e.preventDefault();
-            var newCate = $("#newCateEdit").val().trim();
+            var idCate = $(this).data("id");
+            var newCate = $("#newCateEdit" + idCate).val();
             if(newCate==''){
                 const Toast = Swal.mixin({
                     toast: true,

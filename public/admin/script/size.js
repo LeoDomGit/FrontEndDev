@@ -130,10 +130,11 @@ function editSize(){
     $(".editSize").click(function (e) { 
         e.preventDefault();
         var idSize = $(this).attr('data-id');
-        $("#editSizeSubmitBtn").click(function (e) { 
+        $(document).on("submit", "#form-update-size",function (e) { 
             e.preventDefault();
-            var newName= $("#sizenameEdit").val().trim();
-            var sizeinfoEdit= $("#sizeinfoEdit").val().trim();
+            var idSize = $(this).data("id");
+            var newName= $("#sizenameEdit" + idSize).val();
+            var sizeinfoEdit= $("#sizeinfoEdit"+idSize).val();
             if(newName==''||sizeinfoEdit==''){
                 Swal.fire({
                     icon: 'error',

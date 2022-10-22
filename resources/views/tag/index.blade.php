@@ -30,6 +30,7 @@
   @foreach($allTag as $item)
   <div class="modal fade" id="editTagModal{{ $item->idtag }}" tabindex="-1" aria-labelledby="editTagModalLabel" aria-hidden="true">
     <div class="modal-dialog">
+    <form data-id="{{$item->idtag }}" id="form-update-tag">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="editTagModalLabel">Chỉnh sửa "{{$item->tagname}}"</h5>
@@ -40,16 +41,17 @@
         <div class="modal-body">
             <div>
                 <div>
-                <input type="hidden" name="idTag" value="{{ $item->idtag }}">
-                    <input type="text" placeholder="Tên tag"value="{{ $item->tagname }}" class="form-control" id="newTagName1">
+                    <input type="hidden" name="idTag" value="{{ $item->idtag }}">
+                    <input type="text" placeholder="Tên tag" value="{{ $item->tagname }}" class="form-control" id="newTagName1{{$item->idtag}}">
                 </div>
             </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-          <button type="button" id='submiteditTag' class="btn btn-primary">Lưu</button>
+          <button type="submit" id='submiteditTag' class="btn btn-primary">Lưu</button>
         </div>
       </div>
+    </form>
     </div>
   </div>
   @endforeach
