@@ -3,8 +3,80 @@ $(document).ready(function () {
     ColorPick();
     submitColor();
     getSingleStorage();
-});
 
+});
+function editColorName(x){
+    var i =x ;
+    var color='<div style="background-color:'+i+';width:40px;height:40px;border-radius:50%"></div>';
+    $("#colorar").html(color);
+    $('#colorEditModal').modal('show');
+    $('#newColorName').keyup(function (e) { 
+        var colorName = $("#newColorName").val().trim();
+        if(e.keyCode===13){
+            if(colorName!=''){
+                Swal.fire({
+                    icon:'question',
+                    text: 'Bạn muốn lưu tên mới ?',
+                    showDenyButton: false,
+                    showCancelButton: false,
+                    confirmButtonText: 'Lưu',
+                  }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            type: "post",
+                            url: "https://api.trungthanhweb.com/api/editColorName",
+                            data: {
+                                path:i,
+                                colorName:colorName,
+                            },
+                            dataType: "JSON",
+                            success: function (response) {
+                                if(response.check==true){
+                                    const Toast = Swal.mixin({
+                                        toast: true,
+                                        position: 'top-end',
+                                        showConfirmButton: false,
+                                        timer: 3000,
+                                        timerProgressBar: true,
+                                        didOpen: (toast) => {
+                                          toast.addEventListener('mouseenter', Swal.stopTimer)
+                                          toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                        }
+                                      })
+                                      
+                                      Toast.fire({
+                                        icon: 'success',
+                                        title: 'Đã thay đổi thành công'
+                                      }).then(()=>{
+                                        window.location.reload();
+                                    });
+                                }else{
+                                    const Toast = Swal.mixin({
+                                        toast: true,
+                                        position: 'top-end',
+                                        showConfirmButton: false,
+                                        timer: 3000,
+                                        timerProgressBar: true,
+                                        didOpen: (toast) => {
+                                          toast.addEventListener('mouseenter', Swal.stopTimer)
+                                          toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                        }
+                                      })
+                                      
+                                      Toast.fire({
+                                        icon: 'error',
+                                        title: 'Dữ liệu không hợp lệ'
+                                      })
+                                }
+                            }
+                        });
+                    }
+                  })
+            }
+        }
+    });
+}
 // ==============================
 
 function getSingleStorage(){
@@ -51,10 +123,10 @@ function getSingleStorage(){
                                     <div style="background-color:`+el["path"]+`;width:40px;height:40px;border-radius:50%"></div>
                                 </div>
                                 <div class="col-4">
-                                <h5 style="padding-top:4%;font-size:17px">Màu: `+el["colorname"]+`</h5>
+                                <h5 style="padding-top:4%;font-size:17px;cursor:pointer" onclick="editColorName('`+el["path"]+`')">Màu: <span style="margin-left:3%">`+el["colorname"]+`</span></h5>
                                 </div>
                                 <div class="col-2">
-                                    <h5 style="padding-top:11%;font-size:17px">Size: `+el["sizeName"]+`</h5>
+                                    <h5 style="padding-top:10%;font-size:17px">Size: `+el["sizeName"]+`</h5>
                                 </div>
                                 <div class="col-2">
                                 <h5 style="padding-top:11%;font-size:17px">Số lượng: `+el["quantity"]+`</h5>

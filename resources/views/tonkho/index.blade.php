@@ -55,6 +55,32 @@
     </div>
   </div>
 
+  {{-- modal Color Name Edit --}}
+
+  <div class="modal fade" id="colorEditModal" tabindex="-1" aria-labelledby="colorEditModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="colorEditModalLabel">Thay đổi tên màu</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="row mb-3">
+              <div class="col-2">
+                <div id="colorar"></div>
+              </div>
+              <div class="col-10">
+                <input type="text" class="form-control" id="newColorName" placeholder="Tên mới của màu sắc">
+              </div>
+            </div>
+        </div> 
+      </div>
+    </div>
+  </div>
+
+  {{--  --}}
   <div id="resultColors" style="width:54%" class="mt-3">
 
   </div>
