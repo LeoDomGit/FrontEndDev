@@ -96,6 +96,8 @@ function addProduct() {
         var prodTypeID = $("#prodTypeID :selected").val();
         var brandID = $("#brandID :selected").val();
         var desc = CKEDITOR.instances["desc"].getData();
+        var price = $("#prodPrice").val().trim();
+        var discount = $("#prodDiscount").val().trim();
         // console.log(prodTypeID,brandID);
         if (prodName == "") {
             Swal.fire({
@@ -121,16 +123,24 @@ function addProduct() {
                 showConfirmButton: false,
                 text: "Thiếu nội dung sản phẩm!",
             });
+        } else if (price == "") {
+            Swal.fire({
+                icon: "error",
+                showConfirmButton: false,
+                text: "Vui lòng nhập giá!",
+            });
         } else {
             $.ajax({
                 type: "post",
-                url: "https://api.trungthanhweb.com/api/addProduct",
+                url: "http://127.0.0.1:3000/api/addProduct",
                 data: {
                     prodName: prodName,
                     summary: summary,
                     prodTypeID: prodTypeID,
                     brandID: brandID,
                     desc: desc,
+                    price: price,
+                    discount: discount,
                 },
                 dataType: "JSON",
                 success: function(response) {

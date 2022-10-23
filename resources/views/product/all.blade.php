@@ -70,6 +70,18 @@
                   <input type="text" class="form-control" id="summary" placeholder="Tóm tắt sản phẩm" />
                 </div>
               </div> 
+              <div class="col-md-6 ">
+                <div class="form-group">
+                  <label>Giá gốc</label>
+                  <input type="number" class="form-control" id="prodPrice" placeholder="Nhập giá gốc" />
+                </div>
+              </div>
+              <div class="col-md-6 ">
+                <div class="form-group">
+                  <label>Giá khuyến mãi</label>
+                  <input type="number" class="form-control" id="prodDiscount" placeholder="Nhập giá khuyến mãi" />
+                </div>
+              </div>
                 </div>
                 <div class="row">
                   <div class="col-md-6 ">
@@ -179,6 +191,18 @@
                 <div class="form-group">
                   <label>Tóm tắt sản phẩm</label>
                   <input type="text" class="form-control" id="summaryedit" placeholder="Tóm tắt sản phẩm" />
+                </div>
+              </div>
+              <div class="col-md-6 ">
+                <div class="form-group">
+                  <label>Giá gốc</label>
+                  <input type="number" class="form-control" id="priceEdit" placeholder="Nhập giá gốc" />
+                </div>
+              </div>
+              <div class="col-md-6 ">
+                <div class="form-group">
+                  <label>Giá khuyến mãi</label>
+                  <input type="number" class="form-control" id="discountPrice" placeholder="Nhập giá khuyến mãi" />
                 </div>
               </div> 
                 </div>
