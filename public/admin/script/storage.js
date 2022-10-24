@@ -12,7 +12,7 @@ function editQuantity(x){
         var qty = $("#newquantity").val().trim();
         if(e.keyCode===13){
             if(qty!=''){
-
+                alert(qty);
             }
         }
         
