@@ -1,10 +1,8 @@
 $(document).ready(function () {
-
     selectProduct();
     ColorPick();
     submitColor();
     getSingleStorage();
-
 });
 function editQuantity(x){
     var id= x;
@@ -38,6 +36,8 @@ function editQuantity(x){
                               Toast.fire({
                                 icon: 'success',
                                 title: 'Thêm số lượng thành công'
+                              }).then(()=>{
+                                window.location.reload();
                               });
                         }else{
                             const Toast = Swal.mixin({
