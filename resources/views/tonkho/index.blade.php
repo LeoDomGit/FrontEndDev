@@ -93,7 +93,59 @@
   </div>
   {{--  --}}
   <div id="resultColors" style="width:47%" class="mt-3"></div>
+  <div class="mt-3">
+    <table class="data-table table stripe hover nowrap">
+      <thead>
+        <tr>
+          <th class="table-plus datatable-nosort">Tên Sản Phẩm</th>
+          <th>Màu sắc</th>
+          <th>Loại Size</th>
+          <th>Số lượng</th>
+          <th class="datatable-nosort">Action</th>
+          <th class="datatable-nosort"></th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach ($allProducts3 as $item)
+        <tr>
+          <td class="table-plus">{{$item->productName}}</td>
+          <td><div style="background-color:{{$item->colorPath}};width:40px;height:40px;border-radius:50%"></div></td>
+          <td>{{$item->sizename}}</td>
+          <td>{{$item->quantity}}</td>
+          <td>
+            <div class="dropdown">
+              <a
+                class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+                href="#"
+                role="button"
+                data-toggle="dropdown"
+              >
+                <i class="dw dw-more"></i>
+              </a>
+              <div
+                class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
+              >
+                <a class="dropdown-item" href="#"
+                  ><i class="dw dw-eye"></i> View</a
+                >
+                <a class="dropdown-item" href="#"
+                  ><i class="dw dw-edit2"></i> Edit</a
+                >
+                <a class="dropdown-item" href="#"
+                  ><i class="dw dw-delete-3"></i> Delete</a
+                >
+              </div>
+            </div>
+          </td>
+          <td></td>
+          
+        </tr>
+                    
+        @endforeach
 
+      </tbody>
+    </table>
+  </div>
 <script src="admin/colors/script.js"></script>
 <script src="admin/script/jquery-3.6.1.min.js"></script>
 <script src="admin/script/storage.js"></script>
