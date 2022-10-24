@@ -12,7 +12,18 @@ function editQuantity(x){
         var qty = $("#newquantity").val().trim();
         if(e.keyCode===13){
             if(qty!=''){
-                alert(qty);
+                $.ajax({
+                    type: "post",
+                    url: "https://api.trungthanhweb.com/api/updateQuantity",
+                    data: {
+                        idStorage:id,
+                        qty:qty
+                    },
+                    dataType: "JSON",
+                    success: function (response) {
+                        
+                    }
+                });
             }
         }
         
