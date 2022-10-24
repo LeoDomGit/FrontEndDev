@@ -1,12 +1,13 @@
 @extends('layout.layout1')
 @section('title','Quản lý tồn kho')
 @section('main-container')
-<link rel="stylesheet" href="admin/colors/style.css">
+{{-- <link rel="stylesheet" href="select/select2.min.css"> --}}
+<script src="select/select2.min.js"></script>
 <link rel="stylesheet" href="admin/colors/coloris.min.css">
 <script src="admin/colors/coloris.min.js"></script>
   <div class="row">
     <div class="col-8">
-      <select class="form-control" name="" searchable="Search here.." id="ProductSelect">
+      <select class="form-control h-100" name="" id="ProductSelect">
         <option value="" disabled selected>Sản phẩm chưa nhập kho</option>
         @foreach ($allProducts as $item)
         <option value="{{$item->idProd}}">{{$item->prodName}}</option>        
@@ -104,4 +105,13 @@
 <script src="admin/colors/script.js"></script>
 <script src="admin/script/jquery-3.6.1.min.js"></script>
 <script src="admin/script/storage.js"></script>
+<script>
+  $(document).ready(function () {
+    $("#ProductSelect").select2( {
+	placeholder: "Tìm kiếm ",
+	allowClear: true
+	} );
+  });
+
+</script>
 @endsection
