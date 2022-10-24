@@ -3,9 +3,18 @@ $(document).ready(function () {
     ColorPick();
     submitColor();
     getSingleStorage();
-});
+    getSingleStorage2();
 
+});
 var idProd ='';
+function getSingleStorage2(){
+    $('.viewProductBtn').click(function (e) { 
+        e.preventDefault();
+        idProd= $(this).attr('data-id');
+        $("#StorageTable").html('');
+        selectsingle();
+    });
+}
 function selectsingle(){
     $.ajax({
         type: "post",
@@ -246,113 +255,135 @@ function getSingleStorage(){
     $("#ProductSelect2").change(function (e) { 
         e.preventDefault();
         var idProd = $("#ProductSelect2 option:selected").val();
-        $.ajax({
-            type: "post",
-            url: "https://api.trungthanhweb.com/api/selectColorProduct",
-            data: {idProd:idProd},
-            dataType: "JSON",
-            success: function (response) {
-                if(response.check==true){
-                    var str = ``;
-                    response.colors.forEach(el => {
-                        if(el['colorname']==null||el['colorname']==''){
-                            if(el['quantity']==0){
-                                str+=`
-                                <div class="row p-3">
-                                <div class="col-1">
-                                    <div style="background-color:`+el["path"]+`;width:40px;height:40px;border-radius:50%"></div>
-                                </div>
-                                <div class="col-4">
-                                <input type="text" class="form-control colornameInpt" data-id="`+el["idStorage"]+`" placeholder="Tên màu sắc"></input>
-                                </div>
-                                <div class="col-2">
-                                    <h5 style="padding-top:11%;font-size:17px">Size: `+el["sizeName"]+`</h5>
-                                </div>
-                                <div class="col-3">
-                                <h5 style="padding-top:7%;font-size:17px" onclick="editQuantity(`+el["idStorage"]+`)">Số lượng: `+el["quantity"]+`</h5>
-                                </div>
-                              </div>
-                                `;
+        if(idProd==0){
+            window.location.reload();
+        }else{
+            $("#StorageTable").html('');
+            $.ajax({
+                type: "post",
+                url: "https://api.trungthanhweb.com/api/selectColorProduct",
+                data: {idProd:idProd},
+                dataType: "JSON",
+                success: function (response) {
+                    if(response.check==true){
+                        var str = ``;
+                        response.colors.forEach(el => {
+                            if(el['colorname']==null||el['colorname']==''){
+                                if(el['quantity']==0){
+                                    str+=`
+                                    <div class="row p-3">
+                                    <div class="col-1">
+                                        <div style="background-color:`+el["path"]+`;width:40px;height:40px;border-radius:50%"></div>
+                                    </div>
+                                    <div class="col-4">
+                                    <input type="text" class="form-control colornameInpt" data-id="`+el["idStorage"]+`" placeholder="Tên màu sắc"></input>
+                                    </div>
+                                    <div class="col-2">
+                                        <h5 style="padding-top:11%;font-size:17px">Size: `+el["sizeName"]+`</h5>
+                                    </div>
+                                    <div class="col-3">
+                                    <h5 style="padding-top:7%;font-size:17px" onclick="editQuantity(`+el["idStorage"]+`)">Số lượng: `+el["quantity"]+`</h5>
+                                    </div>
+                                  </div>
+                                    `;
+                                }else{
+                                    str+=`
+                                    <div class="row p-3">
+                                    <div class="col-1">
+                                        <div style="background-color:`+el["path"]+`;width:40px;height:40px;border-radius:50%"></div>
+                                    </div>
+                                    <div class="col-4">
+                                    <input type="text" class="form-control colornameInpt" data-id="`+el["idStorage"]+`" placeholder="Tên màu sắc"></input>
+                                    </div>
+                                    <div class="col-2">
+                                        <h5 style="padding-top:11%;font-size:17px">Size: `+el["sizeName"]+`</h5>
+                                    </div>
+                                    <div class="col-3">
+                                    <h5 style="padding-top:7%;font-size:17px;cursor:pointer" onclick="editQuantity(`+el["idStorage"]+`)">Số lượng: `+el["quantity"]+`</h5>
+                                    </div>
+                                  </div>
+                                    `;
+                                }
+    
                             }else{
-                                str+=`
-                                <div class="row p-3">
-                                <div class="col-1">
-                                    <div style="background-color:`+el["path"]+`;width:40px;height:40px;border-radius:50%"></div>
-                                </div>
-                                <div class="col-4">
-                                <input type="text" class="form-control colornameInpt" data-id="`+el["idStorage"]+`" placeholder="Tên màu sắc"></input>
-                                </div>
-                                <div class="col-2">
-                                    <h5 style="padding-top:11%;font-size:17px">Size: `+el["sizeName"]+`</h5>
-                                </div>
-                                <div class="col-3">
-                                <h5 style="padding-top:7%;font-size:17px;cursor:pointer" onclick="editQuantity(`+el["idStorage"]+`)">Số lượng: `+el["quantity"]+`</h5>
-                                </div>
-                              </div>
-                                `;
+                                if(el['quantity']==0){
+                                    str+=`
+                                    <div class="row p-3">
+                                    <div class="col-1">
+                                        <div style="background-color:`+el["path"]+`;width:40px;height:40px;border-radius:50%"></div>
+                                    </div>
+                                    <div class="col-4">
+                                    <h5 style="padding-top:4%;font-size:17px;cursor:pointer" onclick="editColorName('`+el["path"]+`')">Màu: <span style="margin-left:3%">`+el["colorname"]+`</span></h5>
+                                    </div>
+                                    <div class="col-2">
+                                        <h5 style="padding-top:10%;font-size:17px">Size: `+el["sizeName"]+`</h5>
+                                    </div>
+                                    <div class="col-3">
+                                    <h5 style="padding-top:7%;font-size:17px;cursor:pointer" onclick="editQuantity(`+el["idStorage"]+`)">Số lượng: `+el["quantity"]+`</h5>
+                                    </div>
+                                  </div>
+                                    `;
+                                }else{
+                                    str+=`
+                                    <div class="row p-3">
+                                    <div class="col-1">
+                                        <div style="background-color:`+el["path"]+`;width:40px;height:40px;border-radius:50%"></div>
+                                    </div>
+                                    <div class="col-4">
+                                    <h5 style="padding-top:4%;font-size:17px;cursor:pointer" onclick="editColorName('`+el["path"]+`')">Màu: <span style="margin-left:3%">`+el["colorname"]+`</span></h5>
+                                    </div>
+                                    <div class="col-2">
+                                        <h5 style="padding-top:11%;font-size:17px">Size: `+el["sizeName"]+`</h5>
+                                    </div>
+                                    <div class="col-3">
+                                    <h5 style="padding-top:7%;font-size:17px;cursor:pointer" onclick="editQuantity(`+el["idStorage"]+`)">Số lượng: `+el["quantity"]+`</h5>
+                                    </div>
+                                  </div>
+                                    `;
+                                }
                             }
-
-                        }else{
-                            if(el['quantity']==0){
-                                str+=`
-                                <div class="row p-3">
-                                <div class="col-1">
-                                    <div style="background-color:`+el["path"]+`;width:40px;height:40px;border-radius:50%"></div>
-                                </div>
-                                <div class="col-4">
-                                <h5 style="padding-top:4%;font-size:17px;cursor:pointer" onclick="editColorName('`+el["path"]+`')">Màu: <span style="margin-left:3%">`+el["colorname"]+`</span></h5>
-                                </div>
-                                <div class="col-2">
-                                    <h5 style="padding-top:10%;font-size:17px">Size: `+el["sizeName"]+`</h5>
-                                </div>
-                                <div class="col-3">
-                                <h5 style="padding-top:7%;font-size:17px;cursor:pointer" onclick="editQuantity(`+el["idStorage"]+`)">Số lượng: `+el["quantity"]+`</h5>
-                                </div>
-                              </div>
-                                `;
-                            }else{
-                                str+=`
-                                <div class="row p-3">
-                                <div class="col-1">
-                                    <div style="background-color:`+el["path"]+`;width:40px;height:40px;border-radius:50%"></div>
-                                </div>
-                                <div class="col-4">
-                                <h5 style="padding-top:4%;font-size:17px;cursor:pointer" onclick="editColorName('`+el["path"]+`')">Màu: <span style="margin-left:3%">`+el["colorname"]+`</span></h5>
-                                </div>
-                                <div class="col-2">
-                                    <h5 style="padding-top:11%;font-size:17px">Size: `+el["sizeName"]+`</h5>
-                                </div>
-                                <div class="col-3">
-                                <h5 style="padding-top:7%;font-size:17px;cursor:pointer" onclick="editQuantity(`+el["idStorage"]+`)">Số lượng: `+el["quantity"]+`</h5>
-                                </div>
-                              </div>
-                                `;
-                            }
-                        }
-                    });
-
-                    $('#resultColors').css("background-color","#e6e6e6");
-                    $("#resultColors").html(str);
-                }
-
-                $('.colornameInpt').keyup(function (e) { 
-                    e.preventDefault();
-                    var newName = $(this).val();
-                    if(e.keyCode===13){
-                        newName= newName.trim();
-                        var idStrorage= $(this).attr('data-id');
-                        if(newName!=''&& isNaN(idStrorage)==false){
-                            $.ajax({
-                                type: "post",
-                                url: "https://api.trungthanhweb.com/api/updateNameColor",
-                                data: {
-                                    colorName:newName,
-                                    idStrorage:idStrorage
-                                },
-                                dataType: "JSON",
-                                success: function (response) {
-                                    if(response.check==false){
-                                        if(response.message=='rejected'){
+                        });
+    
+                        $('#resultColors').css("background-color","#e6e6e6");
+                        $("#resultColors").html(str);
+                    }
+    
+                    $('.colornameInpt').keyup(function (e) { 
+                        e.preventDefault();
+                        var newName = $(this).val();
+                        if(e.keyCode===13){
+                            newName= newName.trim();
+                            var idStrorage= $(this).attr('data-id');
+                            if(newName!=''&& isNaN(idStrorage)==false){
+                                $.ajax({
+                                    type: "post",
+                                    url: "https://api.trungthanhweb.com/api/updateNameColor",
+                                    data: {
+                                        colorName:newName,
+                                        idStrorage:idStrorage
+                                    },
+                                    dataType: "JSON",
+                                    success: function (response) {
+                                        if(response.check==false){
+                                            if(response.message=='rejected'){
+                                                const Toast = Swal.mixin({
+                                                    toast: true,
+                                                    position: 'top-end',
+                                                    showConfirmButton: false,
+                                                    timer: 3000,
+                                                    timerProgressBar: true,
+                                                    didOpen: (toast) => {
+                                                      toast.addEventListener('mouseenter', Swal.stopTimer)
+                                                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                                    }
+                                                  })
+                                                  
+                                                  Toast.fire({
+                                                    icon: 'error',
+                                                    title: 'Dữ liệu không hợp lệ '
+                                                  })
+                                            }
+                                        }else{
                                             const Toast = Swal.mixin({
                                                 toast: true,
                                                 position: 'top-end',
@@ -366,38 +397,22 @@ function getSingleStorage(){
                                               })
                                               
                                               Toast.fire({
-                                                icon: 'error',
-                                                title: 'Dữ liệu không hợp lệ '
-                                              })
+                                                icon: 'success',
+                                                title: 'Đã thêm thành công'
+                                              }).then(()=>{
+                                                window.location.reload();
+                                              });
                                         }
-                                    }else{
-                                        const Toast = Swal.mixin({
-                                            toast: true,
-                                            position: 'top-end',
-                                            showConfirmButton: false,
-                                            timer: 3000,
-                                            timerProgressBar: true,
-                                            didOpen: (toast) => {
-                                              toast.addEventListener('mouseenter', Swal.stopTimer)
-                                              toast.addEventListener('mouseleave', Swal.resumeTimer)
-                                            }
-                                          })
-                                          
-                                          Toast.fire({
-                                            icon: 'success',
-                                            title: 'Đã thêm thành công'
-                                          }).then(()=>{
-                                            window.location.reload();
-                                          });
                                     }
-                                }
-                               });
+                                   });
+                            }
+    
                         }
+                    });
+                }
+            });
+        }
 
-                    }
-                });
-            }
-        });
     });
 }
 

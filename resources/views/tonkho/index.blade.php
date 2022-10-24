@@ -5,6 +5,7 @@
 <script src="select/select2.min.js"></script>
 <link rel="stylesheet" href="admin/colors/coloris.min.css">
 <script src="admin/colors/coloris.min.js"></script>
+
   <div class="row">
     <div class="col-8">
       <select class="form-control h-100" name="" id="ProductSelect">
@@ -16,8 +17,11 @@
     </div>
     <div class="col-4">
       <select class="form-control col-12" name="" id="ProductSelect2">
+        
         <option value="" disabled selected>Sản phẩm nhập kho</option>
+        <option value="0">Tất cả</option>
         @foreach ($allProducts2 as $item)
+
         <option value="{{$item->idProd}}">{{$item->prodName}}</option>        
         @endforeach
     </select>
@@ -92,8 +96,10 @@
     </div>
   </div>
   {{--  --}}
-  <div id="resultColors" style="width:47%" class="mt-3"></div>
-  <div class="mt-3">
+  <div id="resultColors" style="width:47%" class="mt-3">
+    
+  </div>
+  <div class="mt-3" id="StorageTable">
     <table class="data-table table stripe hover nowrap">
       <thead>
         <tr>
@@ -125,14 +131,8 @@
               <div
                 class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
               >
-                <a class="dropdown-item" href="#"
+                <a class="dropdown-item viewProductBtn" data-id="{{$item->id}}" href=""
                   ><i class="dw dw-eye"></i> View</a
-                >
-                <a class="dropdown-item" href="#"
-                  ><i class="dw dw-edit2"></i> Edit</a
-                >
-                <a class="dropdown-item" href="#"
-                  ><i class="dw dw-delete-3"></i> Delete</a
                 >
               </div>
             </div>
