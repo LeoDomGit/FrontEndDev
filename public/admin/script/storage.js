@@ -4,8 +4,9 @@ $(document).ready(function () {
     submitColor();
     getSingleStorage();
 });
-function selectsingle(id){
-    var idProd= id;
+
+var idProd ='';
+function selectsingle(){
     $.ajax({
         type: "post",
         url: "https://api.trungthanhweb.com/api/selectColorProduct",
@@ -113,6 +114,7 @@ function editQuantity(x){
                     },
                     dataType: "JSON",
                     success: function (response) {
+                        $('#newquantity').val('');
                         if(response.check==true){
                             const Toast = Swal.mixin({
                                 toast: true,
@@ -130,9 +132,13 @@ function editQuantity(x){
                                 icon: 'success',
                                 title: 'Thêm số lượng thành công'
                               }).then(()=>{
-                                var idProd= response.idProd;
+                                if(response.idProd){
+                                idProd= response.idProd;
                                 $('#editQuantityModal').modal('hide');
                                 selectsingle(idProd);
+                                idProd='';
+                                }
+                                
                               });
                         }else{
                             const Toast = Swal.mixin({
