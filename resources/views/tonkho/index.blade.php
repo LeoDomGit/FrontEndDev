@@ -57,7 +57,7 @@
 
   {{-- modal Color Name Edit --}}
 
-  <div class="modal fade" id="colorEditModal" tabindex="-1" aria-labelledby="colorEditModalLabel" aria-hidden="true">
+  <div class="modal fade" id="colorEditModal" tabindex="-1" aria-labelledby="colorEditModalLabel" aria-hidden="true"> 
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -79,9 +79,25 @@
       </div>
     </div>
   </div>
-
+  {{-- =================== --}}
+  
+  <div class="modal fade" id="editQuantityModal" tabindex="-1" aria-labelledby="editQuantityModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        {{-- <div class="modal-header">
+          <h5 class="modal-title" id="editQuantityModalLabel">Thay đổi số lượng</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div> --}}
+        <div class="modal-body">
+          <input type="number" class="form-control" id="newquantity" placeholder="Nhập số lượng sản phẩm">
+        </div>
+      </div>
+    </div>
+  </div>
   {{--  --}}
-  <div id="resultColors" style="width:54%" class="mt-3">
+  <div id="resultColors" style="width:47%" class="mt-3">
 
   </div>
 
