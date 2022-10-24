@@ -202,7 +202,7 @@
               <div class="col-md-6 ">
                 <div class="form-group">
                   <label>Khuyến mãi</label>
-                  <input type="number" class="form-control" id="discountEdit" placeholder="Nhập giá khuyến mãi" />
+                  <input type="number" class="form-control" id="discountEdit" placeholder="Nhập tỷ lệ giảm giá" />
                 </div>
               </div> 
                 </div>
