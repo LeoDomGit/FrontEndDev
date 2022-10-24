@@ -240,7 +240,7 @@ function SelectBrandBySelectCate(el) {
         }
     });
     $.ajax({
-        url: "http://127.0.0.1:3000/api/GetBRandByCate",
+        url: "https://api.trungthanhweb.com/api/GetBRandByCate",
         type: "post",
         data: {
             id: valueCate
