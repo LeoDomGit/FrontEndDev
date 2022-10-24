@@ -100,6 +100,8 @@ function swip(id) {
                         var prodStatus = '';
                         var cateName = '';
                         var brandname = '';
+                        var price='';
+                        var discount='';
                         var content = '';
                         response.result.forEach(el => {
                             prodName = el["prodName"];
@@ -113,6 +115,8 @@ function swip(id) {
                             cateName = el['cateName'];
                             brandname = el['brandname'];
                             content = el['content'];
+                            price = el['price'];
+                            discount = el['discount'];
                         });
                         var img = `<div class="row mb-2">`;
                         response.images.forEach(el => {
@@ -125,6 +129,14 @@ function swip(id) {
                 <div class="row">
                 <div class="col-6"><h5>Tên sản phẩm : ` + prodName + `</h5></div>
                 <div class="col-4"><h5>Tình trạng : ` + prodStatus + `</h5></div>
+                </div>
+                <div class="row">
+                <div class="col-3">
+                <h5>  Giá : ` + price + `</h5>
+                </div>
+                <div class="col-3">
+                    <h5>  Giảm giá : ` + discount + ` % </h5>
+                </div>
                 </div>
                 <div class="row">
                 <div class="col-6">
@@ -358,9 +370,14 @@ function swip(id) {
                         var cateName = element['cateName'];
                         var brandname = element['brandname'];
                         var prodBrandId = element['prodBrandId'];
+                        var price = element['price'];
+                        var discount = element['discount'];
                         var prodCateId = element['prodCateId'];
                         var content = element['content'];
                         $("#prodNameedit").val(prodName);
+                        $('#priceEdit').val(price);
+                        $('#discountEdit').val(discount);
+
                         $("#summaryedit").val(summary);
                         $('#prodTypeIDedit option[value=' + prodCateId + ']').prop("selected", true);
                         $('#brandIDedit option[value=' + prodBrandId + ']').prop("selected", true);
@@ -389,6 +406,8 @@ function swip(id) {
                         var id = idProd;
                         var prodNameedit = $("#prodNameedit").val().trim();
                         var summaryedit = $("#summaryedit").val().trim();
+                        var priceEdit = $("#priceEdit").val().trim();
+                        var discountEdit = $("#discountEdit").val().trim();
                         var prodTypeIDedit = $("#prodTypeIDedit :selected").val();
                         var brandIDedit = $("#brandIDedit :selected").val().trim();
                         var descedit = CKEDITOR.instances["descedit"].getData();
@@ -416,7 +435,13 @@ function swip(id) {
                                 showConfirmButton: false,
                                 text: "Thiếu nội dung sản phẩm!",
                             });
-                        } else {
+                        }else if(priceEdit==''||priceEdit==0){
+                            Swal.fire({
+                                icon: "error",
+                                showConfirmButton: false,
+                                text: "Thiếu giá sản phẩm!",
+                            });
+                        }else {
                             $.ajax({
                                 type: "post",
                                 url: "https://api.trungthanhweb.com/api/editProduct",
@@ -425,6 +450,8 @@ function swip(id) {
                                     prodName: prodNameedit,
                                     summary: summaryedit,
                                     prodTypeID: prodTypeIDedit,
+                                    priceEdit: priceEdit,
+                                    discountEdit: discountEdit,
                                     brandID: brandIDedit,
                                     desc: descedit,
                                 },

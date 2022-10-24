@@ -78,8 +78,8 @@
               </div>
               <div class="col-md-6 ">
                 <div class="form-group">
-                  <label>Giá khuyến mãi</label>
-                  <input type="number" class="form-control" id="prodDiscount" placeholder="Nhập giá khuyến mãi" />
+                  <label>Khuyến mãi</label>
+                  <input type="number" class="form-control" id="discount" value="0" placeholder="Nhập tỷ lệ khuyến mãi" />
                 </div>
               </div>
                 </div>
@@ -195,14 +195,14 @@
               </div>
               <div class="col-md-6 ">
                 <div class="form-group">
-                  <label>Giá gốc</label>
+                  <label>Giá</label>
                   <input type="number" class="form-control" id="priceEdit" placeholder="Nhập giá gốc" />
                 </div>
               </div>
               <div class="col-md-6 ">
                 <div class="form-group">
-                  <label>Giá khuyến mãi</label>
-                  <input type="number" class="form-control" id="discountPrice" placeholder="Nhập giá khuyến mãi" />
+                  <label>Khuyến mãi</label>
+                  <input type="number" class="form-control" id="discountEdit" placeholder="Nhập giá khuyến mãi" />
                 </div>
               </div> 
                 </div>
@@ -257,8 +257,8 @@
         <th class="table-plus datatable-nosort">Tên sản phẩm</th>
         <th>Thông tin sản phẩm</th>
         <th>Tình trạng</th>
-        <th>Loại sản phẩm</th>
-        <th>Thương hiệu</th>
+        <th>Đơn giá</th>
+        <th>Khuyến mãi</th>
         <th>Ngày tạo</th>
         <th>Tùy chỉnh</th>
       </tr>
@@ -301,8 +301,8 @@
         <td class="table-plus">{{$item->prodName}}</td>
         <td>{{$item->summary}}</td>
         <td><b class="turnBtn" data-id="{{$item->idProd}}"><?php if($item->prodStatus==0){ echo "Đang đóng";}else{echo "Đang mở";}?></b></td>
-        <td>{{$item->cateName}}</td>
-        <td>{{$item->brandname}}</td>
+        <td>{{$item->price}}</td>
+        <td>{{$item->discount}}</td>
         <td>{{$item->prodCreate}}</td>
         <td><div class="mt-2">
           <button class="btn btn-warning" onclick="swip({{$item->idProd}})" data-toggle="modal" data-target="#optionModal">Tùy chỉnh</button>
