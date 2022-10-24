@@ -301,7 +301,7 @@
         <td class="table-plus">{{$item->prodName}}</td>
         <td>{{$item->summary}}</td>
         <td><b class="turnBtn" data-id="{{$item->idProd}}"><?php if($item->prodStatus==0){ echo "Đang đóng";}else{echo "Đang mở";}?></b></td>
-        <td>{{$item->price}}</td>
+        <td>{{number_format($item->price)}}</td>
         <td>{{$item->discount}}</td>
         <td>{{$item->prodCreate}}</td>
         <td><div class="mt-2">
