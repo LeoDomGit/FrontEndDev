@@ -21,7 +21,41 @@ function editQuantity(x){
                     },
                     dataType: "JSON",
                     success: function (response) {
-                        
+                        if(response.check==true){
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                }
+                              })
+                              
+                              Toast.fire({
+                                icon: 'success',
+                                title: 'Thêm số lượng thành công'
+                              });
+                        }else{
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                }
+                              })
+                              
+                              Toast.fire({
+                                icon: 'error',
+                                title: 'Dữ liệu không hợp lệ'
+                              })
+                        }
                     }
                 });
             }
@@ -132,8 +166,25 @@ function getSingleStorage(){
                                 <div class="col-2">
                                     <h5 style="padding-top:11%;font-size:17px">Size: `+el["sizeName"]+`</h5>
                                 </div>
+                                <div class="col-3">
+                                <h5 style="padding-top:7%;font-size:17px" onclick="editQuantity(`+el["idStorage"]+`)">Số lượng: `+el["quantity"]+`</h5>
+                                </div>
+                              </div>
+                                `;
+                            }else{
+                                str+=`
+                                <div class="row p-3">
+                                <div class="col-1">
+                                    <div style="background-color:`+el["path"]+`;width:40px;height:40px;border-radius:50%"></div>
+                                </div>
+                                <div class="col-4">
+                                <input type="text" class="form-control colornameInpt" data-id="`+el["idStorage"]+`" placeholder="Tên màu sắc"></input>
+                                </div>
                                 <div class="col-2">
-                                <h5 style="padding-top:11%;font-size:17px">Số lượng: `+el["quantity"]+`</h5>
+                                    <h5 style="padding-top:11%;font-size:17px">Size: `+el["sizeName"]+`</h5>
+                                </div>
+                                <div class="col-3">
+                                <h5 style="padding-top:7%;font-size:17px;cursor:pointer" onclick="editQuantity(`+el["idStorage"]+`)">Số lượng: `+el["quantity"]+`</h5>
                                 </div>
                               </div>
                                 `;
@@ -152,8 +203,25 @@ function getSingleStorage(){
                                 <div class="col-2">
                                     <h5 style="padding-top:10%;font-size:17px">Size: `+el["sizeName"]+`</h5>
                                 </div>
+                                <div class="col-3">
+                                <h5 style="padding-top:7%;font-size:17px;cursor:pointer" onclick="editQuantity(`+el["idStorage"]+`)">Số lượng: `+el["quantity"]+`</h5>
+                                </div>
+                              </div>
+                                `;
+                            }else{
+                                str+=`
+                                <div class="row p-3">
+                                <div class="col-1">
+                                    <div style="background-color:`+el["path"]+`;width:40px;height:40px;border-radius:50%"></div>
+                                </div>
+                                <div class="col-4">
+                                <h5 style="padding-top:4%;font-size:17px;cursor:pointer" onclick="editColorName('`+el["path"]+`')">Màu: <span style="margin-left:3%">`+el["colorname"]+`</span></h5>
+                                </div>
                                 <div class="col-2">
-                                <h5 style="padding-top:11%;font-size:17px;cursor:pointer" onclick="editQuantity(`+el["idStorage"]+`)">Số lượng: `+el["quantity"]+`</h5>
+                                    <h5 style="padding-top:11%;font-size:17px">Size: `+el["sizeName"]+`</h5>
+                                </div>
+                                <div class="col-3">
+                                <h5 style="padding-top:7%;font-size:17px;cursor:pointer" onclick="editQuantity(`+el["idStorage"]+`)">Số lượng: `+el["quantity"]+`</h5>
                                 </div>
                               </div>
                                 `;
