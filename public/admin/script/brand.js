@@ -249,7 +249,7 @@ function addBrand() {
         } else {
             $.ajax({
                 type: "method",
-                url: "https://api.trungthanhweb.com/api/addBrand",
+                url: "http://127.0.0.1:3000/api/addBrand",
                 type: "POST",
                 data: $(this).serialize(),
                 dataType: "json",

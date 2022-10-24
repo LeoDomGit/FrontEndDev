@@ -87,7 +87,8 @@
                   <div class="col-md-6 ">
                     <div class="form-group">
                       <label>Loại sản phẩm</label>
-                      <select name="" id="prodTypeID" class="form-control">
+                      <select onchange="SelectBrandBySelectCate(this)" name="" id="prodTypeID" class="form-control">
+                        <option value="">--Chọn danh mục--</option>
                         @foreach($cate as $item)
                         <option value="{{$item->idcate}}">{{$item->cateName}}</option>
                         @endforeach
@@ -97,10 +98,8 @@
                   <div class="col-md-6 ">
                   <div class="form-group">
                     <label>Thương hiệu</label>
-                    <select name="" id="brandID" class="form-control">
-                    @foreach($brand as $item)
-                    <option value="{{$item->idbrand}}">{{$item->brandname}}</option>
-                    @endforeach
+                    <select disabled name="" id="brandID" class="form-control select-brand-by-prod">
+                      
                   </select>
                   </div>
                 </div>

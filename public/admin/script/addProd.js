@@ -123,13 +123,13 @@ function addProduct() {
                 showConfirmButton: false,
                 text: "Thiếu nội dung sản phẩm!",
             });
-        } else if (price == ""||price==0) {
+        } else if (price == "" || price == 0) {
             Swal.fire({
                 icon: "error",
                 showConfirmButton: false,
                 text: "Vui lòng nhập giá!",
             });
-        }else {
+        } else {
             $.ajax({
                 type: "post",
                 url: "https://api.trungthanhweb.com/api/addProduct",
@@ -240,7 +240,7 @@ function SelectBrandBySelectCate(el) {
         }
     });
     $.ajax({
-        url: "https://api.trungthanhweb.com/api/GetBRandByCate",
+        url: "http://127.0.0.1:3000/api/GetBRandByCate",
         type: "post",
         data: {
             id: valueCate
