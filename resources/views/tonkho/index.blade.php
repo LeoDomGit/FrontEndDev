@@ -92,9 +92,7 @@
     </div>
   </div>
   {{--  --}}
-  <div id="resultColors" style="width:47%" class="mt-3">
-
-  </div>
+  <div id="resultColors" style="width:47%" class="mt-3"></div>
 
 <script src="admin/colors/script.js"></script>
 <script src="admin/script/jquery-3.6.1.min.js"></script>
