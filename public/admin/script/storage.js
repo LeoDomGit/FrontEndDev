@@ -4,6 +4,99 @@ $(document).ready(function () {
     submitColor();
     getSingleStorage();
 });
+function selectsingle(id){
+    var idProd= id;
+    $.ajax({
+        type: "post",
+        url: "https://api.trungthanhweb.com/api/selectColorProduct",
+        data: {idProd:idProd},
+        dataType: "JSON",
+        success: function (response) {
+            if(response.check==true){
+                var str = ``;
+                response.colors.forEach(el => {
+                    if(el['colorname']==null||el['colorname']==''){
+                        if(el['quantity']==0){
+                            str+=`
+                            <div class="row p-3">
+                            <div class="col-1">
+                                <div style="background-color:`+el["path"]+`;width:40px;height:40px;border-radius:50%"></div>
+                            </div>
+                            <div class="col-4">
+                            <input type="text" class="form-control colornameInpt" data-id="`+el["idStorage"]+`" placeholder="Tên màu sắc"></input>
+                            </div>
+                            <div class="col-2">
+                                <h5 style="padding-top:11%;font-size:17px">Size: `+el["sizeName"]+`</h5>
+                            </div>
+                            <div class="col-3">
+                            <h5 style="padding-top:7%;font-size:17px" onclick="editQuantity(`+el["idStorage"]+`)">Số lượng: `+el["quantity"]+`</h5>
+                            </div>
+                          </div>
+                            `;
+                        }else{
+                            str+=`
+                            <div class="row p-3">
+                            <div class="col-1">
+                                <div style="background-color:`+el["path"]+`;width:40px;height:40px;border-radius:50%"></div>
+                            </div>
+                            <div class="col-4">
+                            <input type="text" class="form-control colornameInpt" data-id="`+el["idStorage"]+`" placeholder="Tên màu sắc"></input>
+                            </div>
+                            <div class="col-2">
+                                <h5 style="padding-top:11%;font-size:17px">Size: `+el["sizeName"]+`</h5>
+                            </div>
+                            <div class="col-3">
+                            <h5 style="padding-top:7%;font-size:17px;cursor:pointer" onclick="editQuantity(`+el["idStorage"]+`)">Số lượng: `+el["quantity"]+`</h5>
+                            </div>
+                          </div>
+                            `;
+                        }
+
+                    }else{
+                        if(el['quantity']==0){
+                            str+=`
+                            <div class="row p-3">
+                            <div class="col-1">
+                                <div style="background-color:`+el["path"]+`;width:40px;height:40px;border-radius:50%"></div>
+                            </div>
+                            <div class="col-4">
+                            <h5 style="padding-top:4%;font-size:17px;cursor:pointer" onclick="editColorName('`+el["path"]+`')">Màu: <span style="margin-left:3%">`+el["colorname"]+`</span></h5>
+                            </div>
+                            <div class="col-2">
+                                <h5 style="padding-top:10%;font-size:17px">Size: `+el["sizeName"]+`</h5>
+                            </div>
+                            <div class="col-3">
+                            <h5 style="padding-top:7%;font-size:17px;cursor:pointer" onclick="editQuantity(`+el["idStorage"]+`)">Số lượng: `+el["quantity"]+`</h5>
+                            </div>
+                          </div>
+                            `;
+                        }else{
+                            str+=`
+                            <div class="row p-3">
+                            <div class="col-1">
+                                <div style="background-color:`+el["path"]+`;width:40px;height:40px;border-radius:50%"></div>
+                            </div>
+                            <div class="col-4">
+                            <h5 style="padding-top:4%;font-size:17px;cursor:pointer" onclick="editColorName('`+el["path"]+`')">Màu: <span style="margin-left:3%">`+el["colorname"]+`</span></h5>
+                            </div>
+                            <div class="col-2">
+                                <h5 style="padding-top:11%;font-size:17px">Size: `+el["sizeName"]+`</h5>
+                            </div>
+                            <div class="col-3">
+                            <h5 style="padding-top:7%;font-size:17px;cursor:pointer" onclick="editQuantity(`+el["idStorage"]+`)">Số lượng: `+el["quantity"]+`</h5>
+                            </div>
+                          </div>
+                            `;
+                        }
+                    }
+                });
+
+                $('#resultColors').css("background-color","#e6e6e6");
+                $("#resultColors").html(str);
+            }
+        }
+    });
+}
 function editQuantity(x){
     var id= x;
     $("#editQuantityModal").modal('show');
@@ -37,7 +130,9 @@ function editQuantity(x){
                                 icon: 'success',
                                 title: 'Thêm số lượng thành công'
                               }).then(()=>{
-                                window.location.reload();
+                                var idProd= response.idProd;
+                                $('#editQuantityModal').modal('hide');
+                                selectsingle(idProd);
                               });
                         }else{
                             const Toast = Swal.mixin({
