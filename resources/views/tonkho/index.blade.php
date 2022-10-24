@@ -111,6 +111,10 @@
 	placeholder: "Tìm kiếm ",
 	allowClear: true
 	} );
+  $("#ProductSelect2").select2( {
+	placeholder: "Tìm kiếm ",
+	allowClear: true
+	} );
   });
 
 </script>
