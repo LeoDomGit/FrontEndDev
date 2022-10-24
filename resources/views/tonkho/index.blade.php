@@ -6,12 +6,7 @@
 <script src="admin/colors/coloris.min.js"></script>
   <div class="row">
     <div class="col-8">
-      <select class="form-control" name="" searchable="Search here.." id="ProductSelect">
-        <option value="" disabled selected>Sản phẩm chưa nhập kho</option>
-        @foreach ($allProducts as $item)
-        <option value="{{$item->idProd}}">{{$item->prodName}}</option>        
-        @endforeach
-    </select>
+      
     </div>
     <div class="col-4">
       <select class="form-control col-12" name="" id="ProductSelect2">
