@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
     selectProduct();
     ColorPick();
     submitColor();
