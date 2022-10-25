@@ -83,6 +83,12 @@ var idPod = '';
 function swip(id) {
     idProd = id;
 
+    $('.imageProds').click(function (e) { 
+        e.preventDefault();
+        var url = $(this).attr('data-id');
+        console.log(url);
+    });
+
     $('.productdetailbtn').click(function(e) {
         e.preventDefault();
         if (isNaN(idProd) == false) {
@@ -121,7 +127,7 @@ function swip(id) {
                         var img = `<div class="row mb-2">`;
                         response.images.forEach(el => {
                             img += `<div class="col-3">
-                            <img class="imageProds" src="` + el.url + `" alt=""></img>
+                            <img class="imageProds" data-id="` + el.url + `" src="` + el.url + `" alt=""></img>
                             </div>`;
                         });
                         img += `</div>`;
