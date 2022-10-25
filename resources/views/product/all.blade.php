@@ -253,6 +253,7 @@
   <table class="data-table table hover multiple-select-row nowrap ">
     <thead>
       <tr>
+        <th>Hình ảnh</th>
         <th class="table-plus datatable-nosort">Tên sản phẩm</th>
         <th>Thông tin sản phẩm</th>
         <th>Tình trạng</th>
@@ -297,6 +298,9 @@
         </div>
       </div>
       <tr>
+        <td><?php if($item->image!=null){?>
+          <img style="width:170px;border-radius:50%" src="{{$item->image}}" alt="">
+        <?php }?></td>
         <td class="table-plus">{{$item->prodName}}</td>
         <td>{{$item->summary}}</td>
         <td><b class="turnBtn" data-id="{{$item->idProd}}"><?php if($item->prodStatus==0){ echo "Đang đóng";}else{echo "Đang mở";}?></b></td>
