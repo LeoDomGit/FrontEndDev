@@ -121,8 +121,8 @@ function swip(id) {
                         var img = `<div class="row mb-2">`;
                         response.images.forEach(el => {
                             img += `<div class="col-3">
-                <img class="imageProds" src="` + el.url + `" alt=""></img>
-                </div>`;
+                            <img class="imageProds" src="` + el.url + `" alt=""></img>
+                            </div>`;
                         });
                         img += `</div>`;
                         str += `  

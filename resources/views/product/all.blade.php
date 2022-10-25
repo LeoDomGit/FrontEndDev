@@ -7,7 +7,7 @@
     margin: 0px auto;
   }
   .imageProds{
-    width:250px;height:250px;border-radius:50%;
+    width:250px;height:250px;border-radius:50%;cursor: pointer;
   } 
   .turnBtn{
     cursor: pointer;
