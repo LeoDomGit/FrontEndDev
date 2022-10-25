@@ -79,16 +79,41 @@ function switchSP() {
 }
 
 var idPod = '';
-
+function selectImage(x){
+    var url = x;
+    $.ajax({
+        type: "post",
+        url: "https://api.trungthanhweb.com/api/updatePImage",
+        data: {url:url,
+            idProd:idProd,
+        },
+        dataType: "JSON",
+        success: function (response) {
+            if(response.check==true){
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                      toast.addEventListener('mouseenter', Swal.stopTimer)
+                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                  })
+                  
+                  Toast.fire({
+                    icon: 'success',
+                    title: 'Đã thêm thành công'
+                  }).then(()=>{
+                    window.location.reload();
+                  })
+            }
+        }
+    });
+}
 function swip(id) {
     idProd = id;
-
-    $('.imageProds').click(function (e) { 
-        e.preventDefault();
-        var url = $(this).attr('data-id');
-        console.log(url);
-    });
-
     $('.productdetailbtn').click(function(e) {
         e.preventDefault();
         if (isNaN(idProd) == false) {
@@ -127,7 +152,7 @@ function swip(id) {
                         var img = `<div class="row mb-2">`;
                         response.images.forEach(el => {
                             img += `<div class="col-3">
-                            <img class="imageProds" data-id="` + el.url + `" src="` + el.url + `" alt=""></img>
+                            <img class="imageProds" onclick="selectImage('`+el.url+`')" data-id="" src="` + el.url + `" alt=""></img>
                             </div>`;
                         });
                         img += `</div>`;
