@@ -64,7 +64,24 @@ function deleteCate(){
                                 icon: 'error',
                                 title: 'Dữ liệu không hợp lệ'
                               });
-                        }
+                        }else if(response.message=='exist'){
+                          const Toast = Swal.mixin({
+                              toast: true,
+                              position: 'top-end',
+                              showConfirmButton: false,
+                              timer: 3000,
+                              timerProgressBar: true,
+                              didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                              }
+                            })
+                            
+                            Toast.fire({
+                              icon: 'error',
+                              title: 'Có sản phẩm trong loại'
+                            });
+                      }
                     }
                 }
               });
