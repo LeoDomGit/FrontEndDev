@@ -70,6 +70,29 @@ function switchSP() {
                             icon: "error",
                             title: "Dữ liệu không hợp lệ",
                         });
+                    }else if(response.message=='emptystorage'){
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: "top-end",
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.addEventListener(
+                                    "mouseenter",
+                                    Swal.stopTimer
+                                );
+                                toast.addEventListener(
+                                    "mouseleave",
+                                    Swal.resumeTimer
+                                );
+                            },
+                        });
+
+                        Toast.fire({
+                            icon: "error",
+                            title: "Sản phẩm có số lượng bằng 0 ",
+                        });
                     }
                 }
             }
