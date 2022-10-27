@@ -7,7 +7,7 @@
 <script src="admin/colors/coloris.min.js"></script>
 
   <div class="row">
-    <div class="col-xl-6 col-md-12">
+    <div class="col-xl-6 col-sm-12 col-md-12">
       <select class="form-control h-100" name="" id="ProductSelect">
         <option value="" disabled selected>Sản phẩm chưa nhập kho</option>
         @foreach ($allProducts as $item)
@@ -15,7 +15,7 @@
         @endforeach
     </select>
     </div>
-    <div class="col-xl-6 co-md-12">
+    <div class="col-xl-6 co-sm-12 col-md-12">
       <select class="form-control col-12" name="" id="ProductSelect2">
         
         <option value="" disabled selected>Sản phẩm nhập kho</option>
