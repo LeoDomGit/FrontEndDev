@@ -7,7 +7,7 @@
 <script src="admin/colors/coloris.min.js"></script>
 
   <div class="row">
-    <div class="col-8">
+    <div class="col-xl-6 col-md-12">
       <select class="form-control h-100" name="" id="ProductSelect">
         <option value="" disabled selected>Sản phẩm chưa nhập kho</option>
         @foreach ($allProducts as $item)
@@ -15,7 +15,7 @@
         @endforeach
     </select>
     </div>
-    <div class="col-4">
+    <div class="col-xl-6 co-md-12">
       <select class="form-control col-12" name="" id="ProductSelect2">
         
         <option value="" disabled selected>Sản phẩm nhập kho</option>
@@ -96,7 +96,13 @@
     </div>
   </div>
   {{--  --}}
-  <div id="resultColors" style="width:47%" class="mt-3">
+  <div  style="width100%" class="mt-3">
+  <div class="row d-flex justify-content-center">
+    <div class="col-xl-8 col-sm-12" id="resultColors">
+
+    </div>
+
+  </div>
     
   </div>
   <div class="mt-3" id="StorageTable">
@@ -115,8 +121,8 @@
         @foreach ($allProducts3 as $item)
         <tr>
           <td class="table-plus">{{$item->productName}}</td>
-          <td><div style="background-color:{{$item->colorPath}};width:40px;height:40px;border-radius:50%"></div></td>
-          <td>{{$item->sizename}}</td>
+          <td><div style="background-color:#333;width:40px;height:40px;border-radius:50%"></div></td>
+          <td>1</td>
           <td>{{$item->quantity}}</td>
           <td>
             <div class="dropdown">

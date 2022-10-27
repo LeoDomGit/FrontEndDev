@@ -28,31 +28,36 @@ function selectsingle(){
                     if(el['colorname']==null||el['colorname']==''){
                         if(el['quantity']==0){
                             str+=`
+                            <div class="col-xl-12 col-md-4">
+                            
                             <div class="row p-3">
-                            <div class="col-1">
+                            <div class="col-2">
                                 <div style="background-color:`+el["path"]+`;width:40px;height:40px;border-radius:50%"></div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-3">
                             <input type="text" class="form-control colornameInpt" data-id="`+el["idStorage"]+`" placeholder="Tên màu sắc"></input>
                             </div>
-                            <div class="col-2">
+                            <div class="col-4">
                                 <h5 style="padding-top:11%;font-size:17px">Size: `+el["sizeName"]+`</h5>
                             </div>
                             <div class="col-3">
                             <h5 style="padding-top:7%;font-size:17px" onclick="editQuantity(`+el["idStorage"]+`)">Số lượng: `+el["quantity"]+`</h5>
                             </div>
+                            
+                            
+                          </div>
                           </div>
                             `;
                         }else{
                             str+=`
                             <div class="row p-3">
-                            <div class="col-1">
+                            <div class="col-2">
                                 <div style="background-color:`+el["path"]+`;width:40px;height:40px;border-radius:50%"></div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-3">
                             <input type="text" class="form-control colornameInpt" data-id="`+el["idStorage"]+`" placeholder="Tên màu sắc"></input>
                             </div>
-                            <div class="col-2">
+                            <div class="col-4">
                                 <h5 style="padding-top:11%;font-size:17px">Size: `+el["sizeName"]+`</h5>
                             </div>
                             <div class="col-3">
@@ -66,13 +71,13 @@ function selectsingle(){
                         if(el['quantity']==0){
                             str+=`
                             <div class="row p-3">
-                            <div class="col-1">
+                            <div class="col-2">
                                 <div style="background-color:`+el["path"]+`;width:40px;height:40px;border-radius:50%"></div>
                             </div>
                             <div class="col-4">
                             <h5 style="padding-top:4%;font-size:17px;cursor:pointer" onclick="editColorName('`+el["path"]+`')">Màu: <span style="margin-left:3%">`+el["colorname"]+`</span></h5>
                             </div>
-                            <div class="col-2">
+                            <div class="col-3">
                                 <h5 style="padding-top:10%;font-size:17px">Size: `+el["sizeName"]+`</h5>
                             </div>
                             <div class="col-3">
@@ -83,13 +88,13 @@ function selectsingle(){
                         }else{
                             str+=`
                             <div class="row p-3">
-                            <div class="col-1">
+                            <div class="col-2 ">
                                 <div style="background-color:`+el["path"]+`;width:40px;height:40px;border-radius:50%"></div>
                             </div>
                             <div class="col-4">
                             <h5 style="padding-top:4%;font-size:17px;cursor:pointer" onclick="editColorName('`+el["path"]+`')">Màu: <span style="margin-left:3%">`+el["colorname"]+`</span></h5>
                             </div>
-                            <div class="col-2">
+                            <div class="col-3">
                                 <h5 style="padding-top:11%;font-size:17px">Size: `+el["sizeName"]+`</h5>
                             </div>
                             <div class="col-3">
@@ -272,13 +277,13 @@ function getSingleStorage(){
                                 if(el['quantity']==0){
                                     str+=`
                                     <div class="row p-3">
-                                    <div class="col-1">
+                                    <div class="col-2">
                                         <div style="background-color:`+el["path"]+`;width:40px;height:40px;border-radius:50%"></div>
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-3">
                                     <input type="text" class="form-control colornameInpt" data-id="`+el["idStorage"]+`" placeholder="Tên màu sắc"></input>
                                     </div>
-                                    <div class="col-2">
+                                    <div class="col-4">
                                         <h5 style="padding-top:11%;font-size:17px">Size: `+el["sizeName"]+`</h5>
                                     </div>
                                     <div class="col-3">
@@ -289,13 +294,13 @@ function getSingleStorage(){
                                 }else{
                                     str+=`
                                     <div class="row p-3">
-                                    <div class="col-1">
+                                    <div class="col-2">
                                         <div style="background-color:`+el["path"]+`;width:40px;height:40px;border-radius:50%"></div>
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-3">
                                     <input type="text" class="form-control colornameInpt" data-id="`+el["idStorage"]+`" placeholder="Tên màu sắc"></input>
                                     </div>
-                                    <div class="col-2">
+                                    <div class="col-4">
                                         <h5 style="padding-top:11%;font-size:17px">Size: `+el["sizeName"]+`</h5>
                                     </div>
                                     <div class="col-3">
@@ -309,13 +314,13 @@ function getSingleStorage(){
                                 if(el['quantity']==0){
                                     str+=`
                                     <div class="row p-3">
-                                    <div class="col-1">
+                                    <div class="col-2">
                                         <div style="background-color:`+el["path"]+`;width:40px;height:40px;border-radius:50%"></div>
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-3">
                                     <h5 style="padding-top:4%;font-size:17px;cursor:pointer" onclick="editColorName('`+el["path"]+`')">Màu: <span style="margin-left:3%">`+el["colorname"]+`</span></h5>
                                     </div>
-                                    <div class="col-2">
+                                    <div class="col-4">
                                         <h5 style="padding-top:10%;font-size:17px">Size: `+el["sizeName"]+`</h5>
                                     </div>
                                     <div class="col-3">
@@ -326,13 +331,13 @@ function getSingleStorage(){
                                 }else{
                                     str+=`
                                     <div class="row p-3">
-                                    <div class="col-1">
+                                    <div class="col-2">
                                         <div style="background-color:`+el["path"]+`;width:40px;height:40px;border-radius:50%"></div>
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-3">
                                     <h5 style="padding-top:4%;font-size:17px;cursor:pointer" onclick="editColorName('`+el["path"]+`')">Màu: <span style="margin-left:3%">`+el["colorname"]+`</span></h5>
                                     </div>
-                                    <div class="col-2">
+                                    <div class="col-4">
                                         <h5 style="padding-top:11%;font-size:17px">Size: `+el["sizeName"]+`</h5>
                                     </div>
                                     <div class="col-3">
