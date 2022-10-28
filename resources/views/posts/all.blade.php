@@ -16,7 +16,7 @@
 </style>
 <div class="row">
     <div class="col-lg-12 mb-4">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".box-add-post-modal">+ Thêm bài viết</button> <button type="button" class="btn btn-danger" data-toggle="modal" data-target=".box-trash-post-modal"><i class="fas fa-trash-alt"></i> Thùng rác</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".box-add-post-modal">+ Thêm bài viết</button> <button type="button" class="btn btn-danger" data-toggle="modal" data-target=".box-trash-post-modal"><i class="fas fa-trash-alt"></i> Thùng rác <span class="badge badge-light">4</span></button>
     </div>
     <!--  -->
     <div class="modal fade box-add-post-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -26,17 +26,35 @@
                 <hr>
                 <form>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        <label for="">Tiêu đề</label>
+                        <input onkeyup="ChangeToSlugAddPost(this)" type="text" class="form-control" id="titlePostAdd" placeholder="Nhập tiêu đề bài viết">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        <label for="">Slug</label>
+                        <input onkeyup="ChangeToSlugAddPost(this)" type="text" class="form-control" id="slugPostAdd" placeholder="Slug tiêu đề">
                     </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Tóm tắt bài viết</label>
+                        <textarea name="" id="summaryPostAdd" cols="30" rows="10"></textarea>
+                    </div>
+                    <img src="https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg" id="preview-image-cover-post-before-update" width="200px" height="150px">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroupFileAddon01">Ảnh bìa bài viết</span>
+                        </div>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="imageCoverPostAdd" aria-describedby="inputGroupFileAddon01">
+                            <label class="custom-file-label" for="imageCoverPostAdd">Chọn tệp</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Thể loại bài viết</label>
+                        <select class="custom-select">
+                            <option value="" selected>--Chọn thể loại--</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
@@ -87,5 +105,12 @@
     </div>
 </div>
 <script src="admin/script/jquery-3.6.1.min.js"></script>
+<script src="admin/ckeditor/ckeditor.js"></script>
 <script src="admin/script/posts.js"></script>
+
+<script>
+    CKEDITOR.replace('summaryPostAdd', {
+        height: 400,
+    });
+</script>
 @endsection
