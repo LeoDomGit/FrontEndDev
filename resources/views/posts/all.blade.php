@@ -1,6 +1,9 @@
 @extends('layout.layout1')
 @section('title','Quản lý bài viết')
 @section('main-container')
+<?php
+use Carbon\Carbon;
+?>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 <link rel="stylesheet" href="admin/script/tag-input/tagsinput.css">
 <style>
@@ -101,12 +104,13 @@
                     </tr>
                 </thead>
                 <tbody id="resultAllPosts">
+                    @foreach($allPosts as $row)
                     <tr>
-                        <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</td>
+                        <td>{{ $row->titlePosts }}</td>
                         <td class="td-image-posts">
-                            <div><img src="https://d1hjkbq40fs2x4.cloudfront.net/2016-01-31/files/1045.jpg" alt=""></div>
+                            <div><img src="http://127.0.0.1:3000/<?php echo "images/posts/".$row->imagePosts ?>" alt=""></div>
                         </td>
-                        <td>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</td>
+                        <td>{!! $row->summaryPosts !!}</td>
                         <td>12:30 28/10/2022</td>
                         <td>
                             <div class="btn-group" role="group" aria-label="Basic example">
@@ -115,6 +119,7 @@
                             </div>
                         </td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
