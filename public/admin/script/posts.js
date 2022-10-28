@@ -44,3 +44,124 @@ function readURL(input) {
 $("#imageCoverPostAdd").change(function() {
     readURL(this);
 });
+
+$(document).on("submit", "#form-add-post", function(e) {
+    e.preventDefault();
+    if ($('#titlePostAdd').val() == "") {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+        Toast.fire({
+            icon: 'error',
+            title: 'Vui lòng nhập tiêu đề !'
+        });
+        return false;
+    } else if ($('#tagsPostAdd').val() == "") {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+        Toast.fire({
+            icon: 'error',
+            title: 'Nhập ít nhất một từ khóa liên quan !'
+        });
+        return false;
+    } else if ($('#summaryPostAdd').val() == "") {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+        Toast.fire({
+            icon: 'error',
+            title: 'Vui lòng nhập tóm tắt !'
+        });
+        return false;
+    } else if ($('#imageCoverPostAdd').val() == "") {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+        Toast.fire({
+            icon: 'error',
+            title: 'Vui lòng chọn ảnh bìa !'
+        });
+        return false;
+    } else if ($('#selectCatePostAdd').val() == "") {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+        Toast.fire({
+            icon: 'error',
+            title: 'Vui lòng chọn thể loại tin !'
+        });
+        return false;
+    } else if ($('#contentPostAdd').val() == "") {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+        Toast.fire({
+            icon: 'error',
+            title: 'Vui lòng nhập nội dung bài viết !'
+        });
+        return false;
+    } else {
+        AjaxSetup();
+        $.ajax({
+            url: "http://127.0.0.1:3000/api/addPosts",
+            type: "post",
+            data: new FormData($(this)[0]),
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(data) {
+                alert(data)
+            }
+        })
+    }
+
+})

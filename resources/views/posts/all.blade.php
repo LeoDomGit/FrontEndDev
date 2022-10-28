@@ -25,7 +25,7 @@
             <div class="modal-content p-4">
                 <div class="h4">+ Thêm bài viết mới</div>
                 <hr>
-                <form>
+                <form id="form-add-post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="">Tiêu đề</label>
                         <input onkeyup="ChangeToSlugAddPost(this)" type="text" name="title" class="form-control" id="titlePostAdd" placeholder="Nhập tiêu đề bài viết">
@@ -54,7 +54,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Thể loại bài viết</label>
-                        <select name="cate" class="custom-select">
+                        <select id="selectCatePostAdd" name="cate" class="custom-select">
                             <option value="" selected>--Chọn thể loại--</option>
                             <option value="1">One</option>
                             <option value="2">Two</option>
@@ -72,7 +72,7 @@
                         <label for="exampleInputPassword1">Nội dung bài viết</label>
                         <textarea name="content" id="contentPostAdd" cols="30" rows="10"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">[<i class="fas fa-save"></i>] Lưu bài viết</button>
                 </form>
             </div>
         </div>
@@ -121,6 +121,15 @@
     </div>
 </div>
 <script src="admin/script/jquery-3.6.1.min.js"></script>
+<script>
+    function AjaxSetup() {
+        return $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    }
+</script>
 <script src="admin/ckeditor/ckeditor.js"></script>
 <script src="admin/script/tag-input/tagsinput.js"></script>
 <script src="admin/script/posts.js"></script>
