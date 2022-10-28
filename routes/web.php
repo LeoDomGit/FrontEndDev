@@ -9,8 +9,7 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\StoragesCotroller;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\GoogleController;
-
-
+use App\Http\Controllers\PostsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,4 +37,5 @@ Route::middleware('checkLogin')->group(function() {
     Route::get('/prodManager', [ProductsController::class, "index"]);
     Route::get('/afterlogin', [loginController::class, "afterlogin"]);
     Route::get('/logout', [loginController::class, "logout"]);
+    Route::get('postsManager',[PostsController::class,'index']);
 });
