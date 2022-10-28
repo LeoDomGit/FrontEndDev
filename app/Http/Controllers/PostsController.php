@@ -10,4 +10,9 @@ class PostsController extends Controller
       {
         return view('posts.all');
       }
+
+      public function cate_posts()
+      {
+        return view('posts.cate-post');
+      }
 }

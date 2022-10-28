@@ -56,6 +56,17 @@
                             <option value="3">Three</option>
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Trạng thái</label>
+                        <select class="custom-select">
+                            <option value="1">Lưu hành</option>
+                            <option value="2">Ngừng lưu hành</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Nội dung bài viết</label>
+                        <textarea name="" id="contentPostAdd" cols="30" rows="10"></textarea>
+                    </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
@@ -110,6 +121,9 @@
 
 <script>
     CKEDITOR.replace('summaryPostAdd', {
+        height: 400,
+    });
+    CKEDITOR.replace('contentPostAdd', {
         height: 400,
     });
 </script>
