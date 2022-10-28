@@ -159,7 +159,49 @@ $(document).on("submit", "#form-add-post", function(e) {
             cache: false,
             processData: false,
             success: function(data) {
-                alert(data)
+                if (data.status == 200) {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: "top-end",
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener(
+                                "mouseenter",
+                                Swal.stopTimer
+                            );
+                            toast.addEventListener(
+                                "mouseleave",
+                                Swal.resumeTimer
+                            );
+                        },
+                    });
+
+                    Toast.fire({
+                        icon: "success",
+                        title: data.msg,
+                    }).then(() => {
+                        window.location.reload();
+                    });
+                } else if (data.status == 202) {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        icon: 'error',
+                        title: data.msg
+                    });
+                    return false;
+                }
             }
         })
     }

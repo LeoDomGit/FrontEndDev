@@ -56,9 +56,9 @@
                         <label for="exampleInputPassword1">Thể loại bài viết</label>
                         <select id="selectCatePostAdd" name="cate" class="custom-select">
                             <option value="" selected>--Chọn thể loại--</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            @foreach($catePosts as $item)
+                            <option value="{{ $item->id }}">{{ $item->nameCatePosts }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group">
