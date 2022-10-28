@@ -2,6 +2,7 @@
 @section('title','Quản lý bài viết')
 @section('main-container')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+<link rel="stylesheet" href="admin/script/tag-input/tagsinput.css">
 <style>
     #resultAllPosts>tr>.td-image-posts div {
         width: 150px;
@@ -27,15 +28,19 @@
                 <form>
                     <div class="form-group">
                         <label for="">Tiêu đề</label>
-                        <input onkeyup="ChangeToSlugAddPost(this)" type="text" class="form-control" id="titlePostAdd" placeholder="Nhập tiêu đề bài viết">
+                        <input onkeyup="ChangeToSlugAddPost(this)" type="text" name="title" class="form-control" id="titlePostAdd" placeholder="Nhập tiêu đề bài viết">
                     </div>
                     <div class="form-group">
                         <label for="">Slug</label>
-                        <input onkeyup="ChangeToSlugAddPost(this)" type="text" class="form-control" id="slugPostAdd" placeholder="Slug tiêu đề">
+                        <input onkeyup="ChangeToSlugAddPost(this)" type="text" name="slug" class="form-control" id="slugPostAdd" placeholder="Slug tiêu đề">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Từ khóa tìm kiếm</label>
+                        <input data-role="tagsinput" type="text" class="form-control" name="tags" id="tagsPostAdd" placeholder="Nhập từ khóa tìm kiếm">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Tóm tắt bài viết</label>
-                        <textarea name="" id="summaryPostAdd" cols="30" rows="10"></textarea>
+                        <textarea name="summary" id="summaryPostAdd" cols="30" rows="10"></textarea>
                     </div>
                     <img src="https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg" id="preview-image-cover-post-before-update" width="200px" height="150px">
                     <div class="input-group mb-3">
@@ -43,13 +48,13 @@
                             <span class="input-group-text" id="inputGroupFileAddon01">Ảnh bìa bài viết</span>
                         </div>
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="imageCoverPostAdd" aria-describedby="inputGroupFileAddon01">
+                            <input type="file" class="custom-file-input" name="file-image" id="imageCoverPostAdd" aria-describedby="inputGroupFileAddon01">
                             <label class="custom-file-label" for="imageCoverPostAdd">Chọn tệp</label>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Thể loại bài viết</label>
-                        <select class="custom-select">
+                        <select name="cate" class="custom-select">
                             <option value="" selected>--Chọn thể loại--</option>
                             <option value="1">One</option>
                             <option value="2">Two</option>
@@ -58,14 +63,14 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Trạng thái</label>
-                        <select class="custom-select">
+                        <select name="status" class="custom-select">
                             <option value="1">Lưu hành</option>
                             <option value="2">Ngừng lưu hành</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Nội dung bài viết</label>
-                        <textarea name="" id="contentPostAdd" cols="30" rows="10"></textarea>
+                        <textarea name="content" id="contentPostAdd" cols="30" rows="10"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
@@ -117,6 +122,7 @@
 </div>
 <script src="admin/script/jquery-3.6.1.min.js"></script>
 <script src="admin/ckeditor/ckeditor.js"></script>
+<script src="admin/script/tag-input/tagsinput.js"></script>
 <script src="admin/script/posts.js"></script>
 
 <script>
