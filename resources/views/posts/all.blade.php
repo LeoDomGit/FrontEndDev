@@ -36,6 +36,13 @@ Carbon::setLocale('vi');
     .btn-action-trash {
         display: none;
     }
+    .group-btn-action-in-trash>span{
+        cursor: pointer;
+        margin-left: 20px;
+        font-weight: 300;
+        font-size: 20px;
+       
+    }
 </style>
 <div class="row">
     <div class="col-lg-12 mb-4">
@@ -130,9 +137,10 @@ Carbon::setLocale('vi');
                                     <div><img src="http://127.0.0.1:3000/<?php echo "images/posts/" . $value->imagePosts ?>" alt=""></div>
                                 </td>
                                 <td>
-                                    <div class="btn-group" role="group" aria-label="Basic example">
-                                        <button data-id="{{ $value->id }}" type="button" class="btn btn-success btn-restore-single-post-in-trash"><i class="fa fa-refresh"></i></button>
-                                        <button data-id="{{ $value->id }}" type="button" class="btn btn-danger btn-delete-force-single-post-in-trash"><i class="	fas fa-times"></i></button>
+                                    <div class="group-btn-action-in-trash">
+                                        <span data-id="{{ $value->id }}" class="btn-restore-single-post-in-trash text-success"><i  class="fa fa-refresh"></i></span>
+                                        <span data-id="{{ $value->id }}" class="btn-delete-force-single-post-in-trash text-danger"><i  class="	fas fa-times "></i></span>
+                    
                                     </div>
                                 </td>
                             </tr>
@@ -179,18 +187,28 @@ Carbon::setLocale('vi');
                             <!--  -->
                             <!--  -->
                             <div class="modal fade" id="modal-button-action-post{{ $row->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
+                                <div class="modal-dialog  modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">
+                                            <h5 class="modal-title" id="staticBackdropLabel">{!! $row->titlePosts !!}</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target=".box-edit-post-modal{{ $row->id }}"><i class="fas fa-pen-alt"></i> Cập nhật bài viết</button>
+                                            <div class="summary-detail-post">
+                                                {!! $row->summaryPosts !!}
+                                            </div>
+                                            <img src="http://127.0.0.1:3000/<?php echo "images/posts/" . $row->imagePosts ?>" alt="" width="100%" height="500px">
+                                            <div class="content-detail-post">
+                                                 {!! $row->contentPosts !!}
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target=".box-edit-post-modal{{ $row->id }}"><i class="fas fa-pen-alt"></i> Cập nhật bài viết</button>
                                                 <button data-id="{{ $row->id }}" type="button" class="btn btn-danger btn-move-single-post-to-trash"><i class="fas fa-trash-alt"></i> Chuyển vào thùng rác</button>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
