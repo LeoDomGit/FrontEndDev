@@ -20,10 +20,26 @@ Carbon::setLocale('vi');
         width: 100%;
         height: 100%;
     }
+
+    #resultTrashPosts>tr>.td-image-trash-post div {
+        width: 150px;
+        height: 100px;
+        overflow: hidden;
+    }
+
+    #resultTrashPosts>tr>.td-image-trash-post div>img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .btn-move-item-to-trash,.btn-action-trash {
+        display: none;
+    }
+
 </style>
 <div class="row">
     <div class="col-lg-12 mb-4">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".box-add-post-modal">+ Thêm bài viết</button> <button type="button" class="btn btn-danger" data-toggle="modal" data-target=".box-trash-post-modal"><i class="fas fa-trash-alt"></i> Thùng rác <span class="badge badge-light">4</span></button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".box-add-post-modal">+ Thêm bài viết</button> <button type="button" class="btn btn-danger" data-toggle="modal" data-target=".box-trash-post-modal"><i class="fas fa-trash-alt"></i> Thùng rác <span class="badge badge-light">4</span></button> <button type="button" class="btn btn-danger btn-move-item-to-trash"><i class="fas fa-times"></i> Chuyển <span id="count-item-move-to-trash"></span> mục đã chọn vào thùng rác</button>
     </div>
     <!--  -->
     <div class="modal fade box-add-post-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -89,7 +105,40 @@ Carbon::setLocale('vi');
         <div class="modal-dialog modal-lg">
             <div class="modal-content p-4">
                 <div class="h4">Thùng rác bài viết</div>
-                <hr>
+                <div class="row">
+                    <div class="col-lg-12 mb-4">
+                    <button type="button" class="btn btn-success btn-action-trash btn-restore-trash"><i class="fa fa-refresh"></i> Khôi phục <span class="span-count-post-intrash"></span> mục đã đánh dấu</button> <button type="button" class="btn btn-danger btn-action-trash btn-delete-force-trash"><i class="	fas fa-times"></i> Xóa vĩnh viễn <span class="span-count-post-intrash"></span> mục đã đánh dấu</button>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table data-table">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" id="check-all-posts-in-trash"></th>
+                                <th>Tiêu đề</th>
+                                <th>Ảnh</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="resultTrashPosts">
+                            @foreach($trash as $key => $value)
+                            <tr>
+                                <td><input data-id="{{ $value->id }}" type="checkbox" class="check-each-post-in-trash"></td>
+                                <td>{{ $value->titlePosts }}</td>
+                                <td class="td-image-trash-post">
+                                    <div><img src="http://127.0.0.1:3000/<?php echo "images/posts/" . $value->imagePosts ?>" alt=""></div>
+                                </td>
+                                <td>
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <button type="button" class="btn btn-success"><i class="fa fa-refresh"></i></button>
+                                        <button type="button" class="btn btn-danger"><i class="	fas fa-times"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -99,6 +148,7 @@ Carbon::setLocale('vi');
             <table class="table data-table">
                 <thead>
                     <tr>
+                        <th><input type="checkbox" id="check-item-post-all"></th>
                         <th>Tiêu đề</th>
                         <th>Ảnh</th>
                         <th>Tóm tắt</th>
@@ -109,6 +159,7 @@ Carbon::setLocale('vi');
                 <tbody id="resultAllPosts">
                     @foreach($allPosts as $row)
                     <tr>
+                        <td><input data-id="{{ $row->id }}" type="checkbox" class="check-item-post-each-element"></td>
                         <td>{!! $row->titlePosts !!}</td>
                         <td class="td-image-posts">
                             <div><img src="http://127.0.0.1:3000/<?php echo "images/posts/" . $row->imagePosts ?>" alt=""></div>

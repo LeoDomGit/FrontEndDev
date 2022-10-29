@@ -11,9 +11,11 @@ class PostsController extends Controller
   {
     $catePosts = Http::get('http://127.0.0.1:3000/api/allCatePosts');
     $allPosts = Http::get('http://127.0.0.1:3000/api/allPosts');
+    $trash = Http::get('http://127.0.0.1:3000/api/trashPosts');
     $catePosts = json_decode($catePosts);
     $allPosts = json_decode($allPosts);
-    return view('posts.all', compact('catePosts', 'allPosts'));
+    $trash = json_decode($trash);
+    return view('posts.all', compact('catePosts', 'allPosts','trash'));
   }
 
   public function cate_posts()

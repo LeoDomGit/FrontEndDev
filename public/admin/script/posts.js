@@ -398,3 +398,254 @@ $(document).on("submit", "#form-update-post", function(e) {
         }
     })
     // ////////////////
+    // Checkbox chọn tất cả
+    // ////////////////
+$(document).on("change", "#check-item-post-all", function(e) {
+    e.preventDefault();
+    $('.check-item-post-each-element').prop('checked', $(this).prop('checked'));
+    $(".btn-move-item-to-trash").show();
+    $('#count-item-move-to-trash').html($('input[class="check-item-post-each-element"]:checked').length)
+    if ($('input[class="check-item-post-each-element"]:checked').length == 0) {
+        $(".btn-move-item-to-trash").hide();
+    }
+})
+$(document).on("change", ".check-item-post-each-element", function(e) {
+    e.preventDefault();
+    var countInput = $('.check-item-post-each-element').length;
+    if ($('input[class="check-item-post-each-element"]:checked').length < countInput) {
+        $('#check-item-post-all').prop("checked", false);
+    } else if ($('input[class="check-item-post-each-element"]:checked').length == countInput) {
+        $('#check-item-post-all').prop("checked", true);
+    }
+    $(".btn-move-item-to-trash").show();
+    $('#count-item-move-to-trash').html($('input[class="check-item-post-each-element"]:checked').length)
+    if ($('input[class="check-item-post-each-element"]:checked').length == 0) {
+        $(".btn-move-item-to-trash").hide();
+    }
+})
+
+
+// 
+
+$(document).on("change", "#check-all-posts-in-trash", function(e) {
+    e.preventDefault();
+    $('.check-each-post-in-trash').prop("checked", $(this).prop("checked"));
+    $(".btn-action-trash").show();
+    $(".span-count-post-intrash").html($('input[class="check-each-post-in-trash"]:checked').length);
+    if ($('input[class="check-each-post-in-trash"]:checked').length == 0) {
+        $(".btn-action-trash").hide();
+    }
+})
+
+$(document).on("change", ".check-each-post-in-trash", function(e) {
+        e.preventDefault();
+        var trashLenth = $('.check-each-post-in-trash').length;
+        if ($('input[class="check-each-post-in-trash"]:checked').length < trashLenth) {
+            $('#check-all-posts-in-trash').prop("checked", false);
+        } else if ($('input[class="check-each-post-in-trash"]:checked').length == trashLenth) {
+            $('#check-all-posts-in-trash').prop("checked", true);
+        }
+        $(".btn-action-trash").show();
+        $(".span-count-post-intrash").html($('input[class="check-each-post-in-trash"]:checked').length);
+        if ($('input[class="check-each-post-in-trash"]:checked').length == 0) {
+            $(".btn-action-trash").hide();
+        }
+    })
+    // ////////////////
+    // Xóa mềm bài viết
+    // ////////////////
+$(document).on("click", ".btn-move-item-to-trash", function(e) {
+        e.preventDefault();
+        var arr = [];
+        $('input[class="check-item-post-each-element"]:checked').each(function(index, value) {
+            arr.push($(value).data("id"));
+        })
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+        })
+        swalWithBootstrapButtons.fire({
+            title: 'Bạn có chắc?',
+            text: "Bạn có muốn chuyển " + $('input[class="check-item-post-each-element"]:checked').length + " vào thùng rác ?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Đồng ý',
+            cancelButtonText: 'Hủy',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                AjaxSetup();
+                $.ajax({
+                    url: "http://127.0.0.1:3000/api/deleteSoftPosts",
+                    type: "post",
+                    data: {
+                        arr: arr,
+                    },
+                    success: function(data) {
+                        if (data.status == 200) {
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: "top-end",
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.addEventListener(
+                                        "mouseenter",
+                                        Swal.stopTimer
+                                    );
+                                    toast.addEventListener(
+                                        "mouseleave",
+                                        Swal.resumeTimer
+                                    );
+                                },
+                            });
+
+                            Toast.fire({
+                                icon: "success",
+                                title: "Đã chuyển vào thùng rác thành công !",
+                            }).then(() => {
+                                window.location.reload();
+                            });
+                        }
+                    }
+                })
+
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelled',
+                    'Your imaginary file is safe :)',
+                    'error'
+                )
+            }
+        })
+    })
+    // //////////////////
+    // Khoi phục bài viết theo mảng
+    // ///////////////////
+$(document).on("click", ".btn-restore-trash", function(e) {
+        e.preventDefault();
+        var arrId = [];
+        $('input[class="check-each-post-in-trash"]:checked').each(function(index, value) {
+            arrId.push($(value).data("id"))
+        })
+        AjaxSetup();
+        $.ajax({
+            url: "http://127.0.0.1:3000/api/restoreArrTrash",
+            type: "post",
+            data: {
+                arr: arrId,
+            },
+            success: function(data) {
+                if (data.status == 200) {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: "top-end",
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener(
+                                "mouseenter",
+                                Swal.stopTimer
+                            );
+                            toast.addEventListener(
+                                "mouseleave",
+                                Swal.resumeTimer
+                            );
+                        },
+                    });
+
+                    Toast.fire({
+                        icon: "success",
+                        title: "Đã khôi phục thành công !",
+                    }).then(() => {
+                        window.location.reload();
+                    });
+                }
+            }
+        })
+    })
+    // //////////////////
+    // Xóa vĩnh viễn theo mảng
+
+$(document).on("click", ".btn-delete-force-trash", function(e) {
+        e.preventDefault();
+        var arrId2 = [];
+        $('input[class="check-each-post-in-trash"]:checked').each(function(index, value) {
+            arrId2.push($(value).data("id"))
+        })
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons.fire({
+            title: 'Bạn có chắc?',
+            text: "Bạn có chắc xóa vĩnh viễn " + $('input[class="check-each-post-in-trash"]:checked').length + " mục ?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'OK',
+            cancelButtonText: 'Hủy',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                AjaxSetup();
+                $.ajax({
+                    url: "http://127.0.0.1:3000/api/deleteForeceArrTrash",
+                    type: "post",
+                    data: {
+                        arr: arrId2,
+                    },
+                    success: function(data) {
+                        if (data.status == 200) {
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: "top-end",
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.addEventListener(
+                                        "mouseenter",
+                                        Swal.stopTimer
+                                    );
+                                    toast.addEventListener(
+                                        "mouseleave",
+                                        Swal.resumeTimer
+                                    );
+                                },
+                            });
+
+                            Toast.fire({
+                                icon: "success",
+                                title: "Đã xóa thành công !",
+                            }).then(() => {
+                                window.location.reload();
+                            });
+                        }
+                    }
+                })
+
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelled',
+                    'Your imaginary file is safe :)',
+                    'error'
+                )
+            }
+        })
+    })
+    // ////////////////////
