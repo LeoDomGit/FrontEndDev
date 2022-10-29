@@ -90,6 +90,17 @@ $(".imagePostsEdit").change(function() {
     var id = $(this).data("id");
     readURL_2(this, id);
 })
+
+
+
+
+
+
+// //////////////////
+// Thêm bài viết
+// //////////////////
+
+
 $(document).on("submit", "#form-add-post", function(e) {
     e.preventDefault();
     if ($('#titlePostAdd').val() == "") {
@@ -252,7 +263,138 @@ $(document).on("submit", "#form-add-post", function(e) {
     }
 
 })
+
+
+// /////////////////
+// Cập nhật bài viết
+// //////////////////
+
+
 $(document).on("submit", "#form-update-post", function(e) {
-    e.preventDefault();
-    alert("Chưa làm !");
-})
+        e.preventDefault();
+        if ($('.titlePostEdit').val() == "") {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+            Toast.fire({
+                icon: 'error',
+                title: 'Vui lòng nhập tiêu đề !',
+            });
+            return false;
+        } else if ($('.tagsPostEdit').val() == "") {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+            Toast.fire({
+                icon: 'error',
+                title: 'Vui lòng nhập ít nhất 1 từ khóa liên quan !',
+            });
+            return false;
+        } else if ($('.summaryPostEdit').val() == "") {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+            Toast.fire({
+                icon: 'error',
+                title: 'Vui lòng nhập tóm tắt !',
+            });
+            return false;
+        } else if ($('.contentPostEdit').val() == "") {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+            Toast.fire({
+                icon: 'error',
+                title: 'Vui lòng nhập nội dung bài viết !',
+            });
+            return false;
+        } else {
+            AjaxSetup();
+            $.ajax({
+                url: "http://127.0.0.1:3000/api/updatePosts",
+                type: "post",
+                data: new FormData($(this)[0]),
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data) {
+                    if (data.status == 202) {
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        })
+                        Toast.fire({
+                            icon: 'error',
+                            title: data.msg
+                        });
+                        return false;
+                    } else if (data.status == 200) {
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: "top-end",
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.addEventListener(
+                                    "mouseenter",
+                                    Swal.stopTimer
+                                );
+                                toast.addEventListener(
+                                    "mouseleave",
+                                    Swal.resumeTimer
+                                );
+                            },
+                        });
+
+                        Toast.fire({
+                            icon: "success",
+                            title: data.msg,
+                        }).then(() => {
+                            window.location.reload();
+                        });
+                    }
+                }
+            })
+        }
+    })
+    // ////////////////

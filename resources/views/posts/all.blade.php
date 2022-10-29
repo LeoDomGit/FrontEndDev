@@ -182,7 +182,7 @@ Carbon::setLocale('vi');
                                                     });
                                                 </script>
                                             </div>
-                                            <button type="submit" class="btn btn-primary">[<i class="fas fa-save"></i>] Lưu bài viết</button>
+                                            <button type="submit" class="btn btn-primary">[<i class="fas fa-save"></i>] Cập nhật bài viết</button>
                                         </form>
                                     </div>
                                 </div>
