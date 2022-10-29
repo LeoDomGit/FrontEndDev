@@ -32,14 +32,14 @@ Carbon::setLocale('vi');
         height: 100%;
     }
 
-    .btn-move-item-to-trash,.btn-action-trash {
+    .btn-move-item-to-trash,
+    .btn-action-trash {
         display: none;
     }
-
 </style>
 <div class="row">
     <div class="col-lg-12 mb-4">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".box-add-post-modal">+ Thêm bài viết</button> <button type="button" class="btn btn-danger" data-toggle="modal" data-target=".box-trash-post-modal"><i class="fas fa-trash-alt"></i> Thùng rác <span class="badge badge-light">4</span></button> <button type="button" class="btn btn-danger btn-move-item-to-trash"><i class="fas fa-times"></i> Chuyển <span id="count-item-move-to-trash"></span> mục đã chọn vào thùng rác</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".box-add-post-modal">+ Thêm bài viết</button> <button type="button" class="btn btn-danger" data-toggle="modal" data-target=".box-trash-post-modal"><i class="fas fa-trash-alt"></i> Thùng rác <?php echo (count($trash) > 0) ? '<span class="badge badge-light">' . count($trash) . '</span>' : '' ?></button> <button type="button" class="btn btn-danger btn-move-item-to-trash"><i class="fas fa-times"></i> Chuyển <span id="count-item-move-to-trash"></span> mục đã chọn vào thùng rác</button>
     </div>
     <!--  -->
     <div class="modal fade box-add-post-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -107,9 +107,10 @@ Carbon::setLocale('vi');
                 <div class="h4">Thùng rác bài viết</div>
                 <div class="row">
                     <div class="col-lg-12 mb-4">
-                    <button type="button" class="btn btn-success btn-action-trash btn-restore-trash"><i class="fa fa-refresh"></i> Khôi phục <span class="span-count-post-intrash"></span> mục đã đánh dấu</button> <button type="button" class="btn btn-danger btn-action-trash btn-delete-force-trash"><i class="	fas fa-times"></i> Xóa vĩnh viễn <span class="span-count-post-intrash"></span> mục đã đánh dấu</button>
+                        <button type="button" class="btn btn-success btn-action-trash btn-restore-trash"><i class="fa fa-refresh"></i> Khôi phục <span class="span-count-post-intrash"></span> mục đã đánh dấu</button> <button type="button" class="btn btn-danger btn-action-trash btn-delete-force-trash"><i class="	fas fa-times"></i> Xóa vĩnh viễn <span class="span-count-post-intrash"></span> mục đã đánh dấu</button>
                     </div>
                 </div>
+                @if(count($trash) > 0)
                 <div class="table-responsive">
                     <table class="table data-table">
                         <thead>
@@ -130,8 +131,8 @@ Carbon::setLocale('vi');
                                 </td>
                                 <td>
                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                        <button type="button" class="btn btn-success"><i class="fa fa-refresh"></i></button>
-                                        <button type="button" class="btn btn-danger"><i class="	fas fa-times"></i></button>
+                                        <button data-id="{{ $value->id }}" type="button" class="btn btn-success btn-restore-single-post-in-trash"><i class="fa fa-refresh"></i></button>
+                                        <button data-id="{{ $value->id }}" type="button" class="btn btn-danger btn-delete-force-single-post-in-trash"><i class="	fas fa-times"></i></button>
                                     </div>
                                 </td>
                             </tr>
@@ -139,6 +140,11 @@ Carbon::setLocale('vi');
                         </tbody>
                     </table>
                 </div>
+                @else
+                <hr>
+                <div class="h3">Không có bài viết nào trong thùng rác !</div>
+
+                @endif
             </div>
         </div>
     </div>
@@ -167,10 +173,29 @@ Carbon::setLocale('vi');
                         <td>{!! $row->summaryPosts !!}</td>
                         <td><?php echo Carbon::parse($row->created_at)->format('h:i') . " " . Carbon::parse($row->created_at)->format('d/m') . "/" . Carbon::parse($row->created_at)->year . " (" . Carbon::parse($row->created_at)->diffForHumans() . ")" ?></td>
                         <td>
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target=".box-edit-post-modal{{ $row->id }}"><i class="fas fa-pen-alt"></i></button>
-                                <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                            <button type="button" class="btn btn-primary" class="btn btn-primary" data-toggle="modal" data-target="#modal-button-action-post{{ $row->id }}"><i class="fas fa-cogs"></i></button>
+                            <!--  -->
+
+                            <!--  -->
+                            <!--  -->
+                            <div class="modal fade" id="modal-button-action-post{{ $row->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target=".box-edit-post-modal{{ $row->id }}"><i class="fas fa-pen-alt"></i> Cập nhật bài viết</button>
+                                                <button data-id="{{ $row->id }}" type="button" class="btn btn-danger btn-move-single-post-to-trash"><i class="fas fa-trash-alt"></i> Chuyển vào thùng rác</button>
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
+                            <!--  -->
+                            <!--  -->
                             <div class="modal fade box-edit-post-modal{{ $row->id }}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content p-4">
@@ -238,6 +263,7 @@ Carbon::setLocale('vi');
                                     </div>
                                 </div>
                             </div>
+                            <!--  -->
                         </td>
                     </tr>
                     @endforeach

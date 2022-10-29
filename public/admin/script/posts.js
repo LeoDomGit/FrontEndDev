@@ -649,3 +649,165 @@ $(document).on("click", ".btn-delete-force-trash", function(e) {
         })
     })
     // ////////////////////
+    // Xóa mềm 1 bài viết
+    // /////////////////////////
+
+$(document).on("click", ".btn-move-single-post-to-trash", function(e) {
+        e.preventDefault()
+        var idPostMove = $(this).data("id");
+        AjaxSetup();
+        $.ajax({
+            url: "http://127.0.0.1:3000/api/deleteSoftSinglePost",
+            type: "post",
+            data: {
+                id: idPostMove,
+            },
+            success: function(data) {
+                if (data.status == 200) {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: "top-end",
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener(
+                                "mouseenter",
+                                Swal.stopTimer
+                            );
+                            toast.addEventListener(
+                                "mouseleave",
+                                Swal.resumeTimer
+                            );
+                        },
+                    });
+
+                    Toast.fire({
+                        icon: "success",
+                        title: "Đã chuyển thành công 1 mục vào thùng rác !",
+                    }).then(() => {
+                        window.location.reload();
+                    });
+                }
+            }
+        })
+
+    })
+    //////////////////////////////
+    // Khôi phục 1 bài viết
+    // //////////////////////////
+
+$(document).on("click", ".btn-restore-single-post-in-trash", function(e) {
+        e.preventDefault();
+        var idRestore = $(this).data("id");
+        AjaxSetup();
+        $.ajax({
+            url: "http://127.0.0.1:3000/api/restoreSinglePost",
+            type: "post",
+            data: {
+                id: idRestore,
+            },
+            success: function(data) {
+                if (data.status == 200) {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: "top-end",
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener(
+                                "mouseenter",
+                                Swal.stopTimer
+                            );
+                            toast.addEventListener(
+                                "mouseleave",
+                                Swal.resumeTimer
+                            );
+                        },
+                    });
+
+                    Toast.fire({
+                        icon: "success",
+                        title: "1 bài viết đã được khôi phục thành công !",
+                    }).then(() => {
+                        window.location.reload();
+                    });
+                }
+            }
+        })
+    })
+    // ////////////////////////////
+    // Xóa vĩnh viễn 1 bài viết
+    // ///////////////////////////
+
+$(document).on("click", ".btn-delete-force-single-post-in-trash", function(e) {
+        e.preventDefault();
+        var idDelete = $(this).data("id");
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons.fire({
+            title: 'Bạn có chắc?',
+            text: "Bạn có chắc xóa vĩnh viễn bài viết này ?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'OK',
+            cancelButtonText: 'Hủy',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                AjaxSetup();
+                $.ajax({
+                    url: "http://127.0.0.1:3000/api/deleteForeSinglePost",
+                    type: "post",
+                    data: {
+                        id: idDelete,
+                    },
+                    success: function(data) {
+                        if (data.status == 200) {
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: "top-end",
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.addEventListener(
+                                        "mouseenter",
+                                        Swal.stopTimer
+                                    );
+                                    toast.addEventListener(
+                                        "mouseleave",
+                                        Swal.resumeTimer
+                                    );
+                                },
+                            });
+
+                            Toast.fire({
+                                icon: "success",
+                                title: "1 bài viết đã được xóa thành công !",
+                            }).then(() => {
+                                window.location.reload();
+                            });
+                        }
+                    }
+                })
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelled',
+                    'Your imaginary file is safe :)',
+                    'error'
+                )
+            }
+        })
+    })
+    // //////////////////////
