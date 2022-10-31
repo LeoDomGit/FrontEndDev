@@ -47,7 +47,7 @@ Carbon::setLocale('vi');
 </style>
 <div class="row">
     <div class="col-lg-12 mb-4">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#box-add-post-modal">+ Thêm bài viết</button> <button type="button" class="btn btn-danger" data-toggle="modal" data-target=".box-trash-post-modal"><i class="fas fa-trash-alt"></i> Thùng rác <?php echo (count($trash) > 0) ? '<span class="badge badge-light">' . count($trash) . '</span>' : '' ?></button> <button type="button" class="btn btn-danger btn-move-item-to-trash"><i class="fas fa-times"></i> Chuyển <span id="count-item-move-to-trash"></span> mục đã chọn vào thùng rác</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#box-add-post-modal">+ Thêm bài viết mới</button> <button type="button" class="btn btn-danger" data-toggle="modal" data-target=".box-trash-post-modal"><i class="fas fa-trash-alt"></i> Thùng rác <?php echo (count($trash) > 0) ? '<span class="badge badge-light">' . count($trash) . '</span>' : '' ?></button> <button type="button" class="btn btn-danger btn-move-item-to-trash"><i class="fas fa-times"></i> Chuyển <span id="count-item-move-to-trash"></span> mục đã chọn vào thùng rác</button>
     </div>
     <!--  -->
     <!--  -->
