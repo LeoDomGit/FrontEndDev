@@ -38,4 +38,5 @@ Route::middleware('checkLogin')->group(function() {
     Route::get('/afterlogin', [loginController::class, "afterlogin"]);
     Route::get('/logout', [loginController::class, "logout"]);
     Route::get('postsManager',[PostsController::class,'index']);
+    Route::get('/catepostsManager',[PostsController::class,'index_cate_posts']);
 });

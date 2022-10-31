@@ -18,8 +18,10 @@ class PostsController extends Controller
     return view('posts.all', compact('catePosts', 'allPosts','trash'));
   }
 
-  public function cate_posts()
+  public function index_cate_posts()
   {
-    return view('posts.cate-post');
+    $allCatePost = Http::get('http://127.0.0.1:3000/api/allCatepost');
+    $allCatePost = json_decode($allCatePost);
+    return view('posts.cate-post',compact('allCatePost'));
   }
 }

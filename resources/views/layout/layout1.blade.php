@@ -463,7 +463,7 @@
 								><span class="mtext">Quản lý truyền thông</span>
 							</a>
 							<ul class="submenu">
-								<li><a href="#">Quản lý thể loại</a></li>
+								<li><a href="/catepostsManager">Quản lý thể loại</a></li>
 								<li><a href="/postsManager">Quản lý bài viết</a></li>
 							</ul>
 						</li>

@@ -206,7 +206,7 @@ Carbon::setLocale('vi');
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target=".box-edit-post-modal{{ $row->id }}"><i class="fas fa-pen-alt"></i> Cập nhật bài viết</button>
+                                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target=".box-edit-post-modal{{ $row->id }}"><i class="fas fa-pen-alt"></i> Chỉnh sửa bài viết</button>
                                                 <button data-id="{{ $row->id }}" type="button" class="btn btn-danger btn-move-single-post-to-trash"><i class="fas fa-trash-alt"></i> Chuyển vào thùng rác</button>
                                         </div>
                                     </div>
