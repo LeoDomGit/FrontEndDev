@@ -467,6 +467,15 @@
 								<li><a href="/postsManager">Quản lý bài viết</a></li>
 							</ul>
 						</li>
+						<li class="dropdown">
+							<a href="javascript:;" class="dropdown-toggle">
+								<span class="micon bi bi-display"></span
+								><span class="mtext">Quản lý giao diện</span>
+							</a>
+							<ul class="submenu">
+								<li><a href="/allSlider">Quản lý slider</a></li>
+							</ul>
+						</li>
 					</ul>
 				</div>
 			</div>

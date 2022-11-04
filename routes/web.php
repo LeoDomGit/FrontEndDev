@@ -10,6 +10,8 @@ use App\Http\Controllers\StoragesCotroller;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\PostsController;
+use App\Http\Controllers\SliderController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -39,4 +41,7 @@ Route::middleware('checkLogin')->group(function() {
     Route::get('/logout', [loginController::class, "logout"]);
     Route::get('postsManager',[PostsController::class,'index']);
     Route::get('/catepostsManager',[PostsController::class,'index_cate_posts']);
+    Route::get('/allSlider',[SliderController::class,'allSlider']);
 });
+
+
