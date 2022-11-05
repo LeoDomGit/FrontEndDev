@@ -7,6 +7,17 @@ $(document).ready(function (){
     })
 });
 function chooseFileAdd(input) {
+    const files = input.files
+    const file = files[0];
+    const validImageTypes = ['image/gif', 'image/jpeg', 'image/png','image/jpg',];
+    if (!validImageTypes.includes(file['type'])) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            $('#fileSliderAdd').attr('src', 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png');
+        }
+        reader.readAsDataURL(input.files[0]);
+        return false;
+      }
     if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function(e) {
@@ -26,7 +37,6 @@ function chooseFileEdit(input, id) {
 }
 $('.fileImageEdit').change(function() {
     var id = $(this).data("id");
-    console.log(id);
     chooseFileEdit(this, id);
 })
 function addSlider(){
@@ -157,18 +167,31 @@ function deleteSlider(){
 })
     })
 }
-
 $(".switches").click(function() {
     const formSubmit = $('form-update-status');
     formSubmit.submit();
         const id = $(this).attr('data-fpid');
-        console.log(id);
         $.ajax({
             url: 'http://localhost:3000/api/allSlider/change-status',
             type: 'POST',
             data: {id: id},
             success: function(data) {
-                console.log(data);
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+                
+                Toast.fire({
+                icon: 'success',
+                title: 'Cập nhật trạng thái thành công'
+                })
             }
         })
    
@@ -188,7 +211,6 @@ $(document).on("submit", "#form-edit-slider", function(e) {
     e.preventDefault();
     var idSlider = $(this).attr('data-id');
     var formData = new FormData(this);
-    console.log(formData)
     var titleEditSlider = $('#titleEditSlider'+ idSlider ).val().trim();
     var imageEdit = $("#imageEdit"+idSlider ).prop("files")[0];
     if(imageEdit){
@@ -218,7 +240,6 @@ $(document).on("submit", "#form-edit-slider", function(e) {
             cache: false,
             processData: false,
             success:(response) => {
-                console.log(response);
                 if(response.status==203){
                     Swal.fire({
                         icon: 'error',

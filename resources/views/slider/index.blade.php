@@ -189,17 +189,22 @@ color: #000;
 .text-center{
 text-align: center !important;
 }
+.tdControl{
+    max-width: 250px;
+    width: 100%;
+}
+
 
 </style>
 <div class="row">
     <div class="col-lg-12 mb-4">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#box-add-slider-modal"> Thêm slider</button>
+        <button type="button" class="btn btn-sm mt-3 btn-primary" data-toggle="modal" data-target="#box-add-slider-modal"><i class="fas fa-plus-circle"></i> Thêm slider</button>
     </div>
     <!--  -->
     <!--  -->
     <div class="modal fade" id="box-add-slider-modal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content mb-3">
                 <form id="form-add-slider" method="post" action="http://localhost:3000/api/addSlider" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-header">
@@ -209,15 +214,16 @@ text-align: center !important;
                         </button>
                     </div>
                     <div class="modal-body">
+                        <div class="container-fluid">
                         <div class="form-group">
-                            <label for="">Tiêu đề</label>
+                            <label class="font-weight-bold" for="">Tiêu đề</label>
                             <input type="text" name="name" class="form-control" id="titleSlider" placeholder="Nhập tiêu đề bài viết">
                         </div>
                         <div class="form-group image-slider">
                             <img class="d-flex justify-content-center" src="https://artsmidnorthcoast.com/wp-content/uploads/2014/05/no-image-available-icon-6.png" id="fileSliderAdd" alt="No image available" >
                         </div>
                         <div class="form-group">
-                            <label for="">Chọn banner:</label>
+                            <label class="font-weight-bold" for="">Chọn banner:</label>
                             <div class="form-group mb-3">
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" name="fileSlider" id="submit-file-slider" onchange="chooseFileAdd(this)" aria-describedby="inputGroupFileAddon01">
@@ -227,7 +233,7 @@ text-align: center !important;
                         </div>
                  
                         <div class="form-group">
-                            <label for="">Trạng thái: &nbsp;</label>
+                            <label class="font-weight-bold" for="">Trạng thái: &nbsp;</label>
                             <div class="form-check form-check-inline">
                             <input type="radio" class="form-check-input status_D"  name="status"value='1'>
                             <label class="form-check-label" for="exampleInputPassword1">Động</label>
@@ -239,11 +245,11 @@ text-align: center !important;
                         </div>
                         </div>
                      
-
+                        </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-times"></i> Đóng</button>
-                        <button type="submit" class="btn btn-success">[<i class="fas fa-save"></i>] Thêm mới</button>
+                        <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"><i class="fas fa-times"></i> &nbsp; Đóng</button>
+                        <button type="submit" class="btn btn-sm btn-success"><i class="far fa-save"></i>&nbsp;Thêm </button>
                     </div>
                 </form>
             </div>
@@ -264,7 +270,12 @@ text-align: center !important;
                 <tbody id="resultAllSlider">
                    @foreach($allSlider as $slider)
                     <tr>
-                        <td>{{$slider -> name}}</td>
+                        <td>
+                            <div class="tdControl">
+                                {{$slider -> name}}
+                            </div>
+
+                        </td>
                         <td class="td-imgControl">
                             <div><img src="http://127.0.0.1:3000/<?php echo "sliders/" . $slider->image ?>" alt=""></div>
                         </td>
@@ -283,36 +294,40 @@ text-align: center !important;
                         <td>
                             <?php
                                 $now = Carbon::now();
-                                $createdAt = $slider->created_at;
-                                $createdAt = Carbon::parse($createdAt);
-                                echo $createdAt->diffForHumans(Carbon::now());
+                                $updatedAt = $slider->updated_at;
+                                $updatedAt = Carbon::parse($updatedAt);
+                                echo $updatedAt->diffForHumans(Carbon::now());
                                
                             ?>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-sm btn-danger deleteSlider" data-id = "{{$slider ->image}}">Xóa</button>
-                            <button type="button" class="btn btn-sm btn-primary" id="modalUpdate" data-id="{{$slider->id}}" data-toggle="modal" data-target="#box-edit-slider-modal{{$slider->id}}"><i class="fas fa-cogs"></i></button>
-                            <div class="modal fade" id="box-edit-slider-modal{{$slider ->id}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <button type="button" class="btn btn-sm btn-danger deleteSlider" data-id = "{{$slider ->image}}"><i class="fas fa-trash"></i> Xóa</button>
+                            <button type="button" class="btn btn-sm btn-primary" id="modalUpdate" data-id="{{$slider->id}}" data-toggle="modal" data-target="#box-edit-slider-modal{{$slider->id}}"><i class="fas fa-edit"></i></button>
+                        
+                    
+                           
+                        </td>
+                        <div class="modal fade" id="box-edit-slider-modal{{$slider ->id}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <form id="form-edit-slider" data-id="{{$slider->id}}" enctype="multipart/form-data">
-                                            <div class="modal-header">
+                                            <div class="modal-header mb-3">
                                                 <h5 class="modal-title text-center" id="staticBackdropLabel">Cập nhật "{!! $slider -> name !!}"</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true"><i class="fas fa-times"></i></span>
                                                 </button>
                                             </div>
-                                            <div class="modal-body">
+                                            <div class="modal-body mb-3">
                                                 <div class="form-group">
-                                                    <label for="">Tên Slider</label>
+                                                    <label class="font-weight-bold" for="">Tên Slider</label>
                                                     <input type="hidden" name="id" value="{{ $slider -> id }}">
                                                     <input data-id="{{ $slider->id }}" id="titleEditSlider{{$slider->id}}" class="form-control" name="name" value="{{ $slider -> name }}" type="text">
                                                 </div>
-                                                <div class="form-group image-slider">
+                                                <div class="form-group image-slider mt-3">
                                                  <img class="d-flex justify-content-center" style="margin-bottom: 20px;" id="fileSliderEdit{{$slider->id}}" src="<?php echo ($slider->image != null) ? 'http://127.0.0.1:3000/sliders/' . $slider->image : 'https://artsmidnorthcoast.com/wp-content/uploads/2014/05/no-image-available-icon-6.png' ?>" alt="image">
                                                 </div>
-                                                <div class="form-group">
-                                                    <label for="">Chọn banner</label>                         
+                                                <div class="form-group mt-3">
+                                                    <label class="font-weight-bold" for="">Chọn banner</label>                         
                                                     <div class="input-group mb-3">
                                                         <div class="custom-file">
                                                             <input class="custom-file-input fileImageEdit" type="file" id ="imageEdit{{$slider->id}}" name="fileupdate" data-id="{{ $slider->id }}">
@@ -321,7 +336,7 @@ text-align: center !important;
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="nameslider">Trạng thái: &nbsp;</label>
+                                                    <label class="font-weight-bold" for="nameslider">Trạng thái: &nbsp;</label>
                                                     <div class="form-check form-check-inline">
                                                         <input class="form-check-input" type="radio" name="status" value="1"<?php if($slider->status==1) echo"checked"; ?> >
                                                         <label class="form-check-label" for="exampleInputPassword1">Động</label>
@@ -332,20 +347,16 @@ text-align: center !important;
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-times"></i> Đóng</button>
-                                                <button type="submit" class="btn btn-success" data-idnum="{{$slider->id}}" ><i class="fas fa-save"></i> Cập nhật slider</button>
+                                            <div class="modal-footer mb-3">
+                                                <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal"><i class="fas fa-times"></i>&nbsp; Đóng</button>
+                                                <button type="submit" class="btn btn-sm btn-success" data-idnum="{{$slider->id}}" ><i class="fas fa-save"></i>&nbsp;Cập nhật slider</button>
                                             </div>
                                         </form>
                                     </div>
                                 </div>
                             </div>
-                            @endforeach
-                            <!--  -->
-                            <!--  -->
-
-                            <!--  -->
-                        </td>
+                         </div>
+                         @endforeach
                     </tr>
                    
                 </tbody>
