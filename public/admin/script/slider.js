@@ -123,26 +123,37 @@ function deleteSlider(){
             confirmButtonText: 'Yes'
         }).then((result) => {
             if (result.isConfirmed) {
-                Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: 'Xóa thành công!',
-                    showConfirmButton: false,
-                    timer: 500
-                })
                 var nameImage = $(this).data('id');
                 $.ajax({
                     url: 'http://localhost:3000/api/deleteSlider',
                     type: 'post',
-                    data: {
-                        
+                    data: {   
                         nameImage: nameImage
+                    },
+                    success: (response) => {
+                    if(response.check==true){
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 2000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                              toast.addEventListener('mouseenter', Swal.stopTimer)
+                              toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                          })
+                          
+                          Toast.fire({
+                            icon: 'success',
+                            title: 'Xóa thành công!'
+                          }).then(()=>{
+                            window.location.reload();
+                          })
                     }
-                }).done(function () {
-                    window.location.reload();
-                    
+                }
                 })
-            }
+}
 })
     })
 }
