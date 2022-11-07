@@ -9,30 +9,41 @@ $(document).ready(function (){
 function chooseFileAdd(input) {
     const files = input.files
     const file = files[0];
-    const validImageTypes = ['image/gif', 'image/jpeg', 'image/png','image/jpg',];
+    const validImageTypes = ['image/gif', 'image/jpeg', 'image/png','image/webp'];
     if (!validImageTypes.includes(file['type'])) {
         var reader = new FileReader();
         reader.onload = function(e) {
             $('#fileSliderAdd').attr('src', 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png');
         }
-        reader.readAsDataURL(input.files[0]);
+        reader.readAsDataURL(file);
         return false;
       }
-    if (input.files && input.files[0]) {
+    if (files && file) {
         var reader = new FileReader();
         reader.onload = function(e) {
             $('#fileSliderAdd').attr('src', e.target.result);
         }
-        reader.readAsDataURL(input.files[0]);
+        reader.readAsDataURL(file);
     }
 }
 function chooseFileEdit(input, id) {
-    if (input.files && input.files[0]) {
+    const files = input.files
+    const file = files[0];
+    const validImageTypes = ['image/gif', 'image/jpeg', 'image/png','image/webp'];
+    if (!validImageTypes.includes(file['type'])) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            $('#fileSliderEdit'+ id).attr('src', 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png');
+        }
+        reader.readAsDataURL(file);
+        return false;
+      }
+    if (files && file) {
         var reader = new FileReader();
         reader.onload = function(e) {
             $('#fileSliderEdit' + id).attr('src', e.target.result);
         }
-        reader.readAsDataURL(input.files[0]);
+        reader.readAsDataURL(file);
     }
 }
 $('.fileImageEdit').change(function() {
@@ -88,10 +99,10 @@ function addSlider(){
                 processData: false,
                 success: (response) => {
                    
-                    if(response.status==502){
+                    if(response.status==203){
                         Swal.fire({
                             icon: 'error',
-                            title: 'Tiêu đề trùng!',
+                            title: 'Tiêu đề đã tồn tại!',
                             text: 'Vui lòng chọn tiêu đề khác!',
                           })
                     }

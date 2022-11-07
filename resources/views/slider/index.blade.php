@@ -217,7 +217,7 @@ text-align: center !important;
                         <div class="container-fluid">
                         <div class="form-group">
                             <label class="font-weight-bold" for="">Tiêu đề</label>
-                            <input type="text" name="name" class="form-control" id="titleSlider" placeholder="Nhập tiêu đề bài viết">
+                            <input type="text" name="name" class="form-control" id="titleSlider" placeholder="Nhập tiêu đề slider">
                         </div>
                         <div class="form-group image-slider">
                             <img class="d-flex justify-content-center" src="https://artsmidnorthcoast.com/wp-content/uploads/2014/05/no-image-available-icon-6.png" id="fileSliderAdd" alt="No image available" >
@@ -302,7 +302,7 @@ text-align: center !important;
                         </td>
                         <td>
                             <button type="button" class="btn btn-sm btn-danger deleteSlider" data-id = "{{$slider ->image}}"><i class="fas fa-trash"></i> Xóa</button>
-                            <button type="button" class="btn btn-sm btn-primary" id="modalUpdate" data-id="{{$slider->id}}" data-toggle="modal" data-target="#box-edit-slider-modal{{$slider->id}}"><i class="fas fa-edit"></i></button>
+                            <button type="button" class="btn btn-sm btn-primary" id="modalUpdate" data-id="{{$slider->id}}" data-toggle="modal" data-target="#box-edit-slider-modal{{$slider->id}}"><i class="fas fa-edit"></i> Sửa</button>
                         
                     
                            
@@ -321,7 +321,7 @@ text-align: center !important;
                                                 <div class="form-group">
                                                     <label class="font-weight-bold" for="">Tên Slider</label>
                                                     <input type="hidden" name="id" value="{{ $slider -> id }}">
-                                                    <input data-id="{{ $slider->id }}" id="titleEditSlider{{$slider->id}}" class="form-control" name="name" value="{{ $slider -> name }}" type="text">
+                                                    <input data-id="{{ $slider->id }}" id="titleEditSlider{{$slider->id}}" class="form-control" name="name" value="{{ $slider -> name }}" type="text" placeholder="Nhập tiêu đề slider">
                                                 </div>
                                                 <div class="form-group image-slider mt-3">
                                                  <img class="d-flex justify-content-center" style="margin-bottom: 20px;" id="fileSliderEdit{{$slider->id}}" src="<?php echo ($slider->image != null) ? 'http://127.0.0.1:3000/sliders/' . $slider->image : 'https://artsmidnorthcoast.com/wp-content/uploads/2014/05/no-image-available-icon-6.png' ?>" alt="image">
